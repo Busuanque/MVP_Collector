@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const locationLabel = document.getElementById("location-label");
-    const instructionLabel = document.getElementById("instruction-label");
+    //const instructionLabel = document.getElementById("instruction-label");
     const photoUpload = document.getElementById("photo-upload");
     const uploadButton = document.getElementById("upload-button");
     const cameraButton = document.getElementById("camera-button");
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         const formData = new FormData();
         formData.append("photo", photoUpload.files[0]);
-        instructionLabel.textContent = "Passo 2: Clique em 'Analisar e Obter Dicas'";
+        //instructionLabel.textContent = "Passo 2: Clique em 'Analisar e Obter Dicas'";
         axios.post("/upload_photo", formData)
             .then(response => {
                 statusLabel.textContent = response.data.message;
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
             cameraFeed.srcObject = stream;
             cameraFeed.classList.remove("d-none");
             captureButton.classList.remove("d-none");
-            instructionLabel.textContent = "Passo 1: Posicione a mão e clique em 'Capturar Foto'";
+            //instructionLabel.textContent = "Passo 1: Posicione a mão e clique em 'Capturar Foto'";
         } catch (error) {
             statusLabel.textContent = "Erro ao acessar a câmara.";
             statusLabel.style.color = "#FF0000";
@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const photoData = canvas.toDataURL("image/jpeg");
         const formData = new FormData();
         formData.append("photo_data", photoData);
-        instructionLabel.textContent = "Passo 2: Clique em 'Analisar e Obter Dicas'";
+        //instructionLabel.textContent = "Passo 2: Clique em 'Analisar e Obter Dicas'";
         axios.post("/upload_photo", formData)
             .then(response => {
                 statusLabel.textContent = response.data.message;
@@ -123,6 +123,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Handle analysis
     analyzeButton.addEventListener("click", () => {
+
+
         if (!window.locationData || !photoPath) {
             statusLabel.textContent = "Localização ou foto não disponível.";
             statusLabel.style.color = "#FF0000";
@@ -142,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 statusLabel.style.color = response.data.message_color;
                 if (response.data.status === "success") {
                     resultLabel.innerHTML = response.data.result;
-                    instructionLabel.textContent = "Passo 1: Carregue ou capture uma nova foto para analisar novamente";
+                    //instructionLabel.textContent = "Passo 1: Carregue ou capture uma nova foto para analisar novamente";
                     photoUpload.value = "";
                     analyzeButton.disabled = true;
                     photoPath = null;
