@@ -12,23 +12,67 @@
     <div class="container d-flex flex-column align-items-center min-vh-100">
         <h1 class="my-4 text-primary" style="font-size: 2.5rem;">Prevenção de Cancro de Pele</h1>
         <h3 id="location-label" class="text-secondary mb-3" style="font-size: 1.5rem;">A detetar a sua localização...</h3>
-        <p id="instruction-label" class="text-primary mb-3" style="font-size: 1.5rem;">Passo 1: Carregue ou capture uma foto da sua mão</p>
-        <input type="file" id="photo-upload" class="form-control mb-3" accept=".jpg,.png" style="font-size: 1.25rem; max-width: 400px;">
-        <button id="upload-button" class="btn btn-primary mb-3" style="font-size: 1.25rem; padding: 10px 20px;">Carregar Foto da Mão</button>
-        <button id="camera-button" class="btn btn-primary mb-3" style="font-size: 1.25rem; padding: 10px 20px;">Tirar Foto</button>
-        <video id="camera-feed" class="mb-3 d-none" style="max-width: 400px; width: 100%;" autoplay></video>
-        <button id="capture-button" class="btn btn-primary mb-3 d-none" style="font-size: 1.25rem; padding: 10px 20px;">Capturar Foto</button>
-        <button id="analyze-button" class="btn btn-success mb-3" style="font-size: 1.25rem; padding: 10px 20px;" disabled>Analisar e Obter Dicas</button>
-        <div id="spinner" class="spinner-border text-primary d-none" role="status" style="width: 2.5rem; height: 2.5rem;">
-            <span class="visually-hidden">A analisar...</span>
+        
+        
+        <p id="instruction-label" class="text-primary mb-3" style="font-size: 1.5rem;">Carregue ou capture uma foto da sua mão</p>
+        
+        
+        <div class="container-botoes">
+            <input type="file" id="photo-upload" class="btn btn-primary  mb-3" accept=".jpg,.png" style="font-size: 1.25rem; max-width: 400px;">
+            <button id="upload-button" class="btn btn-primary mb-3" style="font-size: 1.25rem; padding: 10px 20px;">Carregar Foto</button>
         </div>
-        <div id="result-card" class="card shadow-sm mb-3" style="max-width: 400px; background-color: #F5F5F5; border: 2px solid #0080FF;">
-            <div class="card-body">
-                <p id="result-label" class="card-text text-primary" style="font-size: 1.25rem;">Os resultados aparecerão aqui.</p>
+        
+        <p></p>
+
+        <div class="container-botoes">
+            <button id="camera-button" class="btn btn-primary2 mb-3" style="font-size: 1.25rem; padding: 10px 20px;">Capturar imagem</button>
+        </div>
+
+        <p></p>
+
+        <div class="container-botoes">
+            <button id="analyze-button" class="btn btn-success mb-3" style="font-size: 1.25rem; padding: 10px 20px;" disabled>Analisar e Obter Dicas</button>
+            <div id="spinner" class="spinner-border text-primary d-none" role="status" style="width: 2.5rem; height: 2.5rem;">
+                <span class="visually-hidden">A analisar...</span>
+            </div>
+
+            <!-- resultado -->
+            <div id="result-card" class="card-result shadow-sm mb-3" style="max-width: 400px;">
+                <p id="result-label" style="font-size: 1.25rem;">Os resultados aparecerão aqui.</p>
             </div>
         </div>
-        <p id="status-label" class="text-secondary" style="font-size: 1rem;">{{ status_message }}</p>
+
+        <p></p>
+
+        <p id="status-label" class="text-secondary" style="font-size: 1rem italic;">{{ status_message }}</p>
+
+        <!-- NOVA SEÇÃO: Gestão de Dados das Análises -->
+        <div class="data-section">
+            <h3>📊 Gestão de Dados das Análises</h3>
+            
+            <div class="data-controls">
+                <button onclick="viewData()" class="btn-secondary" id="view-data-btn">
+                    👁️ Ver Dados
+                </button>
+                <button onclick="exportData()" class="btn-secondary" id="export-data-btn">
+                    📥 Exportar CSV
+                </button>
+                <button onclick="clearDataView()" class="btn-secondary" id="clear-data-btn">
+                    🗑️ Limpar Vista
+                </button>
+            </div>
+            
+            <div id="data-view" style="display: none;">
+                <div id="data-content"></div>
+            </div>
+            
+            <div id="data-message"></div>
+        </div>
+
     </div>
+
+    <!-- Call scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="/static/js/scripts.js"></script>
     <script>

@@ -1,6 +1,16 @@
 body {
     font-family: Arial, sans-serif;
 }
+
+.container-botoes {
+  display: flex; /* Ativa o Flexbox */
+  flex-direction: column; /* Alinha os itens em coluna (um abaixo do outro) */
+  gap: 10px; /* Opcional: Adiciona espaçamento entre os botões */
+  border: 1px solid rgb(204, 204, 204); /* Borda de 2 pixels, sólida e azul */
+  border-radius: 15px;
+  padding: 10px; /* Opcional: para dar espaço interno */
+}
+
 .btn-primary {
     background-color: #0080FF;
     border-color: #0080FF;
@@ -27,6 +37,216 @@ body {
 }
 .text-secondary {
     color: #555555 !important;
+}
+
+/*--------------*/
+
+/* Estilos para a seção de dados e exportação */
+.data-section {
+    background-color: #f9f9f9;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    margin-top: 30px;
+}
+
+.data-section h3 {
+    color: #005555;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.data-controls {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.btn-secondary {
+    background-color: lightgray;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: gray;
+}
+
+.btn-secondary:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+/* Estilos para a tabela de dados */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    font-size: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.data-table th,
+.data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    word-wrap: break-word;
+}
+
+.data-table th {
+    background-color: #0080FF;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.data-table tr:hover {
+    background-color: #e8f4ff;
+}
+
+/* Responsividade da tabela */
+@media (max-width: 768px) {
+    .data-table {
+        font-size: 10px;
+    }
+    
+    .data-table th,
+    .data-table td {
+        padding: 4px;
+    }
+}
+
+/* Sumário dos dados */
+.data-summary {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-left: 4px solid #0080FF;
+}
+
+.data-summary strong {
+    color: #005555;
+    font-size: 16px;
+}
+
+/* Container da visualização de dados */
+#data-view {
+    max-height: 500px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+}
+
+/* Mensagens de estado para dados */
+#data-message {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Loading spinner para dados */
+.data-loading {
+    text-align: center;
+    padding: 20px;
+}
+
+.data-loading::after {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #0080FF;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Estilos para destacar colunas importantes */
+.data-table .col-id {
+    width: 5%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.data-table .col-timestamp {
+    width: 15%;
+    font-size: 11px;
+}
+
+.data-table .col-image {
+    width: 15%;
+    color: #0066CC;
+}
+
+.data-table .col-location {
+    width: 15%;
+}
+
+.data-table .col-uv {
+    width: 8%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.data-table .col-skin {
+    width: 20%;
+}
+
+.data-table .col-status {
+    width: 12%;
+    text-align: center;
+}
+
+/* Indicadores visuais para diferentes valores de UV */
+.uv-low { color: #28a745; }
+.uv-moderate { color: #ffc107; }
+.uv-high { color: #fd7e14; }
+.uv-very-high { color: #dc3545; }
+
+/* Botão de ação flutuante para exportação rápida */
+.export-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00B300;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    display: none;
+}
+
+.export-fab:hover {
+    background-color: #009900;
+    transform: scale(1.1);
+}
+
+.export-fab.show {
+    display: block;
 }
 #camera-feed {
     border: 2px solid #0080FF;
