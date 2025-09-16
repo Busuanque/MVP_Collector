@@ -348,59 +348,18 @@ import csv
 from io import StringIO
 from flask import make_response
 
-# Adicionar estas duas rotas após a rota /analyze
-
-@app.route("/view_data", methods=["GET"])
-def view_data():
-    """View all analysis data in JSON format for the frontend."""
+@app.route("/count_analyses", methods=["GET"])
+def count_analyses():
+    """Retorna o número de análises registradas."""
     try:
         with sqlite3.connect("analysis.db") as conn:
             cursor = conn.cursor()
-            
-            cursor.execute("""
-                SELECT id_collector, id, timestamp, input_value, location, uv_index, 
-                       fitzpatrick_type, recommendations, status_message
-                FROM analysis_log 
-                WHERE event_type = 'ANALYSIS'
-                ORDER BY timestamp DESC
-                LIMIT 1000
-            """)
-            
-            rows = cursor.fetchall()
-            
-            # Format data for JSON response
-            data = []
-            for row in rows:
-                image_name = os.path.basename(row[2]) if row[2] else "N/A"
-                
-                data.append({
-                    "id_collector": row[0] if len(row) > 8 else "N/A",
-                    "id": row[1],
-                    "timestamp": row[2],
-                    "image_name": image_name,
-                    "location": row[4] or "N/A",
-                    "uv_index": f"{row[5]:.1f}" if row[5] is not None else "N/A",
-                    "fitzpatrick_type": row[6] or "N/A",
-                    "recommendations": row[7] or "N/A",
-                    "status": row[8] or "N/A"
-                })
-            
-            return jsonify({
-                "status": "success",
-                "data": data,
-                "total_records": len(data)
-            })
-            
+            cursor.execute("SELECT COUNT(*) FROM analysis_log WHERE event_type = 'ANALYSIS'")
+            count = cursor.fetchone()[0]
+        return jsonify({"status": "success", "count": count})
     except sqlite3.Error as e:
-        return jsonify({
-            "status": "error",
-            "message": f"Erro na base de dados: {str(e)}"
-        })
-    except Exception as e:
-        return jsonify({
-            "status": "error",
-            "message": f"Erro ao carregar dados: {str(e)}"
-        })
+        return jsonify({"status": "error", "message": str(e)})
+
 
 @app.route("/export_data", methods=["GET"])
 def export_data():

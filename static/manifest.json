@@ -1,20 +1,15 @@
 {
-  "name": "Prevenção de Cancro de Pele",
-  "short_name": "MVP Collector",
-  "description": "Aplicação para análise de pele e prevenção do cancro",
+  "name": "SkinGuard - Proteção Solar",
+  "short_name": "SkinGuard",
+  "description": "Análise de pele e proteção solar inteligente",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0080FF",
+  "background_color": "#667eea",
+  "theme_color": "#4A90E2",
   "icons": [
     {
       "src": "/static/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/static/icon-512.png",
-      "sizes": "512x512",
       "type": "image/png"
     }
   ]

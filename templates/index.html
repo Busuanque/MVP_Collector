@@ -1,104 +1,269 @@
 <!DOCTYPE html>
-<html lang="pt-PT">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prevenção de Cancro de Pele</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!--<link rel="manifest" href="/static/manifest.json">-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <meta name="theme-color" content="#0080FF">
-
-
-    <link rel="stylesheet" href="/static/css/styles.css">
+    <meta name="theme-color" content="#4A90E2">
+    <!-- PWA Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='icon-180.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='icon-32.png') }}">
 </head>
-<body class="bg-light">
-    <div class="container d-flex flex-column align-items-center min-vh-100">
-        <h1 class="my-4 text-primary" style="font-size: 2.5rem;">Prevenção de Cancro de Pele</h1>
-        <h3 id="location-label" class="text-secondary mb-3" style="font-size: 1.5rem;">A detetar a sua localização...</h3>
-        
-        
-        <p id="instruction-label" class="text-primary mb-3" style="font-size: 1.5rem;">Carregue ou capture uma foto da sua mão</p>
-        
-        
-        <div class="container-botoes">
-            <input type="file" id="photo-upload" class="btn btn-primary  mb-3" accept=".jpg,.png" style="font-size: 1.25rem; max-width: 400px;">
-            <button id="upload-button" class="btn btn-primary mb-3" style="font-size: 1.25rem; padding: 10px 20px;">Carregar Foto</button>
-        </div>
-        
-        <p></p>
-
-        <div class="container-botoes">
-            <button id="camera-button" class="btn btn-primary2 mb-3" style="font-size: 1.25rem; padding: 10px 20px;">Capturar imagem</button>
-        </div>
-
-        <p></p>
-
-        <div class="container-botoes">
-            <button id="analyze-button" class="btn btn-success mb-3" style="font-size: 1.25rem; padding: 10px 20px;" disabled>Analisar e Obter Dicas</button>
-            <div id="spinner" class="spinner-border text-primary d-none" role="status" style="width: 2.5rem; height: 2.5rem;">
-                <span class="visually-hidden">A analisar...</span>
+<body class="mobile-app-body">
+    <!-- Header/Navigation Bar -->
+    <div class="mobile-header">
+        <div class="header-content">
+            <div class="header-icon">🛡️</div>
+            <div class="header-title">
+                <h1>SkinGuard</h1>
+                <small>Proteção Solar Inteligente</small>
             </div>
+            <div class="header-menu">
+                <button class="btn-icon" onclick="toggleMenu()">⚙️</button>
+            </div>
+        </div>
+    </div>
 
-            <!-- resultado -->
-            <div id="result-card" class="card-result mb-3" style="max-width: 400px;">
-                <p id="result-label" style="font-size: 1.25rem;">Os resultados aparecerão aqui.</p>
+    <!-- Main Content Container -->
+    <div class="mobile-container">
+        
+        <!-- Status Card -->
+        <div class="status-card">
+            <div class="status-content">
+                <div class="location-info">
+                    <div class="location-icon">📍</div>
+                    <div class="location-text">
+                        <div id="location-label">🔍 Detectando localização...</div>
+                        <small class="location-subtitle">Sua localização atual</small>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <p></p>
-
-        <!-- Status messages -->
-        <div id="status-session" class="status-section mb-4">
-            <p id="status-label" class="text-secondary" style="font-size: 1rem italic;">{{ status_message }}</p>
-        </div>
-        <!-- NOVA SEÇÃO: Gestão de Dados das Análises -->
-        <div class="data-section">
-            <h3>📊 Gestão de Dados das Análises</h3>
-            
-            <div class="data-controls">
-                <button onclick="viewData()" class="btn-secondary" id="view-data-btn">
-                    👁️ Ver Dados
-                </button>
-                <button onclick="exportData()" class="btn-secondary" id="export-data-btn">
-                    📥 Exportar CSV
-                </button>
-
-                <!-- Funcao perigosa, implementar com cuidado
-                <button onclick="clearDataView()" class="btn-secondary" id="clear-data-btn">
-                    🗑️ Limpar Vista
-                </button>
-                -->
+        <!-- Main Action Card -->
+        <div class="action-card">
+            <div class="card-header">
+                <h3>📱 Análise de Pele</h3>
+                <p>Capture ou carregue uma foto da sua mão</p>
             </div>
             
-            <div id="data-view" style="display: none;">
-                <div id="data-content"></div>
+            <div class="upload-section">
+                <input type="file" class="form-control d-none" id="photo-upload" accept="image/*">
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button type="button" class="btn-mobile btn-secondary" id="upload-button">
+                        <span class="btn-icon">📁</span>
+                        <span class="btn-text">Carregar Foto</span>
+                    </button>
+                    <button type="button" class="btn-mobile btn-secondary" id="camera-button">
+                        <span class="btn-icon">📷</span>
+                        <span class="btn-text">Usar Câmera</span>
+                    </button>
+                </div>
+
+                <!-- Camera Preview -->
+                <div class="camera-container">
+                    <video id="camera-feed" class="camera-preview d-none" autoplay playsinline></video>
+                    <div class="upload-placeholder" id="upload-placeholder">
+                        <div class="upload-icon">📷</div>
+                        <p>Camera preview</p>
+                    </div>
+                </div>
+                
+                
+                <!-- Capture Button (Hidden initially) -->
+                <button type="button" class="btn-mobile btn-capture d-none" id="capture-button">
+                    <span class="btn-icon">📸</span>
+                    <span class="btn-text">Capturar Foto</span>
+                </button>
             </div>
-            
-            <div id="data-message"></div>
+        </div>
+
+        <!-- Analyze Button -->
+        <div class="analyze-section">
+            <button type="button" class="btn-analyze" id="analyze-button" disabled>
+                <div class="analyze-content">
+                    <div class="analyze-icon">🔬</div>
+                    <div class="analyze-text">
+                        <span class="analyze-title">Analisar e Obter Dicas</span>
+                    </div>
+                </div>
+                <div id="spinner" class="analyze-spinner d-none">
+                    <div class="spinner-circle"></div>
+                </div>
+            </button>
+        </div>
+
+        <!-- Results Card -->
+        <div class="results-card">
+            <div class="results-header">
+                <h4>📊 Resultado da Análise</h4>
+            </div>
+            <div class="results-content">
+                <div id="result-label" class="result-text">
+                    <div class="result-placeholder">
+                        <div class="placeholder-icon">⏳</div>
+                        <p>Os resultados da análise aparecerão aqui após a avaliação da sua pele.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Message -->
+        <div id="status" class="status-message" style="--status-color: {{ status_color }};">
+            {{ status_message }}
         </div>
 
     </div>
 
-    <!-- Call scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>   
+    <!-- Bottom Safe Area -->
+    <div class="bottom-safe-area"></div>
+
+    <!-- Floating Action Button -->
+    <div class="fab-container">
+        <button class="fab" id="main-fab" onclick="scrollToTop()">
+            <span class="fab-icon">⬆️</span>
+        </button>
+    </div>
+
+    <!-- Side Menu (Hidden) -->
+    <div class="side-menu d-none" id="side-menu">
+
+        <!-- Container de Dados dentro do Menu Lateral -->
+        <div id="data-view" class="menu-data-view d-none">
+        <div id="data-content" class="menu-data-content"></div>
+        <div id="data-message" class="menu-data-message"></div>
+        </div>
+
+        <div class="menu-header">
+            <h5>Configurações</h5>
+            <button class="btn-close-menu" onclick="toggleMenu()">✕</button>
+        </div>
+
+        <div class="menu-content">
+            <div class="menu-item">
+                <span class="menu-icon">🌍</span>
+                <span class="menu-text">Idioma: Português</span>
+            </div>
+            <!--
+            <div class="menu-item">
+                <span class="menu-icon">🔔</span>
+                <span class="menu-text">Notificações</span>
+            </div>
+            -->
+            <div class="menu-item">
+                <span class="menu-icon">ℹ️</span>
+                <span class="menu-text">Sobre a App</span>
+            </div>
+
+        </div>
+
+        <div class="menu-group">
+            <!-- Novo grupo no menu lateral: Gestão de Dados -->
+            <h6 class="menu-group-title">Gestão de Dados</h6>
+            <button onclick="exportData()" class="menu-item">
+                <span class="menu-icon">📥</span>
+                <span class="menu-text">Exportar CSV</span>
+            </button>
+            <!--
+            <button onclick="clearDataView()" class="menu-item">
+                <span class="menu-icon">🗑️</span>
+                <span class="menu-text">Limpar Dados</span>
+            </button>
+            -->
+            <!-- Contador de Análises -->
+            <div id="analysis-count" class="text-center mt-3" style="font-size: 14px; color: #ffffff;">
+                Carregando total de análises... + count_analyses()
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Overlay for menu -->
+    <div class="menu-overlay d-none" id="menu-overlay" onclick="toggleMenu()"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="/static/js/scripts.js"></script>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    
+    <!-- Mobile App Functions -->
     <script>
-        if ("serviceWorker" in navigator) {
-            navigator.serviceWorker.register("/static/js/service-worker.js");
+        function toggleMenu() {
+            const menu = document.getElementById('side-menu');
+            const overlay = document.getElementById('menu-overlay');
+            
+            if (menu.classList.contains('d-none')) {
+                menu.classList.remove('d-none');
+                overlay.classList.remove('d-none');
+                setTimeout(() => {
+                    menu.classList.add('menu-open');
+                    overlay.classList.add('overlay-visible');
+                }, 10);
+            } else {
+                menu.classList.remove('menu-open');
+                overlay.classList.remove('overlay-visible');
+                setTimeout(() => {
+                    menu.classList.add('d-none');
+                    overlay.classList.add('d-none');
+                }, 300);
+            }
         }
-    </script>
 
-    <script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-        navigator.serviceWorker.register('{{ url_for("static", filename="js/service-worker.js") }}')
-            .then(reg => console.log('Service Worker registrado:', reg.scope))
-            .catch(err => console.error('Falha no registro do SW:', err));
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide FAB based on scroll
+        window.addEventListener('scroll', () => {
+            const fab = document.getElementById('main-fab');
+            if (window.scrollY > 200) {
+                fab.style.opacity = '1';
+                fab.style.transform = 'scale(1)';
+            } else {
+                fab.style.opacity = '0';
+                fab.style.transform = 'scale(0.8)';
+            }
         });
-    }
-    </script>
 
+        // Touch feedback for buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const buttons = document.querySelectorAll('.btn-mobile, .btn-analyze, .btn-data');
+            buttons.forEach(button => {
+                button.addEventListener('touchstart', function() {
+                    this.style.transform = 'scale(0.98)';
+                });
+                button.addEventListener('touchend', function() {
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 100);
+                });
+            });
+
+            // Atualiza contador de análises
+            const countEl = document.getElementById("analysis-count");
+            if (countEl) {
+            axios.get("/count_analyses")
+                .then(res => {
+                if (res.data.status === "success") {
+                    countEl.textContent = `Total de análises realizadas: ${res.data.count}`;
+                } else {
+                    countEl.textContent = "Não foi possível carregar o contador.";
+                }
+                })
+                .catch(() => {
+                countEl.textContent = "Erro ao carregar o contador.";
+                });
+            }
+
+        });
+    </script>
 </body>
 </html>

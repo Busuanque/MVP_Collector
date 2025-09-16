@@ -1,3 +1,22 @@
+// Declara updateAnalysisCount no escopo global
+window.updateAnalysisCount = function() {
+  const countEl = document.getElementById("analysis-count");
+  if (!countEl) return;
+  
+  axios.get("/count_analyses")
+    .then(res => {
+      if (res.data.status === "success") {
+        countEl.textContent = `Total de análises realizadas: ${res.data.count}`;
+      } else {
+        countEl.textContent = "Não foi possível carregar o contador.";
+      }
+    })
+    .catch(() => {
+      countEl.textContent = "Erro ao carregar o contador.";
+    });
+};
+
+
 document.addEventListener("DOMContentLoaded", () => {
     // Elementos principais - com verificação de existência
     const locationLabel = document.getElementById("location-label");
@@ -9,7 +28,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const analyzeButton = document.getElementById("analyze-button");
     const spinner = document.getElementById("spinner");
     const resultLabel = document.getElementById("result-label");
-    
+
+    const dataView    = document.getElementById('data-view');
+    const dataContent = document.getElementById('data-content');
+    const dataMessage = document.getElementById('data-message');
+
+
     // Status pode ser 'status' ou 'status-label' - verificar ambos
     const statusLabel = document.getElementById("status-label") || document.getElementById("status");
     
@@ -26,7 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Status:", message);
     }
 
-    // Detectar localização na inicialização
+    // Inicializa o contador
+    //updateAnalysisCount();
+
+     // Detectar localização na inicialização
     if (locationLabel) {
         axios.get("/detect_location")
             .then(response => {
@@ -46,40 +73,43 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-    // Upload de ficheiro
+   // Upload de ficheiro: primeiro abre o seletor, depois processa a seleção
     if (uploadButton && photoUpload) {
-        uploadButton.addEventListener("click", () => {
-            if (!photoUpload.files.length) {
-                showStatus("Nenhuma foto selecionada", "#FF0000");
-                alert("Por favor, selecione uma foto.");
-                return;
+    uploadButton.addEventListener("click", () => {
+        // Abre o diálogo de seleção de arquivos
+        photoUpload.click();
+    });
+
+    // Quando o usuário seleciona o arquivo, dispara o upload
+    photoUpload.addEventListener("change", () => {
+        if (!photoUpload.files.length) {
+        showStatus("Nenhuma foto selecionada", "#FF0000");
+        return;
+        }
+
+        const formData = new FormData();
+        formData.append("photo", photoUpload.files[0]);
+        showStatus("A carregar foto...", "#0080FF");
+
+        axios.post("/upload_photo", formData)
+        .then(response => {
+            showStatus(response.data.message, response.data.message_color);
+            if (response.data.status === "success") {
+            photoPath = response.data.photo_path;
+            if (analyzeButton) analyzeButton.disabled = false;
+            stopCamera();
+            } else {
+            alert(response.data.message);
             }
-            
-            const formData = new FormData();
-            formData.append("photo", photoUpload.files[0]);
-            showStatus("A carregar foto...", "#0080FF");
-            
-            axios.post("/upload_photo", formData)
-                .then(response => {
-                    showStatus(response.data.message, response.data.message_color);
-                    if (response.data.status === "success") {
-                        photoPath = response.data.photo_path;
-                        if (analyzeButton) {
-                            analyzeButton.disabled = false;
-                        }
-                        // Parar câmera se ativa
-                        stopCamera();
-                    } else {
-                        alert(response.data.message);
-                    }
-                })
-                .catch(error => {
-                    showStatus("Erro ao carregar foto", "#FF0000");
-                    console.error("Erro upload:", error);
-                    alert("Erro ao carregar foto: " + error.message);
-                });
+        })
+        .catch(error => {
+            showStatus("Erro ao carregar foto", "#FF0000");
+            console.error("Erro upload:", error);
+            alert("Erro ao carregar foto: " + error.message);
         });
+    });
     }
+
 
     // Função para parar câmera
     function stopCamera() {
@@ -201,8 +231,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     if (response.data.status === "success") {
                         if (resultLabel) {
-                            resultLabel.innerHTML = response.data.result;
+                            //resultLabel.innerHTML = response.data.result;
+
+                            let resultText = response.data.result;
+                            // Tratamento de UV fallback
+                            const uvLine = resultText.split("\\n").find(line => line.includes("Índice UV:"));
+                            if (uvLine && uvLine.includes("-1.0")) {
+                            resultText = resultText.replace(uvLine, "**Índice UV:** indisponível  ");
+                            }
+                            document.getElementById("result-label").innerHTML = resultText;                            
                         }
+                        
+                        // Atualiza contador de análises
+                        window.updateAnalysisCount();
+
                         // Reset para nova análise
                         if (photoUpload) {
                             photoUpload.value = "";
@@ -238,84 +280,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     alert("Erro na análise: " + errorMsg);
                 });
+            // Atualiza o contador
+            //updateAnalysisCount();
         });
     } else {
         console.error("Botão analyze-button não encontrado!");
     }
-
-    // Funções de exportação (movidas para dentro do DOMContentLoaded)
-    window.viewData = function() {
-        const dataView = document.getElementById('data-view');
-        const dataContent = document.getElementById('data-content');
-        const dataMessage = document.getElementById('data-message');
-        
-        if (!dataView || !dataContent || !dataMessage) {
-            alert("Elementos de dados não encontrados na página");
-            return;
-        }
-        
-        dataMessage.innerHTML = '<p style="color: #007bff;">A carregar dados...</p>';
-        dataView.style.display = 'block';
-        
-        fetch('/view_data')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.status === 'success') {
-                    if (data.data.length === 0) {
-                        dataContent.innerHTML = '<p style="text-align: center; padding: 20px;">Nenhum registo encontrado.</p>';
-                        dataMessage.innerHTML = '';
-                        return;
-                    }
-                    
-                    let html = `<div style="background: #e9ecef; padding: 15px; margin-bottom: 15px; text-align: center; border-radius: 5px;">
-                        <strong>Total de Registos: ${data.total_records}</strong>
-                    </div>`;
-                    
-                    html += `<table style="width: 100%; border-collapse: collapse; font-size: 12px;">
-                        <thead>
-                            <tr style="background: #0080FF; color: white;">
-                                <th style="padding: 8px; border: 1px solid #ddd;">ID</th>
-                                <th style="padding: 8px; border: 1px solid #ddd;">Data/Hora</th>
-                                <th style="padding: 8px; border: 1px solid #ddd;">Imagem</th>
-                                <th style="padding: 8px; border: 1px solid #ddd;">Localização</th>
-                                <th style="padding: 8px; border: 1px solid #ddd;">UV</th>
-                                <th style="padding: 8px; border: 1px solid #ddd;">Tipo Pele</th>
-                                <th style="padding: 8px; border: 1px solid #ddd;">Estado</th>
-                            </tr>
-                        </thead><tbody>`;
-                    
-                    data.data.forEach((record, index) => {
-                        const bgColor = index % 2 === 0 ? '#f9f9f9' : 'white';
-                        html += `<tr style="background: ${bgColor};">
-                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">${record.id}</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${record.timestamp}</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${record.image_name}</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${record.location}</td>
-                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">${record.uv_index}</td>
-                            <td style="padding: 8px; border: 1px solid #ddd;">${record.fitzpatrick_type}</td>
-                            <td style="padding: 8px; border: 1px solid #ddd; text-align: center;">✅</td>
-                        </tr>`;
-                    });
-                    
-                    html += '</tbody></table>';
-                    dataContent.innerHTML = html;
-                    dataMessage.innerHTML = '<p style="color: #28a745;">✓ Dados carregados com sucesso!</p>';
-                } else {
-                    dataContent.innerHTML = '';
-                    dataMessage.innerHTML = `<p style="color: #dc3545;">❌ ${data.message}</p>`;
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao carregar dados:', error);
-                dataContent.innerHTML = '';
-                dataMessage.innerHTML = '<p style="color: #dc3545;">❌ Erro: ' + error.message + '</p>';
-            });
-    };
 
     window.exportData = function() {
         const dataMessage = document.getElementById('data-message');
