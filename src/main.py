@@ -14,6 +14,9 @@ import io
 from PIL import Image
 import uuid
 import requests
+import csv
+from io import StringIO
+from flask import make_response
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 app.config["UPLOAD_FOLDER"] = "Uploads"
@@ -268,6 +271,141 @@ def analyze():
             "message": f"Falha na análise: {str(e)}",
             "message_color": "#FF0000"
         })
+
+# Adições necessárias para main.py
+
+# Adicionar estas importações no topo do arquivo
+import csv
+from io import StringIO
+from flask import make_response
+
+# Adicionar estas duas rotas após a rota /analyze
+
+@app.route("/view_data", methods=["GET"])
+def view_data():
+    """View all analysis data in JSON format for the frontend."""
+    try:
+        with sqlite3.connect("analysis.db") as conn:
+            cursor = conn.cursor()
+            
+            cursor.execute("""
+                SELECT id, timestamp, input_value, location, uv_index, 
+                       fitzpatrick_type, recommendations, status_message
+                FROM analysis_log 
+                WHERE event_type = 'ANALYSIS'
+                ORDER BY timestamp DESC
+                LIMIT 100
+            """)
+            
+            rows = cursor.fetchall()
+            
+            # Format data for JSON response
+            data = []
+            for row in rows:
+                image_name = os.path.basename(row[2]) if row[2] else "N/A"
+                
+                data.append({
+                    "id": row[0],
+                    "timestamp": row[1],
+                    "image_name": image_name,
+                    "location": row[3] or "N/A",
+                    "uv_index": f"{row[4]:.1f}" if row[4] is not None else "N/A",
+                    "fitzpatrick_type": row[5] or "N/A",
+                    "recommendations": row[6] or "N/A",
+                    "status": row[7] or "N/A"
+                })
+            
+            return jsonify({
+                "status": "success",
+                "data": data,
+                "total_records": len(data)
+            })
+            
+    except sqlite3.Error as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro na base de dados: {str(e)}"
+        })
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro ao carregar dados: {str(e)}"
+        })
+
+@app.route("/export_data", methods=["GET"])
+def export_data():
+    """Export all analysis data to CSV format."""
+    try:
+        with sqlite3.connect("analysis.db") as conn:
+            cursor = conn.cursor()
+            
+            # Query all analysis records
+            cursor.execute("""
+                SELECT id, timestamp, input_value, location, uv_index, 
+                       fitzpatrick_type, recommendations, status_message
+                FROM analysis_log 
+                WHERE event_type = 'ANALYSIS'
+                ORDER BY timestamp DESC
+            """)
+            
+            rows = cursor.fetchall()
+            
+            if not rows:
+                return jsonify({
+                    "status": "error", 
+                    "message": "Nenhum dado disponível para exportar."
+                })
+            
+            # Create CSV content
+            output = StringIO()
+            writer = csv.writer(output)
+            
+            # Write header
+            header = [
+                'ID', 'Data/Hora', 'Nome da Imagem', 'Localização', 
+                'Índice UV', 'Tipo de Pele', 'Recomendações', 'Estado'
+            ]
+            writer.writerow(header)
+            
+            # Write data rows
+            for row in rows:
+                # Extract image name from path
+                image_name = os.path.basename(row[2]) if row[2] else "N/A"
+                
+                csv_row = [
+                    row[0],  # ID
+                    row[1],  # timestamp
+                    image_name,  # image name
+                    row[3] or "N/A",  # location
+                    f"{row[4]:.1f}" if row[4] is not None else "N/A",  # UV index
+                    row[5] or "N/A",  # fitzpatrick_type
+                    row[6] or "N/A",  # recommendations
+                    row[7] or "N/A"   # status_message
+                ]
+                writer.writerow(csv_row)
+            
+            # Create response
+            output.seek(0)
+            response = make_response(output.getvalue())
+            response.headers["Content-Type"] = "text/csv; charset=utf-8"
+            response.headers["Content-Disposition"] = f"attachment; filename=analises_pele_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+            
+            return response
+            
+    except sqlite3.Error as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro na base de dados: {str(e)}"
+        })
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro na exportação: {str(e)}"
+        })
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
