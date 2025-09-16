@@ -18,35 +18,91 @@ import csv
 from io import StringIO
 from flask import make_response
 
+# Load environment variables
+load_dotenv()
+ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default_collector")
+
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 app.config["UPLOAD_FOLDER"] = "Uploads"
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16MB max file size
 app.secret_key = os.urandom(24)  # For session management
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
-# Load environment variables
-load_dotenv()
+#old init_db function without id_collector support
+#def init_db():
+#    """Initialize or update SQLite database schema."""
+#    try:
+#        with sqlite3.connect("analysis.db") as conn:
+#            cursor = conn.cursor()
+#            # Check existing table schema
+#            cursor.execute("PRAGMA table_info(analysis_log)")
+#            columns = [col[1] for col in cursor.fetchall()]
+#            required_columns = [
+#                "id", "timestamp", "event_type", "input_type", "input_value",
+#                "location", "uv_index", "fitzpatrick_type", "recommendations", "status_message"
+#            ]
+#            
+#            if not all(col in columns for col in required_columns):
+#                # If schema is missing columns, rename existing table
+#                if columns:  # Table exists
+#                    cursor.execute("ALTER TABLE analysis_log RENAME TO analysis_log_old")
+##                # Create new table with correct schema
+#                cursor.execute("""
+#                    CREATE TABLE analysis_log (
+#                        id_collector TEXT,
+#                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+#                        timestamp TEXT NOT NULL,
+#                        event_type TEXT NOT NULL,
+#                        input_type TEXT,
+#                        input_value TEXT,
+#                        location TEXT,
+#                        uv_index REAL,
+#                        fitzpatrick_type TEXT,
+#                        recommendations TEXT,
+#                        status_message TEXT
+#                    )
+#                """)
+ #               # Migrate data if old table exists (only ANALYSIS events)
+ #               if columns:
+ #                   common_columns = [col for col in columns if col in required_columns]
+ #                   if common_columns and "event_type" in columns:
+#                        columns_str = ", ".join(common_columns)
+#                        cursor.execute(f"""
+#                            INSERT INTO analysis_log ({columns_str})
+#                            SELECT {columns_str} FROM analysis_log_old WHERE event_type = 'ANALYSIS'
+#                        """)
+#                    cursor.execute("DROP TABLE analysis_log_old")
+#                conn.commit()
+#        return {"status": "success", "message": "Base de dados pronta!"}
+#    
+#        with sqlite3.connect("analysis.db") as conn:
+#            print("Verificando esquema da base de dados...")
+#            cursor = conn.cursor()
+#            try:
+#                cursor.execute("ALTER TABLE analysis_log ADD COLUMN id_collector TEXT")
+#            except sqlite3.OperationalError:
+#                pass  # coluna já existe
+#
+#    except sqlite3.Error as e:
+#        return {"status": "error", "message": f"Erro na base de dados: {str(e)}"}
 
+
+# Init revisado com suporte a id_collector
 def init_db():
-    """Initialize or update SQLite database schema."""
+    """Initialize or update SQLite database schema with id_collector support."""
     try:
         with sqlite3.connect("analysis.db") as conn:
             cursor = conn.cursor()
-            # Check existing table schema
-            cursor.execute("PRAGMA table_info(analysis_log)")
-            columns = [col[1] for col in cursor.fetchall()]
-            required_columns = [
-                "id", "timestamp", "event_type", "input_type", "input_value",
-                "location", "uv_index", "fitzpatrick_type", "recommendations", "status_message"
-            ]
             
-            if not all(col in columns for col in required_columns):
-                # If schema is missing columns, rename existing table
-                if columns:  # Table exists
-                    cursor.execute("ALTER TABLE analysis_log RENAME TO analysis_log_old")
-                # Create new table with correct schema
+            # Check if table exists
+            cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='analysis_log'")
+            table_exists = cursor.fetchone()
+            
+            if not table_exists:
+                # Create new table with id_collector as first column
                 cursor.execute("""
                     CREATE TABLE analysis_log (
+                        id_collector TEXT,
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         timestamp TEXT NOT NULL,
                         event_type TEXT NOT NULL,
@@ -59,20 +115,32 @@ def init_db():
                         status_message TEXT
                     )
                 """)
-                # Migrate data if old table exists (only ANALYSIS events)
-                if columns:
-                    common_columns = [col for col in columns if col in required_columns]
-                    if common_columns and "event_type" in columns:
-                        columns_str = ", ".join(common_columns)
-                        cursor.execute(f"""
-                            INSERT INTO analysis_log ({columns_str})
-                            SELECT {columns_str} FROM analysis_log_old WHERE event_type = 'ANALYSIS'
-                        """)
-                    cursor.execute("DROP TABLE analysis_log_old")
                 conn.commit()
-        return {"status": "success", "message": "Base de dados pronta!"}
+                return {"status": "success", "message": "Base de dados criada com id_collector!"}
+            
+            # Check existing table schema
+            cursor.execute("PRAGMA table_info(analysis_log)")
+            columns = [col[1] for col in cursor.fetchall()]
+            
+            # Check if id_collector exists
+            if "id_collector" not in columns:
+                print("Adicionando coluna id_collector...")
+                
+                # Add id_collector column
+                cursor.execute("ALTER TABLE analysis_log ADD COLUMN id_collector TEXT")
+                
+                # Update existing records with current ID_COLLECTOR
+                cursor.execute("UPDATE analysis_log SET id_collector = ? WHERE id_collector IS NULL", (ID_COLLECTOR,))
+                
+                conn.commit()
+                return {"status": "success", "message": "Base de dados migrada com id_collector!"}
+            
+            return {"status": "success", "message": "Base de dados pronta com id_collector!"}
+            
     except sqlite3.Error as e:
         return {"status": "error", "message": f"Erro na base de dados: {str(e)}"}
+
+
 
 @app.route("/")
 def index():
@@ -235,11 +303,12 @@ def analyze():
                 cursor = conn.cursor()
                 cursor.execute("""
                     INSERT INTO analysis_log (
-                        timestamp, event_type, input_type, input_value,
+                        id_collector, timestamp, event_type, input_type, input_value,
                         location, uv_index, fitzpatrick_type, recommendations, status_message
                     )
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    VALUES (?,?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, (
+                    ID_COLLECTOR,
                     datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     "ANALYSIS",
                     "PHOTO_PATH",
@@ -289,12 +358,12 @@ def view_data():
             cursor = conn.cursor()
             
             cursor.execute("""
-                SELECT id, timestamp, input_value, location, uv_index, 
+                SELECT id_collector, id, timestamp, input_value, location, uv_index, 
                        fitzpatrick_type, recommendations, status_message
                 FROM analysis_log 
                 WHERE event_type = 'ANALYSIS'
                 ORDER BY timestamp DESC
-                LIMIT 100
+                LIMIT 1000
             """)
             
             rows = cursor.fetchall()
@@ -305,14 +374,15 @@ def view_data():
                 image_name = os.path.basename(row[2]) if row[2] else "N/A"
                 
                 data.append({
-                    "id": row[0],
-                    "timestamp": row[1],
+                    "id_collector": row[0] if len(row) > 8 else "N/A",
+                    "id": row[1],
+                    "timestamp": row[2],
                     "image_name": image_name,
-                    "location": row[3] or "N/A",
-                    "uv_index": f"{row[4]:.1f}" if row[4] is not None else "N/A",
-                    "fitzpatrick_type": row[5] or "N/A",
-                    "recommendations": row[6] or "N/A",
-                    "status": row[7] or "N/A"
+                    "location": row[4] or "N/A",
+                    "uv_index": f"{row[5]:.1f}" if row[5] is not None else "N/A",
+                    "fitzpatrick_type": row[6] or "N/A",
+                    "recommendations": row[7] or "N/A",
+                    "status": row[8] or "N/A"
                 })
             
             return jsonify({
@@ -341,7 +411,7 @@ def export_data():
             
             # Query all analysis records
             cursor.execute("""
-                SELECT id, timestamp, input_value, location, uv_index, 
+                SELECT id_collector, id, timestamp, input_value, location, uv_index, 
                        fitzpatrick_type, recommendations, status_message
                 FROM analysis_log 
                 WHERE event_type = 'ANALYSIS'
@@ -362,7 +432,7 @@ def export_data():
             
             # Write header
             header = [
-                'ID', 'Data/Hora', 'Nome da Imagem', 'Localização', 
+                'ID Colletor','ID', 'Data/Hora', 'Nome da Imagem', 'Localização', 
                 'Índice UV', 'Tipo de Pele', 'Recomendações', 'Estado'
             ]
             writer.writerow(header)
@@ -370,17 +440,18 @@ def export_data():
             # Write data rows
             for row in rows:
                 # Extract image name from path
-                image_name = os.path.basename(row[2]) if row[2] else "N/A"
+                image_name = os.path.basename(row[3]) if row[3] else "N/A"
                 
                 csv_row = [
-                    row[0],  # ID
-                    row[1],  # timestamp
+                    row[0] if len(row[0]) > 8 else ID_COLLECTOR, # ID Colletor
+                    row[1],  # ID
+                    row[2],  # timestamp
                     image_name,  # image name
-                    row[3] or "N/A",  # location
-                    f"{row[4]:.1f}" if row[4] is not None else "N/A",  # UV index
-                    row[5] or "N/A",  # fitzpatrick_type
-                    row[6] or "N/A",  # recommendations
-                    row[7] or "N/A"   # status_message
+                    row[4] or "N/A",  # location
+                    f"{row[5]:.1f}" if row[5] is not None else "N/A",  # UV index
+                    row[6] or "N/A",  # fitzpatrick_type
+                    row[7] or "N/A",  # recommendations
+                    row[8] or "N/A"   # status_message
                 ]
                 writer.writerow(csv_row)
             
