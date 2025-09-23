@@ -13,6 +13,10 @@ import base64
 import io
 from PIL import Image
 import requests
+# database
+import mysql.connector
+from mysql.connector import Error
+from config import DB_CONFIG  # Novo import
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 app.config["UPLOAD_FOLDER"] = "Uploads"
@@ -69,6 +73,50 @@ def init_db():
         return {"status": "success", "message": "Base de dados pronta!"}
     except sqlite3.Error as e:
         return {"status": "error", "message": f"Erro na base de dados: {str(e)}"}
+
+def insert_to_db(analise_data):
+    """
+    Nova função: Insere um dict de análise diretamente no DB (tabela analises_pele).
+    Não afeta o export CSV. Exemplo analise_data: dict com chaves da tabela.
+    """
+    try:
+        conn = mysql.connector.connect(**DB_CONFIG)
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO analises_pele (id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+        """, (
+            analise_data['id_colletor'],
+            analise_data['data_hora'],
+            analise_data['nome_imagem'],
+            analise_data['localizacao'],
+            analise_data['indice_uv'],
+            analise_data['tipo_pele'],
+            analise_data['recomendacoes'],
+            analise_data.get('estado', 'Análise concluída com sucesso')  # Default se não passado
+        ))
+        conn.commit()
+        print(f"Dados inseridos no DB com ID: {cursor.lastrowid}")  # ID auto gerado
+    except Error as e:
+        print(f"Erro ao inserir no DB: {e}")
+    finally:
+        if cursor:
+            cursor.close()
+        if conn.is_connected():
+            conn.close()
+
+@app.route('/save_to_db', methods=['POST'])  # Nova rota: POST para batch de analises
+def save_batch_to_db():
+    if not analises:  # Assuma lista global/temporária existente
+        return jsonify({'erro': 'Nenhum dado para inserir'}), 400
+    
+    for data in analises:
+        insert_to_db(data)  # Chama a nova função para cada item
+    
+    # Opcional: Limpe a lista após insert (não afeta CSV)
+    analises.clear()
+    
+    return jsonify({'status': 'Dados inseridos no DB', 'quantidade': len(analises)}), 200
 
 @app.route("/")
 def index():
