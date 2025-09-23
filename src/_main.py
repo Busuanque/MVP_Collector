@@ -26,6 +26,9 @@ os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 # Load environment variables
 load_dotenv()
+# Lista temporária para armazenar análises coletadas (nova definição)
+analises = []  # Inicialize como lista vazia
+
 
 def init_db():
     """Initialize or update SQLite database schema."""
@@ -76,14 +79,14 @@ def init_db():
 
 def insert_to_db(analise_data):
     """
-    Nova função: Insere um dict de análise diretamente no DB (tabela analises_pele).
+    Nova função: Insere um dict de análise diretamente no DB (tabela analises).
     Não afeta o export CSV. Exemplo analise_data: dict com chaves da tabela.
     """
     try:
         conn = mysql.connector.connect(**DB_CONFIG)
         cursor = conn.cursor()
         cursor.execute("""
-            INSERT INTO analises_pele (id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado)
+            INSERT INTO analises (id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
         """, (
             analise_data['id_colletor'],
@@ -107,6 +110,7 @@ def insert_to_db(analise_data):
 
 @app.route('/save_to_db', methods=['POST'])  # Nova rota: POST para batch de analises
 def save_batch_to_db():
+    global analises
     if not analises:  # Assuma lista global/temporária existente
         return jsonify({'erro': 'Nenhum dado para inserir'}), 400
     
