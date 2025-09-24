@@ -162,28 +162,25 @@
 
         </div>
 
+        <!-- Gestão de Dados -->
         <div class="menu-group">
-            <!-- Novo grupo no menu lateral: Gestão de Dados -->
             <h6 class="menu-group-title">Gestão de Dados</h6>
+            
             <button onclick="exportData()" class="menu-item">
-                <span class="menu-icon">📥</span>
+                <span class="menu-icon">📊</span>
                 <span class="menu-text">Exportar CSV</span>
             </button>
-            <button onclick="saveToDb()" class="menu-item">
-                <span class="menu-icon">📥</span>
-                <span class="menu-text">Guardar no Database</span>
+            
+            <button onclick="exportDb()" class="menu-item">
+                <span class="menu-icon">💾</span>
+                <span class="menu-text">Guardar no MySQL</span>
             </button>
-            <!--
-            <button onclick="clearDataView()" class="menu-item">
-                <span class="menu-icon">🗑️</span>
-                <span class="menu-text">Limpar Dados</span>
-            </button>
-            -->
-            <!-- Adicione isso dentro da <ul> do menu lateral -->
-            <!-- Contador de Análises -->
-            <div id="analysis-count" class="text-center mt-3" style="font-size: 14px; color: #ffffff;">
-                Carregando total de análises armazenadas:  + count_analyses()
+            
+            <div id="analysis-count" style="padding: 10px 20px; font-size: 12px; color: #666;">
+                Carregando total de análises...
             </div>
+            
+            <div id="data-message" style="padding: 0 20px; font-size: 12px;"></div>
         </div>
 
     </div>

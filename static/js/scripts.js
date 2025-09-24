@@ -1,22 +1,97 @@
-// Declara updateAnalysisCount no escopo global
-window.updateAnalysisCount = function() {
-  const countEl = document.getElementById("analysis-count");
-  if (!countEl) return;
-  
-  axios.get("/count_analyses")
-    .then(res => {
-      if (res.data.status === "success") {
-        countEl.textContent = `Total de análises realizadas: ${res.data.count}`;
-      } else {
-        countEl.textContent = "Não foi possível carregar o contador.";
-      }
-    })
-    .catch(() => {
-      countEl.textContent = "Erro ao carregar o contador.";
-    });
+// ===== FUNÇÕES GLOBAIS DE EXPORT =====
+// Função para exportar CSV
+window.exportData = function() {
+    const dataMessage = document.getElementById('data-message');
+    if (dataMessage) {
+        dataMessage.innerHTML = '<p style="color: #007bff;">📥 A preparar exportação CSV...</p>';
+    }
+    
+    // Criar link para download
+    const link = document.createElement('a');
+    link.href = '/export_data';
+    link.download = `analises_pele_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    setTimeout(() => {
+        if (dataMessage) {
+            dataMessage.innerHTML = '<p style="color: #28a745;">✓ CSV gerado e baixado!</p>';
+            setTimeout(() => {
+                dataMessage.innerHTML = '';
+            }, 3000);
+        }
+    }, 1000);
 };
 
+// Função para exportar para MySQL
+window.exportDb = async function() {
+    const dataMessage = document.getElementById('data-message');
+    if (dataMessage) {
+        dataMessage.innerHTML = '<p style="color: #007bff;">💾 A exportar para MySQL...</p>';
+    }
+    
+    try {
+        const response = await fetch('/export_db', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({})
+        });
 
+        if (response.ok) {
+            const result = await response.json();
+            if (dataMessage) {
+                dataMessage.innerHTML = `<p style="color: #28a745;">✓ ${result.quantidade} registros salvos no MySQL!</p>`;
+            }
+            console.log('Resposta MySQL:', result);
+             // Atualiza o contador no HTML
+            window.updateAnalysisCount();
+            
+            if (result.erros && result.erros.length > 0) {
+                console.warn('Erros encontrados:', result.erros);
+            }
+            
+        } else {
+            const error = await response.json();
+            if (dataMessage) {
+                dataMessage.innerHTML = `<p style="color: #dc3545;">❌ Erro: ${error.message}</p>`;
+            }
+        }
+    } catch (error) {
+        console.error('Erro na chamada:', error);
+        if (dataMessage) {
+            dataMessage.innerHTML = '<p style="color: #dc3545;">❌ Falha na conexão com o servidor.</p>';
+        }
+    }
+    
+    setTimeout(() => {
+        if (dataMessage && dataMessage.innerHTML.includes('registros salvos')) {
+            dataMessage.innerHTML = '';
+        }
+    }, 5000);
+};
+
+// Declara updateAnalysisCount no escopo global
+window.updateAnalysisCount = function() {
+    const countEl = document.getElementById("analysis-count");
+    if (!countEl) return;
+    
+    axios.get("/count_analyses")
+        .then(res => {
+            if (res.data.status === "success") {
+                countEl.textContent = `Total de análises realizadas: ${res.data.count}`;
+            } else {
+                countEl.textContent = "Não foi possível carregar o contador.";
+            }
+        })
+        .catch(() => {
+            countEl.textContent = "Erro ao carregar o contador.";
+        });
+};
+
+// ===== RESTO DO CÓDIGO =====
 document.addEventListener("DOMContentLoaded", () => {
     // Elementos principais - com verificação de existência
     const locationLabel = document.getElementById("location-label");
@@ -286,55 +361,5 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
         console.error("Botão analyze-button não encontrado!");
     }
-
-    // Gera CSV para download
-    window.exportData = function() {
-        const dataMessage = document.getElementById('data-message');
-        if (dataMessage) {
-            dataMessage.innerHTML = '<p style="color: #007bff;">📥 A preparar exportação...</p>';
-        }
-        
-        // Criar link para download
-        const link = document.createElement('a');
-        link.href = '/export_data';
-        link.download = `analises_pele_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        setTimeout(() => {
-            if (dataMessage) {
-                dataMessage.innerHTML = '<p style="color: #28a745;">✓ Download iniciado!</p>';
-                setTimeout(() => {
-                    dataMessage.innerHTML = '';
-                }, 3000);
-            }
-        }, 1000);
-    };
-
-    window.clearDataView = function() {
-        const dataView = document.getElementById('data-view');
-        const dataContent = document.getElementById('data-content');
-        const dataMessage = document.getElementById('data-message');
-        
-        if (dataView) dataView.style.display = 'none';
-        if (dataContent) dataContent.innerHTML = '';
-        if (dataMessage) dataMessage.innerHTML = '';
-    };
-
-    // Debug info
-    console.log("Script carregado com sucesso!");
-    console.log("Elementos encontrados:", {
-        locationLabel: !!locationLabel,
-        photoUpload: !!photoUpload,
-        uploadButton: !!uploadButton,
-        cameraButton: !!cameraButton,
-        captureButton: !!captureButton,
-        cameraFeed: !!cameraFeed,
-        analyzeButton: !!analyzeButton,
-        spinner: !!spinner,
-        resultLabel: !!resultLabel,
-        statusLabel: !!statusLabel
-    });
 
  });

@@ -33,64 +33,6 @@ app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16MB max file size
 app.secret_key = os.urandom(24)  # For session management
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
-#old init_db function without id_collector support
-#def init_db():
-#    """Initialize or update SQLite database schema."""
-#    try:
-#        with sqlite3.connect("analysis.db") as conn:
-#            cursor = conn.cursor()
-#            # Check existing table schema
-#            cursor.execute("PRAGMA table_info(analysis_log)")
-#            columns = [col[1] for col in cursor.fetchall()]
-#            required_columns = [
-#                "id", "timestamp", "event_type", "input_type", "input_value",
-#                "location", "uv_index", "fitzpatrick_type", "recommendations", "status_message"
-#            ]
-#            
-#            if not all(col in columns for col in required_columns):
-#                # If schema is missing columns, rename existing table
-#                if columns:  # Table exists
-#                    cursor.execute("ALTER TABLE analysis_log RENAME TO analysis_log_old")
-##                # Create new table with correct schema
-#                cursor.execute("""
-#                    CREATE TABLE analysis_log (
-#                        id_collector TEXT,
-#                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-#                        timestamp TEXT NOT NULL,
-#                        event_type TEXT NOT NULL,
-#                        input_type TEXT,
-#                        input_value TEXT,
-#                        location TEXT,
-#                        uv_index REAL,
-#                        fitzpatrick_type TEXT,
-#                        recommendations TEXT,
-#                        status_message TEXT
-#                    )
-#                """)
- #               # Migrate data if old table exists (only ANALYSIS events)
- #               if columns:
- #                   common_columns = [col for col in columns if col in required_columns]
- #                   if common_columns and "event_type" in columns:
-#                        columns_str = ", ".join(common_columns)
-#                        cursor.execute(f"""
-#                            INSERT INTO analysis_log ({columns_str})
-#                            SELECT {columns_str} FROM analysis_log_old WHERE event_type = 'ANALYSIS'
-#                        """)
-#                    cursor.execute("DROP TABLE analysis_log_old")
-#                conn.commit()
-#        return {"status": "success", "message": "Base de dados pronta!"}
-#    
-#        with sqlite3.connect("analysis.db") as conn:
-#            print("Verificando esquema da base de dados...")
-#            cursor = conn.cursor()
-#            try:
-#                cursor.execute("ALTER TABLE analysis_log ADD COLUMN id_collector TEXT")
-#            except sqlite3.OperationalError:
-#                pass  # coluna já existe
-#
-#    except sqlite3.Error as e:
-#        return {"status": "error", "message": f"Erro na base de dados: {str(e)}"}
-
 
 # Init revisado com suporte a id_collector
 def init_db():
@@ -348,14 +290,18 @@ def analyze():
 
 # Adições necessárias para main.py
 
-# Adicionar estas importações no topo do arquivo
+# ===== IMPORTS ADICIONAIS =====
 import csv
 from io import StringIO
 from flask import make_response
+import mysql.connector
+from mysql.connector import Error
+from dbconfig import DB_CONFIG
 
+# ===== FUNÇÃO: CONTADOR DE ANÁLISES =====
 @app.route("/count_analyses", methods=["GET"])
 def count_analyses():
-    """Retorna o número de análises registradas."""
+    """Retorna o número de análises registradas no SQLite."""
     try:
         with sqlite3.connect("analysis.db") as conn:
             cursor = conn.cursor()
@@ -365,15 +311,14 @@ def count_analyses():
     except sqlite3.Error as e:
         return jsonify({"status": "error", "message": str(e)})
 
-
+# ===== FUNÇÃO: EXPORT CSV =====
 @app.route("/export_data", methods=["GET"])
 def export_data():
-    """Export all analysis data to CSV format."""
+    """Exporta dados do SQLite para arquivo CSV."""
     try:
         with sqlite3.connect("analysis.db") as conn:
             cursor = conn.cursor()
             
-            # Query all analysis records
             cursor.execute("""
                 SELECT id_collector, id, timestamp, input_value, location, uv_index, 
                        fitzpatrick_type, recommendations, status_message
@@ -390,92 +335,19 @@ def export_data():
                     "message": "Nenhum dado disponível para exportar."
                 })
             
-            # Create CSV content
+            # Criar CSV
             output = StringIO()
             writer = csv.writer(output)
             
-            # Write header
+            # Cabeçalho
             header = [
-                'ID Colletor','ID', 'Data/Hora', 'Nome da Imagem', 'Localização', 
-                'Índice UV', 'Tipo de Pele', 'Recomendações', 'Estado'
+                'ID_Collector', 'ID', 'Data/Hora', 'Nome_Imagem', 'Localização', 
+                'Índice_UV', 'Tipo_Pele', 'Recomendações', 'Estado'
             ]
             writer.writerow(header)
             
-            # Write data rows
+            # Linhas de dados
             for row in rows:
-                # Extract image name from path
-                image_name = os.path.basename(row[3]) if row[3] else "N/A"
-                
-                csv_row = [
-                    row[0] if len(row[0]) > 8 else ID_COLLECTOR, # ID Colletor
-                    row[1],  # ID
-                    row[2],  # timestamp
-                    image_name,  # image name
-                    row[4] or "N/A",  # location
-                    f"{row[5]:.1f}" if row[5] is not None else "N/A",  # UV index
-                    row[6] or "N/A",  # fitzpatrick_type
-                    row[7] or "N/A",  # recommendations
-                    row[8] or "N/A"   # status_message
-                ]
-                writer.writerow(csv_row)
-            
-            # Create response
-            output.seek(0)
-            response = make_response(output.getvalue())
-            response.headers["Content-Type"] = "text/csv; charset=utf-8"
-            response.headers["Content-Disposition"] = f"attachment; filename=analises_pele_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-            
-            return response
-            
-    except sqlite3.Error as e:
-        return jsonify({
-            "status": "error",
-            "message": f"Erro na base de dados: {str(e)}"
-        })
-    except Exception as e:
-        return jsonify({
-            "status": "error",
-            "message": f"Erro na exportação: {str(e)}"
-        })
-
-@app.route("/export_data", methods=["GET"])
-def export_data():
-    """Export all analysis data to CSV format."""
-    try:
-        with sqlite3.connect("analysis.db") as conn:
-            cursor = conn.cursor()
-            
-            # Query all analysis records
-            cursor.execute("""
-                SELECT id_collector, id, timestamp, input_value, location, uv_index, 
-                       fitzpatrick_type, recommendations, status_message
-                FROM analysis_log 
-                WHERE event_type = 'ANALYSIS'
-                ORDER BY timestamp DESC
-            """)
-            
-            rows = cursor.fetchall()
-            
-            if not rows:
-                return jsonify({
-                    "status": "error", 
-                    "message": "Nenhum dado disponível para exportar."
-                })
-            
-            # Create CSV content
-            output = StringIO()
-            writer = csv.writer(output)
-            
-            # Write header
-            header = [
-                'ID_Collector', 'ID', 'Data/Hora', 'Nome da Imagem', 'Localização', 
-                'Índice UV', 'Tipo de Pele', 'Recomendações', 'Estado'
-            ]
-            writer.writerow(header)
-            
-            # Write data rows
-            for row in rows:
-                # Extract image name from path
                 image_name = os.path.basename(row[3]) if row[3] else "N/A"
                 
                 csv_row = [
@@ -491,18 +363,18 @@ def export_data():
                 ]
                 writer.writerow(csv_row)
             
-            # Create response
+            # Resposta de download
             output.seek(0)
             response = make_response(output.getvalue())
             response.headers["Content-Type"] = "text/csv; charset=utf-8"
-            response.headers["Content-Disposition"] = f"attachment; filename=analises_pele_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+            response.headers["Content-Disposition"] = f"attachment; filename=analises_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
             
             return response
             
     except sqlite3.Error as e:
         return jsonify({
             "status": "error",
-            "message": f"Erro na base de dados: {str(e)}"
+            "message": f"Erro SQLite: {str(e)}"
         })
     except Exception as e:
         return jsonify({
@@ -510,28 +382,192 @@ def export_data():
             "message": f"Erro na exportação: {str(e)}"
         })
 
-@app.route("/save_to_db", methods=["POST"])
-def save_to_db():
-    """Save analysis data to database - placeholder function."""
+# ===== FUNÇÃO: EXPORT MYSQL =====
+'''
+@app.route("/export_db", methods=["POST"])
+def export_db():
+    """Exporta dados do SQLite para MySQL e apaga registros locais após commit no MySQL."""
     try:
-        with sqlite3.connect("analysis.db") as conn:
-            cursor = conn.cursor()
-            cursor.execute("SELECT COUNT(*) FROM analysis_log WHERE event_type = 'ANALYSIS'")
-            count = cursor.fetchone()[0]
-            
+        # 1. Buscar dados do SQLite
+        sqlite_conn = sqlite3.connect("analysis.db")
+        sqlite_cursor = sqlite_conn.cursor()
+        sqlite_cursor.execute("""
+            SELECT id, id_collector, timestamp, input_value, location, uv_index,
+                   fitzpatrick_type, recommendations, status_message
+            FROM analysis_log
+            WHERE event_type = 'ANALYSIS'
+        """)
+        rows = sqlite_cursor.fetchall()
+        print(f"DEBUG: export_db encontrou {len(rows)} linhas no SQLite")
+
+        if not rows:
+            sqlite_conn.close()
+            return jsonify({"status": "error", "message": "Nenhuma análise para exportar."})
+
+        # 2. Inserir mas apenas commit depois de todo loop
+        mysql_conn = mysql.connector.connect(**DB_CONFIG)
+        mysql_cursor = mysql_conn.cursor()
+        #mysql_cursor.execute("""CREATE TABLE IF NOT EXISTS analises_pele ( ... )""")
+
+        # Use apenas colunas, omitido aqui para brevidade
+        mysql_conn.commit()
+        mysql_cursor.close()
+        mysql_conn.close()
+
+        # Reabrir para inserir todos
+        mysql_conn = mysql.connector.connect(**DB_CONFIG)
+        mysql_cursor = mysql_conn.cursor()
+
+        for row in rows:
+            image_name = os.path.basename(row[3]) if row[3] else "N/A"
+            mysql_cursor.execute("""
+                INSERT INTO analises
+                (id_colletor, data_hora, nome_imagem, localizacao,
+                 indice_uv, tipo_pele, recomendacoes, estado)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+            """, (
+                row[1] or ID_COLLECTOR,
+                row[2],
+                image_name,
+                row[4] or "N/A",
+                f"{row[5]:.1f}" if row[5] is not None else "0.0",
+                row[6] or "N/A",
+                row[7] or "N/A",
+                row[8] or "Análise concluída"
+            ))
+        # 4. Commit e fechar conexão MySQL
+        mysql_conn.commit()
+        print("DEBUG: commit MySQL realizado")
+        mysql_cursor.close()
+        mysql_conn.close()
+
+        # 5. Apagar registros do SQLite somente após commit no MySQL
+        sqlite_cursor.execute("DELETE FROM analysis_log WHERE event_type = 'ANALYSIS'")
+        deleted = sqlite_cursor.rowcount
+        sqlite_conn.commit()
+        print(f"DEBUG: apagou {deleted} linhas do SQLite")
+        sqlite_cursor.close()
+        sqlite_conn.close()
+
         return jsonify({
             "status": "success",
-            "message": f"Dados já estão salvos na base de dados",
-            "quantidade": count
+            "message": "Exportação concluída, commit MySQL realizado e registros locais apagados.",
+            "quantidade_exportada": len(rows),
+            "quantidade_apagada": deleted
         })
-        
+
+    except mysql.connector.Error as e:
+        return jsonify({"status": "error", "message": f"Erro MySQL: {str(e)}"})
     except sqlite3.Error as e:
+        return jsonify({"status": "error", "message": f"Erro SQLite: {str(e)}"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"Erro geral: {str(e)}"})
+'''
+
+@app.route("/export_db", methods=["POST"])
+def export_db():
+    """Exporta dados do SQLite para MySQL incluindo imagens e apaga registros locais."""
+    try:
+        # 1. Buscar dados do SQLite
+        with sqlite3.connect("analysis.db") as sqlite_conn:
+            sqlite_cursor = sqlite_conn.cursor()
+            sqlite_cursor.execute("""
+                SELECT id, id_collector, timestamp, input_value, location, uv_index,
+                       fitzpatrick_type, recommendations, status_message
+                FROM analysis_log
+                WHERE event_type = 'ANALYSIS'
+            """)
+            rows = sqlite_cursor.fetchall()
+
+        if not rows:
+            return jsonify({"status": "error", "message": "Nenhuma análise para exportar."})
+
+        # 2. Conectar MySQL e inserir dados na tabela ANALISES
+        mysql_conn = mysql.connector.connect(**DB_CONFIG)
+        mysql_cursor = mysql_conn.cursor()
+        
+        saved_count = 0
+        image_errors = []
+
+        for row in rows:
+            try:
+                image_path = row[3]  # input_value contains the image path
+                image_name = os.path.basename(image_path) if image_path else "N/A"
+                image_blob = None
+
+                # Read image file as binary data
+                print(f"DEBUG: Processando imagem {image_name} do caminho {image_path}")
+                if image_path and os.path.exists(image_path):
+                    try:
+                        with open(image_path, 'rb') as image_file:
+                            image_blob = image_file.read()
+                        print(f"DEBUG: Imagem {image_name} carregada ({len(image_blob)} bytes)")
+                    except Exception as e:
+                        image_errors.append(f"Erro ao ler {image_name}: {str(e)}")
+                        print(f"DEBUG: Erro ao ler {image_name}: {str(e)}")
+
+                # Insert into MySQL ANALISES table
+                mysql_cursor.execute("""
+                    INSERT INTO ANALISES
+                    (id_colletor, data_hora, nome_imagem, imagem_blob, localizacao,
+                     indice_uv, tipo_pele, recomendacoes, estado)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                """, (
+                    row[1] or ID_COLLECTOR,
+                    row[2],
+                    image_name,
+                    image_blob,
+                    row[4] or "N/A",
+                    f"{row[5]:.1f}" if row[5] is not None else "0.0",
+                    row[6] or "N/A",
+                    row[7] or "N/A",
+                    row[8] or "Análise concluída"
+                ))
+                saved_count += 1
+
+            except mysql.connector.Error as e:
+                image_errors.append(f"MySQL error for row {row[0]}: {str(e)}")
+                continue
+
+        # 3. Commit MySQL
+        mysql_conn.commit()
+        print("DEBUG: MySQL commit realizado na tabela ANALISES")
+
+        # 4. Delete images from filesystem after successful commit
+        deleted_images = 0
+        for row in rows:
+            image_path = row[3]
+            if image_path and os.path.exists(image_path):
+                try:
+                    os.remove(image_path)
+                    deleted_images += 1
+                    print(f"DEBUG: Imagem {image_path} removida")
+                except Exception as e:
+                    image_errors.append(f"Erro ao remover {image_path}: {str(e)}")
+
+        mysql_cursor.close()
+        mysql_conn.close()
+
+        # 5. Delete SQLite records
+        with sqlite3.connect("analysis.db") as sqlite_conn:
+            sqlite_cursor = sqlite_conn.cursor()
+            sqlite_cursor.execute("DELETE FROM analysis_log WHERE event_type = 'ANALYSIS'")
+            deleted_records = sqlite_cursor.rowcount
+            sqlite_conn.commit()
+
         return jsonify({
-            "status": "error",
-            "message": f"Erro na base de dados: {str(e)}"
+            "status": "success",
+            "message": "Exportação completa: dados e imagens salvos na tabela ANALISES!",
+            "quantidade_exportada": saved_count,
+            "quantidade_apagada": deleted_records,
+            "imagens_movidas": deleted_images,
+            "erros_imagem": image_errors if image_errors else None
         })
 
-
+    except mysql.connector.Error as e:
+        return jsonify({"status": "error", "message": f"Erro MySQL: {str(e)}"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": f"Erro geral: {str(e)}"})
 
 
 if __name__ == "__main__":

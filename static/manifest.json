@@ -1,16 +1,9 @@
 {
-  "name": "SkinGuard - Proteção Solar",
-  "short_name": "SkinGuard",
+  "name": "Prototipo SCP",
+  "short_name": "SCO Prototipo",
   "description": "Análise de pele e proteção solar inteligente",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#667eea",
-  "theme_color": "#4A90E2",
-  "icons": [
-    {
-      "src": "/static/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ]
-}
+  "theme_color": "#4A90E2"
+  }
