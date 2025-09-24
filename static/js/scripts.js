@@ -287,6 +287,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Botão analyze-button não encontrado!");
     }
 
+    // Gera CSV para download
     window.exportData = function() {
         const dataMessage = document.getElementById('data-message');
         if (dataMessage) {
@@ -336,27 +337,4 @@ document.addEventListener("DOMContentLoaded", () => {
         statusLabel: !!statusLabel
     });
 
-    // Nova função: Chama POST para /save_to_db
-async function saveToDb() {
-    try {
-        const response = await fetch('/save_to_db', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({})  // Corpo vazio, ou passe dados se precisar
-        });
-
-        if (response.ok) {
-            const result = await response.json();
-            alert(`Sucesso! ${result.quantidade || 1} análises salvas no DB.`);
-            console.log('Resposta do DB:', result);
-        } else {
-            alert('Erro ao salvar no DB. Verifique console.');
-        }
-    } catch (error) {
-        console.error('Erro na chamada:', error);
-        alert('Falha na conexão com o servidor.');
-    }
-}
-});
+ });

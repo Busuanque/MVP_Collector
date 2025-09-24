@@ -169,6 +169,10 @@
                 <span class="menu-icon">📥</span>
                 <span class="menu-text">Exportar CSV</span>
             </button>
+            <button onclick="saveToDb()" class="menu-item">
+                <span class="menu-icon">📥</span>
+                <span class="menu-text">Guardar no Database</span>
+            </button>
             <!--
             <button onclick="clearDataView()" class="menu-item">
                 <span class="menu-icon">🗑️</span>
@@ -176,13 +180,9 @@
             </button>
             -->
             <!-- Adicione isso dentro da <ul> do menu lateral -->
-            <button onclick="saveToDb()" class="menu-item"></button>
-                <span class="menu-icon">📥</span>
-                <span class="menu-text">Guardar no Database</span>
-            </button>
             <!-- Contador de Análises -->
             <div id="analysis-count" class="text-center mt-3" style="font-size: 14px; color: #ffffff;">
-                Carregando total de análises... + count_analyses()
+                Carregando total de análises armazenadas:  + count_analyses()
             </div>
         </div>
 

@@ -17,10 +17,15 @@ import requests
 import csv
 from io import StringIO
 from flask import make_response
+# database
+import mysql.connector
+from mysql.connector import Error
+from dbconfig import DB_CONFIG  # Assuma config.py com credenciais
 
 # Load environment variables
 load_dotenv()
 ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default_collector")
+analises_coletadas = []  # Lista temporária para dados de análises
 
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
 app.config["UPLOAD_FOLDER"] = "Uploads"
@@ -433,6 +438,98 @@ def export_data():
             "message": f"Erro na exportação: {str(e)}"
         })
 
+@app.route("/export_data", methods=["GET"])
+def export_data():
+    """Export all analysis data to CSV format."""
+    try:
+        with sqlite3.connect("analysis.db") as conn:
+            cursor = conn.cursor()
+            
+            # Query all analysis records
+            cursor.execute("""
+                SELECT id_collector, id, timestamp, input_value, location, uv_index, 
+                       fitzpatrick_type, recommendations, status_message
+                FROM analysis_log 
+                WHERE event_type = 'ANALYSIS'
+                ORDER BY timestamp DESC
+            """)
+            
+            rows = cursor.fetchall()
+            
+            if not rows:
+                return jsonify({
+                    "status": "error", 
+                    "message": "Nenhum dado disponível para exportar."
+                })
+            
+            # Create CSV content
+            output = StringIO()
+            writer = csv.writer(output)
+            
+            # Write header
+            header = [
+                'ID_Collector', 'ID', 'Data/Hora', 'Nome da Imagem', 'Localização', 
+                'Índice UV', 'Tipo de Pele', 'Recomendações', 'Estado'
+            ]
+            writer.writerow(header)
+            
+            # Write data rows
+            for row in rows:
+                # Extract image name from path
+                image_name = os.path.basename(row[3]) if row[3] else "N/A"
+                
+                csv_row = [
+                    row[0] if row[0] else ID_COLLECTOR,  # ✅ CORRIGIDO
+                    row[1],  # ID
+                    row[2],  # timestamp
+                    image_name,  # image name
+                    row[4] or "N/A",  # location
+                    f"{row[5]:.1f}" if row[5] is not None else "N/A",  # UV index
+                    row[6] or "N/A",  # fitzpatrick_type
+                    row[7] or "N/A",  # recommendations
+                    row[8] or "N/A"   # status_message
+                ]
+                writer.writerow(csv_row)
+            
+            # Create response
+            output.seek(0)
+            response = make_response(output.getvalue())
+            response.headers["Content-Type"] = "text/csv; charset=utf-8"
+            response.headers["Content-Disposition"] = f"attachment; filename=analises_pele_{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
+            
+            return response
+            
+    except sqlite3.Error as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro na base de dados: {str(e)}"
+        })
+    except Exception as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro na exportação: {str(e)}"
+        })
+
+@app.route("/save_to_db", methods=["POST"])
+def save_to_db():
+    """Save analysis data to database - placeholder function."""
+    try:
+        with sqlite3.connect("analysis.db") as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM analysis_log WHERE event_type = 'ANALYSIS'")
+            count = cursor.fetchone()[0]
+            
+        return jsonify({
+            "status": "success",
+            "message": f"Dados já estão salvos na base de dados",
+            "quantidade": count
+        })
+        
+    except sqlite3.Error as e:
+        return jsonify({
+            "status": "error",
+            "message": f"Erro na base de dados: {str(e)}"
+        })
 
 
 
