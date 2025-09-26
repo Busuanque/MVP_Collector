@@ -11,10 +11,8 @@ import requests
 import csv
 from io import StringIO
 from flask import make_response
-
-# Conditional imports based on DB_TYPE
-if DB_CONFIG["type"] == "mysql":
-    import mysql.connector
+import mysql.connector
+import sqlite3
 
 # Import modules (assume created)
 from uv_index import get_uv_index
@@ -344,48 +342,38 @@ def export_csv():
     except Exception as e:
         return jsonify({"status": "error", "message": f"Erro no export: {str(e)}", "message_color": "#FF0000"})
 
-# Hybrid Kivy Setup for Windows (starts Flask in thread, embeds WebView)
-'''
-try:
-    from kivy.app import App
-    from kivy.uix.boxlayout import BoxLayout
-    from kivy.uix.button import Button
-    from kivy.uix.label import Label
-    import threading
-    from webview import create_window  # pywebview for Windows WebView
 
- 
-    import webbrowser  # Adicione no topo, após imports existentes
-    from kivy.clock import Clock
+#
+# 
+# 
+# 
+# 
 
-    class CollectorApp(App):
-        def build(self):
-            layout = BoxLayout(orientation='vertical')
-            self.status_label = Label(text='Starting...', size_hint_y=None, height=50)
-            start_btn = Button(text='Start Analysis Tool', size_hint_y=None, height=50)
-            start_btn.bind(on_press=self.start_server)
-            layout.add_widget(self.status_label)
-            layout.add_widget(start_btn)
-            return layout
+@app.route("/count_analyses", methods=["GET"])
+def count_analyses():
+    """Rota para contar análises no DB (corrige 404 no JS)."""
+    try:
+        if DB_CONFIG["type"] == "mysql":
+            conn = mysql.connector.connect(**{k: v for k, v in DB_CONFIG.items() if k != "type"})
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM analysis_log WHERE id_collector = %s", (ID_COLLECTOR,))
+            count = cursor.fetchone()[0]
+            cursor.close()
+            conn.close()
+        else:
+            with sqlite3.connect(DB_CONFIG["path"]) as conn:
+                cursor = conn.cursor()
+                cursor.execute("SELECT COUNT(*) FROM analysis_log WHERE id_collector = ?", (ID_COLLECTOR,))
+                count = cursor.fetchone()[0]
+        
+        return jsonify({"status": "success", "count": count})
+    except Exception as e:
+        print(f"Count error: {e}")
+        return jsonify({"status": "error", "message": str(e), "count": 0})
 
-        def start_server(self, instance):
-            if not hasattr(self, 'flask_thread') or not self.flask_thread.is_alive():
-                self.flask_thread = threading.Thread(target=app.run, kwargs={'host': '127.0.0.1', 'port': 5000, 'debug': False, 'use_reloader': False})
-                self.flask_thread.daemon = True
-                self.flask_thread.start()
-                # Agende abertura do browser no main thread (Kivy Clock)
-                Clock.schedule_once(self.open_browser, 3)  # 3s para Flask up
-                self.status_label.text = 'Server started! Opening browser...'
 
-        def open_browser(self, dt):
-            webbrowser.open('http://127.0.0.1:5000')
 
-    # -----------------------------------------------------------------
-
-        if __name__ == '__main__':
-        CollectorApp().run()
-'''
-# Fallback to Flask standalone for Windows
+# ========== Flask standalone for Windows ===================================
 if __name__ == '__main__':
     print("Iniciando Flask em http://localhost:5000...")  # Para debug
     app.run(host='0.0.0.0', port=5000, debug=True)

@@ -1,14 +1,14 @@
 // ===== FUNÇÕES GLOBAIS DE EXPORT =====
-// Função para exportar CSV
+// Função para exportar CSV (ajustado para /export - padrão backend)
 window.exportData = function() {
     const dataMessage = document.getElementById('data-message');
     if (dataMessage) {
         dataMessage.innerHTML = '<p style="color: #007bff;">📥 A preparar exportação CSV...</p>';
     }
     
-    // Criar link para download
+    // Criar link para download - AJUSTE: URL para /export
     const link = document.createElement('a');
-    link.href = '/export_data';
+    link.href = '/export';  // Mude para '/export_data' se backend for isso
     link.download = `analises_pele_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
     document.body.appendChild(link);
     link.click();
@@ -24,7 +24,7 @@ window.exportData = function() {
     }, 1000);
 };
 
-// Função para exportar para MySQL
+// Função para exportar para MySQL (ajustado com melhor error handling)
 window.exportDb = async function() {
     const dataMessage = document.getElementById('data-message');
     if (dataMessage) {
@@ -43,37 +43,32 @@ window.exportDb = async function() {
         if (response.ok) {
             const result = await response.json();
             if (dataMessage) {
-                dataMessage.innerHTML = `<p style="color: #28a745;">✓ ${result.quantidade} registros salvos no MySQL!</p>`;
+                dataMessage.innerHTML = `<p style="color: #28a745;">✓ ${result.quantidade || 'Registros'} salvos no MySQL!</p>`;
             }
             console.log('Resposta MySQL:', result);
-             // Atualiza o contador no HTML
-            window.updateAnalysisCount();
+            window.updateAnalysisCount();  // Atualiza contador
             
             if (result.erros && result.erros.length > 0) {
                 console.warn('Erros encontrados:', result.erros);
             }
-            
         } else {
-            const error = await response.json();
-            if (dataMessage) {
-                dataMessage.innerHTML = `<p style="color: #dc3545;">❌ Erro: ${error.message}</p>`;
-            }
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);  // Lança erro para catch
         }
     } catch (error) {
-        console.error('Erro na chamada:', error);
+        console.error('Erro na chamada MySQL:', error);
         if (dataMessage) {
-            dataMessage.innerHTML = '<p style="color: #dc3545;">❌ Falha na conexão com o servidor.</p>';
+            dataMessage.innerHTML = `<p style="color: #dc3545;">❌ Erro: ${error.message}</p>`;
         }
     }
     
     setTimeout(() => {
-        if (dataMessage && dataMessage.innerHTML.includes('registros salvos')) {
+        if (dataMessage && dataMessage.innerHTML.includes('salvos')) {
             dataMessage.innerHTML = '';
         }
     }, 5000);
 };
 
-// Declara updateAnalysisCount no escopo global
+// Declara updateAnalysisCount no escopo global (ajustado com error handling)
 window.updateAnalysisCount = function() {
     const countEl = document.getElementById("analysis-count");
     if (!countEl) return;
@@ -86,7 +81,8 @@ window.updateAnalysisCount = function() {
                 countEl.textContent = "Não foi possível carregar o contador.";
             }
         })
-        .catch(() => {
+        .catch(err => {
+            console.error('Erro no contador:', err);
             countEl.textContent = "Erro ao carregar o contador.";
         });
 };
@@ -104,10 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const spinner = document.getElementById("spinner");
     const resultLabel = document.getElementById("result-label");
 
-    const dataView    = document.getElementById('data-view');
+    const dataView = document.getElementById('data-view');
     const dataContent = document.getElementById('data-content');
     const dataMessage = document.getElementById('data-message');
-
 
     // Status pode ser 'status' ou 'status-label' - verificar ambos
     const statusLabel = document.getElementById("status-label") || document.getElementById("status");
@@ -122,13 +117,13 @@ document.addEventListener("DOMContentLoaded", () => {
             statusLabel.textContent = message;
             statusLabel.style.color = color;
         }
-        console.log("Status:", message);
+        console.log("Status:", message);  // Log para debug
     }
 
-    // Inicializa o contador
-    //updateAnalysisCount();
+    // Inicializa o contador (descomentado)
+    window.updateAnalysisCount();
 
-     // Detectar localização na inicialização
+    // Detectar localização na inicialização
     if (locationLabel) {
         axios.get("/detect_location")
             .then(response => {
@@ -148,43 +143,55 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     }
 
-   // Upload de ficheiro: primeiro abre o seletor, depois processa a seleção
+    // Upload de ficheiro: primeiro abre o seletor, depois processa a seleção
     if (uploadButton && photoUpload) {
-    uploadButton.addEventListener("click", () => {
-        // Abre o diálogo de seleção de arquivos
-        photoUpload.click();
-    });
-
-    // Quando o usuário seleciona o arquivo, dispara o upload
-    photoUpload.addEventListener("change", () => {
-        if (!photoUpload.files.length) {
-        showStatus("Nenhuma foto selecionada", "#FF0000");
-        return;
-        }
-
-        const formData = new FormData();
-        formData.append("photo", photoUpload.files[0]);
-        showStatus("A carregar foto...", "#0080FF");
-
-        axios.post("/upload_photo", formData)
-        .then(response => {
-            showStatus(response.data.message, response.data.message_color);
-            if (response.data.status === "success") {
-            photoPath = response.data.photo_path;
-            if (analyzeButton) analyzeButton.disabled = false;
-            stopCamera();
-            } else {
-            alert(response.data.message);
-            }
-        })
-        .catch(error => {
-            showStatus("Erro ao carregar foto", "#FF0000");
-            console.error("Erro upload:", error);
-            alert("Erro ao carregar foto: " + error.message);
+        uploadButton.addEventListener("click", () => {
+            // Abre o diálogo de seleção de arquivos
+            photoUpload.click();
         });
-    });
-    }
 
+        // Quando o usuário seleciona o arquivo, dispara o upload - AJUSTE: URL para '/upload' (mude para '/upload_photo' se backend for isso)
+        photoUpload.addEventListener("change", () => {
+            if (!photoUpload.files.length) {
+                showStatus("Nenhuma foto selecionada", "#FF0000");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("photo", photoUpload.files[0]);
+            showStatus("A carregar foto...", "#0080FF");
+
+            // AJUSTE: URL corrigida para matching backend; adicionei log e handling para 404
+            axios.post("/upload", formData)  // Mude para "/upload_photo" se necessário
+                .then(response => {
+                    console.log("Upload success:", response.data);  // Log para debug
+                    showStatus(response.data.message, response.data.message_color);
+                    if (response.data.status === "success") {
+                        photoPath = response.data.photo_path;
+                        if (analyzeButton) analyzeButton.disabled = false;
+                        stopCamera();
+                    } else {
+                        alert(response.data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error("Erro upload:", error);  // Log detalhado
+                    let errorMsg = "Erro desconhecido";
+                    if (error.response) {
+                        errorMsg = `HTTP ${error.response.status}: ${error.response.data?.message || error.response.statusText}`;
+                        if (error.response.status === 404) {
+                            errorMsg += " (Verifique se a rota /upload existe no backend)";
+                        }
+                    } else if (error.request) {
+                        errorMsg = "Sem resposta do servidor";
+                    } else {
+                        errorMsg = error.message;
+                    }
+                    showStatus("Erro ao carregar foto", "#FF0000");
+                    alert("Erro ao carregar foto: " + errorMsg);
+                });
+        });
+    }
 
     // Função para parar câmera
     function stopCamera() {
@@ -223,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Captura de foto
+    // Captura de foto - AJUSTE: Mesma URL corrigida para upload
     if (captureButton && cameraFeed) {
         captureButton.addEventListener("click", () => {
             try {
@@ -234,11 +241,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 const photoData = canvas.toDataURL("image/jpeg");
                 
                 const formData = new FormData();
-                formData.append("photo_data", photoData);
+                formData.append("photo_data", photoData);  // Para backend processar dataURL
                 showStatus("A processar foto capturada...", "#0080FF");
                 
-                axios.post("/upload_photo", formData)
+                // AJUSTE: URL corrigida
+                axios.post("/upload", formData)  // Mude para "/upload_photo" se necessário
                     .then(response => {
+                        console.log("Capture upload success:", response.data);
                         showStatus(response.data.message, response.data.message_color);
                         if (response.data.status === "success") {
                             photoPath = response.data.photo_path;
@@ -251,9 +260,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     })
                     .catch(error => {
-                        showStatus("Erro ao processar foto", "#FF0000");
                         console.error("Erro captura:", error);
-                        alert("Erro ao capturar foto: " + error.message);
+                        let errorMsg = "Erro desconhecido";
+                        if (error.response && error.response.status === 404) {
+                            errorMsg = "Rota não encontrada – verifique backend";
+                        } else if (error.response) {
+                            errorMsg = error.response.data?.message || error.response.statusText;
+                        } else {
+                            errorMsg = error.message;
+                        }
+                        showStatus("Erro ao processar foto", "#FF0000");
+                        alert("Erro ao capturar foto: " + errorMsg);
                     });
             } catch (error) {
                 showStatus("Erro na captura", "#FF0000");
@@ -262,10 +279,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ANÁLISE - Botão principal que não estava funcionando
+    // ANÁLISE - Botão principal (ajustado com logs extras)
     if (analyzeButton) {
         analyzeButton.addEventListener("click", () => {
-            console.log("Botão analisar clicado!");
+            console.log("Botão analisar clicado!");  // Log para debug
             console.log("locationData:", window.locationData);
             console.log("photoPath:", photoPath);
 
@@ -296,7 +313,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 photo_path: photoPath
             })
                 .then(response => {
-                    console.log("Resposta análise:", response.data);
+                    console.log("Resposta análise:", response.data);  // Log para debug
                     
                     if (spinner) {
                         spinner.classList.add("d-none");
@@ -306,15 +323,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     if (response.data.status === "success") {
                         if (resultLabel) {
-                            //resultLabel.innerHTML = response.data.result;
-
                             let resultText = response.data.result;
                             // Tratamento de UV fallback
                             const uvLine = resultText.split("\\n").find(line => line.includes("Índice UV:"));
                             if (uvLine && uvLine.includes("-1.0")) {
-                            resultText = resultText.replace(uvLine, "**Índice UV:** indisponível  ");
+                                resultText = resultText.replace(uvLine, "**Índice UV:** indisponível  ");
                             }
-                            document.getElementById("result-label").innerHTML = resultText;                            
+                            resultLabel.innerHTML = resultText;                            
                         }
                         
                         // Atualiza contador de análises
@@ -326,7 +341,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                         photoPath = null;
                         analyzeButton.textContent = "🔍 Analisar e Obter Dicas";
-                        // Manter botão desabilitado até nova foto
+                        // Manter botão desabilitado até nova foto? Não, reabilite
+                        analyzeButton.disabled = true;  // Ou false se quiser
                     } else {
                         alert("Erro na análise: " + response.data.message);
                         analyzeButton.disabled = false;
@@ -334,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 })
                 .catch(error => {
-                    console.error("Erro análise:", error);
+                    console.error("Erro análise:", error);  // Log detalhado
                     
                     if (spinner) {
                         spinner.classList.add("d-none");
@@ -346,7 +362,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     let errorMsg = "Erro desconhecido";
                     if (error.response) {
-                        errorMsg = error.response.data?.message || "Erro do servidor";
+                        errorMsg = error.response.data?.message || `HTTP ${error.response.status}`;
+                        if (error.response.status === 404) {
+                            errorMsg += " (Verifique se a rota /analyze existe no backend)";
+                        }
                     } else if (error.request) {
                         errorMsg = "Sem resposta do servidor";
                     } else {
@@ -355,11 +374,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     alert("Erro na análise: " + errorMsg);
                 });
-            // Atualiza o contador
-            //updateAnalysisCount();
         });
     } else {
         console.error("Botão analyze-button não encontrado!");
     }
-
- });
+});
