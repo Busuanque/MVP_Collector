@@ -1,0 +1,3735 @@
+('E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\build\\main\\PYZ-00.pyz',
+ [('PIL',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\__init__.py',
+   'PYMODULE'),
+  ('PIL.BlpImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\BlpImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BmpImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\BmpImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.BufrStubImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\BufrStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.CurImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\CurImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DcxImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\DcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.DdsImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\DdsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.EpsImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\EpsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ExifTags',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ExifTags.py',
+   'PYMODULE'),
+  ('PIL.FitsImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\FitsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FliImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\FliImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FpxImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\FpxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.FtexImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\FtexImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GbrImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\GbrImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GifImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\GifImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.GimpGradientFile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\GimpGradientFile.py',
+   'PYMODULE'),
+  ('PIL.GimpPaletteFile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\GimpPaletteFile.py',
+   'PYMODULE'),
+  ('PIL.GribStubImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\GribStubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Hdf5StubImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\Hdf5StubImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IcnsImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\IcnsImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IcoImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\IcoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Image',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\Image.py',
+   'PYMODULE'),
+  ('PIL.ImageChops',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageChops.py',
+   'PYMODULE'),
+  ('PIL.ImageCms',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageCms.py',
+   'PYMODULE'),
+  ('PIL.ImageColor',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageColor.py',
+   'PYMODULE'),
+  ('PIL.ImageFile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageFile.py',
+   'PYMODULE'),
+  ('PIL.ImageFilter',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageFilter.py',
+   'PYMODULE'),
+  ('PIL.ImageMath',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageMath.py',
+   'PYMODULE'),
+  ('PIL.ImageMode',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageMode.py',
+   'PYMODULE'),
+  ('PIL.ImageOps',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageOps.py',
+   'PYMODULE'),
+  ('PIL.ImagePalette',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImagePalette.py',
+   'PYMODULE'),
+  ('PIL.ImageQt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageQt.py',
+   'PYMODULE'),
+  ('PIL.ImageSequence',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageSequence.py',
+   'PYMODULE'),
+  ('PIL.ImageShow',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageShow.py',
+   'PYMODULE'),
+  ('PIL.ImageTk',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageTk.py',
+   'PYMODULE'),
+  ('PIL.ImageWin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImageWin.py',
+   'PYMODULE'),
+  ('PIL.ImtImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\ImtImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.IptcImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\IptcImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.Jpeg2KImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\Jpeg2KImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.JpegImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\JpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.JpegPresets',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\JpegPresets.py',
+   'PYMODULE'),
+  ('PIL.McIdasImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\McIdasImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MicImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\MicImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpegImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\MpegImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MpoImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\MpoImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.MspImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\MspImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PaletteFile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PaletteFile.py',
+   'PYMODULE'),
+  ('PIL.PalmImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PalmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcdImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PcdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PcxImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PcxImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PdfImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PdfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PdfParser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PdfParser.py',
+   'PYMODULE'),
+  ('PIL.PixarImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PixarImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PngImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PngImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PpmImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PsdImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PsdImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.PyAccess',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\PyAccess.py',
+   'PYMODULE'),
+  ('PIL.QoiImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\QoiImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SgiImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SpiderImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\SpiderImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.SunImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\SunImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TgaImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\TgaImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TiffImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\TiffImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.TiffTags',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\TiffTags.py',
+   'PYMODULE'),
+  ('PIL.WebPImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\WebPImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.WmfImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\WmfImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XVThumbImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\XVThumbImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XbmImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\XbmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.XpmImagePlugin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL._binary',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_binary.py',
+   'PYMODULE'),
+  ('PIL._deprecate',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_deprecate.py',
+   'PYMODULE'),
+  ('PIL._typing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_typing.py',
+   'PYMODULE'),
+  ('PIL._util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_util.py',
+   'PYMODULE'),
+  ('PIL._version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_version.py',
+   'PYMODULE'),
+  ('PIL.features',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\features.py',
+   'PYMODULE'),
+  ('__future__',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\__future__.py',
+   'PYMODULE'),
+  ('_aix_support',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_aix_support.py',
+   'PYMODULE'),
+  ('_bootsubprocess',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_bootsubprocess.py',
+   'PYMODULE'),
+  ('_compat_pickle',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_compat_pickle.py',
+   'PYMODULE'),
+  ('_compression',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_compression.py',
+   'PYMODULE'),
+  ('_distutils_hack',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\_distutils_hack\\__init__.py',
+   'PYMODULE'),
+  ('_distutils_hack.override',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\_distutils_hack\\override.py',
+   'PYMODULE'),
+  ('_osx_support',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_osx_support.py',
+   'PYMODULE'),
+  ('_py_abc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('_pydecimal',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_pydecimal.py',
+   'PYMODULE'),
+  ('_sitebuiltins',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_sitebuiltins.py',
+   'PYMODULE'),
+  ('_strptime',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_strptime.py',
+   'PYMODULE'),
+  ('_threading_local',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\_threading_local.py',
+   'PYMODULE'),
+  ('argparse',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\argparse.py',
+   'PYMODULE'),
+  ('ast',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\ast.py',
+   'PYMODULE'),
+  ('asyncio',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\__init__.py',
+   'PYMODULE'),
+  ('asyncio.base_events',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\base_events.py',
+   'PYMODULE'),
+  ('asyncio.base_futures',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\base_futures.py',
+   'PYMODULE'),
+  ('asyncio.base_subprocess',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\base_subprocess.py',
+   'PYMODULE'),
+  ('asyncio.base_tasks',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\base_tasks.py',
+   'PYMODULE'),
+  ('asyncio.constants',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\constants.py',
+   'PYMODULE'),
+  ('asyncio.coroutines',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\coroutines.py',
+   'PYMODULE'),
+  ('asyncio.events',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\events.py',
+   'PYMODULE'),
+  ('asyncio.exceptions',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\exceptions.py',
+   'PYMODULE'),
+  ('asyncio.format_helpers',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\format_helpers.py',
+   'PYMODULE'),
+  ('asyncio.futures',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\futures.py',
+   'PYMODULE'),
+  ('asyncio.locks',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\locks.py',
+   'PYMODULE'),
+  ('asyncio.log',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\log.py',
+   'PYMODULE'),
+  ('asyncio.mixins',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\mixins.py',
+   'PYMODULE'),
+  ('asyncio.proactor_events',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\proactor_events.py',
+   'PYMODULE'),
+  ('asyncio.protocols',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\protocols.py',
+   'PYMODULE'),
+  ('asyncio.queues',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\queues.py',
+   'PYMODULE'),
+  ('asyncio.runners',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\runners.py',
+   'PYMODULE'),
+  ('asyncio.selector_events',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\selector_events.py',
+   'PYMODULE'),
+  ('asyncio.sslproto',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\sslproto.py',
+   'PYMODULE'),
+  ('asyncio.staggered',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\staggered.py',
+   'PYMODULE'),
+  ('asyncio.streams',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\streams.py',
+   'PYMODULE'),
+  ('asyncio.subprocess',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\subprocess.py',
+   'PYMODULE'),
+  ('asyncio.tasks',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\tasks.py',
+   'PYMODULE'),
+  ('asyncio.threads',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\threads.py',
+   'PYMODULE'),
+  ('asyncio.transports',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\transports.py',
+   'PYMODULE'),
+  ('asyncio.trsock',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\trsock.py',
+   'PYMODULE'),
+  ('asyncio.unix_events',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\unix_events.py',
+   'PYMODULE'),
+  ('asyncio.windows_events',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\windows_events.py',
+   'PYMODULE'),
+  ('asyncio.windows_utils',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\asyncio\\windows_utils.py',
+   'PYMODULE'),
+  ('backports',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\backports\\__init__.py',
+   'PYMODULE'),
+  ('base64',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\base64.py',
+   'PYMODULE'),
+  ('bdb',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\bdb.py',
+   'PYMODULE'),
+  ('bisect',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\bisect.py',
+   'PYMODULE'),
+  ('blinker',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\blinker\\__init__.py',
+   'PYMODULE'),
+  ('blinker._utilities',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\blinker\\_utilities.py',
+   'PYMODULE'),
+  ('blinker.base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\blinker\\base.py',
+   'PYMODULE'),
+  ('bz2',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\bz2.py',
+   'PYMODULE'),
+  ('calendar',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\calendar.py',
+   'PYMODULE'),
+  ('certifi',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\certifi\\__init__.py',
+   'PYMODULE'),
+  ('certifi.core',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\certifi\\core.py',
+   'PYMODULE'),
+  ('cgi',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\cgi.py',
+   'PYMODULE'),
+  ('charset_normalizer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\__init__.py',
+   'PYMODULE'),
+  ('charset_normalizer.api',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\api.py',
+   'PYMODULE'),
+  ('charset_normalizer.cd',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\cd.py',
+   'PYMODULE'),
+  ('charset_normalizer.constant',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\constant.py',
+   'PYMODULE'),
+  ('charset_normalizer.legacy',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\legacy.py',
+   'PYMODULE'),
+  ('charset_normalizer.models',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\models.py',
+   'PYMODULE'),
+  ('charset_normalizer.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\utils.py',
+   'PYMODULE'),
+  ('charset_normalizer.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\version.py',
+   'PYMODULE'),
+  ('click',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\__init__.py',
+   'PYMODULE'),
+  ('click._compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\_compat.py',
+   'PYMODULE'),
+  ('click._termui_impl',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\_termui_impl.py',
+   'PYMODULE'),
+  ('click._textwrap',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\_textwrap.py',
+   'PYMODULE'),
+  ('click._winconsole',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\_winconsole.py',
+   'PYMODULE'),
+  ('click.core',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\core.py',
+   'PYMODULE'),
+  ('click.decorators',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\decorators.py',
+   'PYMODULE'),
+  ('click.exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\exceptions.py',
+   'PYMODULE'),
+  ('click.formatting',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\formatting.py',
+   'PYMODULE'),
+  ('click.globals',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\globals.py',
+   'PYMODULE'),
+  ('click.parser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\parser.py',
+   'PYMODULE'),
+  ('click.shell_completion',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\shell_completion.py',
+   'PYMODULE'),
+  ('click.termui',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\termui.py',
+   'PYMODULE'),
+  ('click.testing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\testing.py',
+   'PYMODULE'),
+  ('click.types',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\types.py',
+   'PYMODULE'),
+  ('click.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click\\utils.py',
+   'PYMODULE'),
+  ('cmd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\cmd.py',
+   'PYMODULE'),
+  ('code',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\code.py',
+   'PYMODULE'),
+  ('codeop',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\codeop.py',
+   'PYMODULE'),
+  ('colorama',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\colorama\\__init__.py',
+   'PYMODULE'),
+  ('colorama.ansi',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\colorama\\ansi.py',
+   'PYMODULE'),
+  ('colorama.ansitowin32',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\colorama\\ansitowin32.py',
+   'PYMODULE'),
+  ('colorama.initialise',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\colorama\\initialise.py',
+   'PYMODULE'),
+  ('colorama.win32',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\colorama\\win32.py',
+   'PYMODULE'),
+  ('colorama.winterm',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\colorama\\winterm.py',
+   'PYMODULE'),
+  ('colorsys',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\colorsys.py',
+   'PYMODULE'),
+  ('concurrent',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\concurrent\\__init__.py',
+   'PYMODULE'),
+  ('concurrent.futures',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\concurrent\\futures\\__init__.py',
+   'PYMODULE'),
+  ('concurrent.futures._base',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\concurrent\\futures\\_base.py',
+   'PYMODULE'),
+  ('concurrent.futures.process',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\concurrent\\futures\\process.py',
+   'PYMODULE'),
+  ('concurrent.futures.thread',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\concurrent\\futures\\thread.py',
+   'PYMODULE'),
+  ('configparser',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\configparser.py',
+   'PYMODULE'),
+  ('contextlib',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\contextlib.py',
+   'PYMODULE'),
+  ('contextvars',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\contextvars.py',
+   'PYMODULE'),
+  ('copy',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\copy.py',
+   'PYMODULE'),
+  ('csv',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\csv.py',
+   'PYMODULE'),
+  ('ctypes',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\ctypes\\__init__.py',
+   'PYMODULE'),
+  ('ctypes._endian',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\ctypes\\_endian.py',
+   'PYMODULE'),
+  ('ctypes.wintypes',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\ctypes\\wintypes.py',
+   'PYMODULE'),
+  ('dataclasses',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\dataclasses.py',
+   'PYMODULE'),
+  ('datetime',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\datetime.py',
+   'PYMODULE'),
+  ('dbconfig',
+   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\dbconfig.py',
+   'PYMODULE'),
+  ('decimal',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\decimal.py',
+   'PYMODULE'),
+  ('difflib',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\difflib.py',
+   'PYMODULE'),
+  ('dis',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\dis.py',
+   'PYMODULE'),
+  ('distutils',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\__init__.py',
+   'PYMODULE'),
+  ('distutils._msvccompiler',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\_msvccompiler.py',
+   'PYMODULE'),
+  ('distutils.archive_util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\archive_util.py',
+   'PYMODULE'),
+  ('distutils.ccompiler',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\ccompiler.py',
+   'PYMODULE'),
+  ('distutils.cmd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\cmd.py',
+   'PYMODULE'),
+  ('distutils.command',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\command\\__init__.py',
+   'PYMODULE'),
+  ('distutils.command.bdist',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\command\\bdist.py',
+   'PYMODULE'),
+  ('distutils.command.build',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\command\\build.py',
+   'PYMODULE'),
+  ('distutils.command.build_ext',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\command\\build_ext.py',
+   'PYMODULE'),
+  ('distutils.command.sdist',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\command\\sdist.py',
+   'PYMODULE'),
+  ('distutils.config',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\config.py',
+   'PYMODULE'),
+  ('distutils.core',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\core.py',
+   'PYMODULE'),
+  ('distutils.debug',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\debug.py',
+   'PYMODULE'),
+  ('distutils.dep_util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\dep_util.py',
+   'PYMODULE'),
+  ('distutils.dir_util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\dir_util.py',
+   'PYMODULE'),
+  ('distutils.dist',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\dist.py',
+   'PYMODULE'),
+  ('distutils.errors',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\errors.py',
+   'PYMODULE'),
+  ('distutils.extension',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\extension.py',
+   'PYMODULE'),
+  ('distutils.fancy_getopt',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\fancy_getopt.py',
+   'PYMODULE'),
+  ('distutils.file_util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\file_util.py',
+   'PYMODULE'),
+  ('distutils.filelist',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\filelist.py',
+   'PYMODULE'),
+  ('distutils.log',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\log.py',
+   'PYMODULE'),
+  ('distutils.spawn',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\spawn.py',
+   'PYMODULE'),
+  ('distutils.sysconfig',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\sysconfig.py',
+   'PYMODULE'),
+  ('distutils.text_file',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\text_file.py',
+   'PYMODULE'),
+  ('distutils.util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\util.py',
+   'PYMODULE'),
+  ('distutils.version',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\version.py',
+   'PYMODULE'),
+  ('distutils.versionpredicate',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\distutils\\versionpredicate.py',
+   'PYMODULE'),
+  ('doctest',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\doctest.py',
+   'PYMODULE'),
+  ('dotenv',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\dotenv\\__init__.py',
+   'PYMODULE'),
+  ('dotenv.ipython',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\dotenv\\ipython.py',
+   'PYMODULE'),
+  ('dotenv.main',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\dotenv\\main.py',
+   'PYMODULE'),
+  ('dotenv.parser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\dotenv\\parser.py',
+   'PYMODULE'),
+  ('dotenv.variables',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\dotenv\\variables.py',
+   'PYMODULE'),
+  ('email',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\__init__.py',
+   'PYMODULE'),
+  ('email._encoded_words',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\_encoded_words.py',
+   'PYMODULE'),
+  ('email._header_value_parser',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\_header_value_parser.py',
+   'PYMODULE'),
+  ('email._parseaddr',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\_parseaddr.py',
+   'PYMODULE'),
+  ('email._policybase',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\_policybase.py',
+   'PYMODULE'),
+  ('email.base64mime',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\base64mime.py',
+   'PYMODULE'),
+  ('email.charset',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\charset.py',
+   'PYMODULE'),
+  ('email.contentmanager',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\contentmanager.py',
+   'PYMODULE'),
+  ('email.encoders',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\encoders.py',
+   'PYMODULE'),
+  ('email.errors',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\errors.py',
+   'PYMODULE'),
+  ('email.feedparser',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\feedparser.py',
+   'PYMODULE'),
+  ('email.generator',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\generator.py',
+   'PYMODULE'),
+  ('email.header',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\header.py',
+   'PYMODULE'),
+  ('email.headerregistry',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\headerregistry.py',
+   'PYMODULE'),
+  ('email.iterators',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\iterators.py',
+   'PYMODULE'),
+  ('email.message',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\message.py',
+   'PYMODULE'),
+  ('email.parser',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\parser.py',
+   'PYMODULE'),
+  ('email.policy',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\policy.py',
+   'PYMODULE'),
+  ('email.quoprimime',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\quoprimime.py',
+   'PYMODULE'),
+  ('email.utils',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\email\\utils.py',
+   'PYMODULE'),
+  ('fitzpatrick',
+   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\fitzpatrick.py',
+   'PYMODULE'),
+  ('flask',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\__init__.py',
+   'PYMODULE'),
+  ('flask.app',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\app.py',
+   'PYMODULE'),
+  ('flask.blueprints',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\blueprints.py',
+   'PYMODULE'),
+  ('flask.cli',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\cli.py',
+   'PYMODULE'),
+  ('flask.config',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\config.py',
+   'PYMODULE'),
+  ('flask.ctx',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\ctx.py',
+   'PYMODULE'),
+  ('flask.debughelpers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\debughelpers.py',
+   'PYMODULE'),
+  ('flask.globals',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\globals.py',
+   'PYMODULE'),
+  ('flask.helpers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\helpers.py',
+   'PYMODULE'),
+  ('flask.json',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\json\\__init__.py',
+   'PYMODULE'),
+  ('flask.json.provider',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\json\\provider.py',
+   'PYMODULE'),
+  ('flask.json.tag',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\json\\tag.py',
+   'PYMODULE'),
+  ('flask.logging',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\logging.py',
+   'PYMODULE'),
+  ('flask.sansio', '-', 'PYMODULE'),
+  ('flask.sansio.app',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\sansio\\app.py',
+   'PYMODULE'),
+  ('flask.sansio.blueprints',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\sansio\\blueprints.py',
+   'PYMODULE'),
+  ('flask.sansio.scaffold',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\sansio\\scaffold.py',
+   'PYMODULE'),
+  ('flask.sessions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\sessions.py',
+   'PYMODULE'),
+  ('flask.signals',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\signals.py',
+   'PYMODULE'),
+  ('flask.templating',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\templating.py',
+   'PYMODULE'),
+  ('flask.testing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\testing.py',
+   'PYMODULE'),
+  ('flask.typing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\typing.py',
+   'PYMODULE'),
+  ('flask.wrappers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask\\wrappers.py',
+   'PYMODULE'),
+  ('fnmatch',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\fnmatch.py',
+   'PYMODULE'),
+  ('fractions',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\fractions.py',
+   'PYMODULE'),
+  ('ftplib',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\ftplib.py',
+   'PYMODULE'),
+  ('geopy',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\__init__.py',
+   'PYMODULE'),
+  ('geopy.adapters',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\adapters.py',
+   'PYMODULE'),
+  ('geopy.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\compat.py',
+   'PYMODULE'),
+  ('geopy.exc',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\exc.py',
+   'PYMODULE'),
+  ('geopy.format',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\format.py',
+   'PYMODULE'),
+  ('geopy.geocoders',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\__init__.py',
+   'PYMODULE'),
+  ('geopy.geocoders.arcgis',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\arcgis.py',
+   'PYMODULE'),
+  ('geopy.geocoders.azure',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\azure.py',
+   'PYMODULE'),
+  ('geopy.geocoders.baidu',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\baidu.py',
+   'PYMODULE'),
+  ('geopy.geocoders.banfrance',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\banfrance.py',
+   'PYMODULE'),
+  ('geopy.geocoders.base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\base.py',
+   'PYMODULE'),
+  ('geopy.geocoders.bing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\bing.py',
+   'PYMODULE'),
+  ('geopy.geocoders.databc',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\databc.py',
+   'PYMODULE'),
+  ('geopy.geocoders.geocodeearth',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\geocodeearth.py',
+   'PYMODULE'),
+  ('geopy.geocoders.geocodio',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\geocodio.py',
+   'PYMODULE'),
+  ('geopy.geocoders.geokeo',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\geokeo.py',
+   'PYMODULE'),
+  ('geopy.geocoders.geolake',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\geolake.py',
+   'PYMODULE'),
+  ('geopy.geocoders.geonames',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\geonames.py',
+   'PYMODULE'),
+  ('geopy.geocoders.google',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\google.py',
+   'PYMODULE'),
+  ('geopy.geocoders.here',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\here.py',
+   'PYMODULE'),
+  ('geopy.geocoders.ignfrance',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\ignfrance.py',
+   'PYMODULE'),
+  ('geopy.geocoders.mapbox',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\mapbox.py',
+   'PYMODULE'),
+  ('geopy.geocoders.mapquest',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\mapquest.py',
+   'PYMODULE'),
+  ('geopy.geocoders.maptiler',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\maptiler.py',
+   'PYMODULE'),
+  ('geopy.geocoders.nominatim',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\nominatim.py',
+   'PYMODULE'),
+  ('geopy.geocoders.opencage',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\opencage.py',
+   'PYMODULE'),
+  ('geopy.geocoders.openmapquest',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\openmapquest.py',
+   'PYMODULE'),
+  ('geopy.geocoders.pelias',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\pelias.py',
+   'PYMODULE'),
+  ('geopy.geocoders.photon',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\photon.py',
+   'PYMODULE'),
+  ('geopy.geocoders.pickpoint',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\pickpoint.py',
+   'PYMODULE'),
+  ('geopy.geocoders.smartystreets',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\smartystreets.py',
+   'PYMODULE'),
+  ('geopy.geocoders.tomtom',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\tomtom.py',
+   'PYMODULE'),
+  ('geopy.geocoders.what3words',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\what3words.py',
+   'PYMODULE'),
+  ('geopy.geocoders.woosmap',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\woosmap.py',
+   'PYMODULE'),
+  ('geopy.geocoders.yandex',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\geocoders\\yandex.py',
+   'PYMODULE'),
+  ('geopy.location',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\location.py',
+   'PYMODULE'),
+  ('geopy.point',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\point.py',
+   'PYMODULE'),
+  ('geopy.timezone',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\timezone.py',
+   'PYMODULE'),
+  ('geopy.units',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\units.py',
+   'PYMODULE'),
+  ('geopy.util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\geopy\\util.py',
+   'PYMODULE'),
+  ('getopt',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\getopt.py',
+   'PYMODULE'),
+  ('getpass',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\getpass.py',
+   'PYMODULE'),
+  ('gettext',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\gettext.py',
+   'PYMODULE'),
+  ('glob',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\glob.py',
+   'PYMODULE'),
+  ('gzip',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\gzip.py',
+   'PYMODULE'),
+  ('hashlib',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\hashlib.py',
+   'PYMODULE'),
+  ('hmac',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\hmac.py',
+   'PYMODULE'),
+  ('html',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\html\\__init__.py',
+   'PYMODULE'),
+  ('html.entities',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\html\\entities.py',
+   'PYMODULE'),
+  ('http',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\http\\__init__.py',
+   'PYMODULE'),
+  ('http.client',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\http\\client.py',
+   'PYMODULE'),
+  ('http.cookiejar',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\http\\cookiejar.py',
+   'PYMODULE'),
+  ('http.cookies',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\http\\cookies.py',
+   'PYMODULE'),
+  ('http.server',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\http\\server.py',
+   'PYMODULE'),
+  ('idna',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\idna\\__init__.py',
+   'PYMODULE'),
+  ('idna.core',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\idna\\core.py',
+   'PYMODULE'),
+  ('idna.idnadata',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\idna\\idnadata.py',
+   'PYMODULE'),
+  ('idna.intranges',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\idna\\intranges.py',
+   'PYMODULE'),
+  ('idna.package_data',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\idna\\package_data.py',
+   'PYMODULE'),
+  ('idna.uts46data',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\idna\\uts46data.py',
+   'PYMODULE'),
+  ('importlib',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\__init__.py',
+   'PYMODULE'),
+  ('importlib._abc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\_abc.py',
+   'PYMODULE'),
+  ('importlib._adapters',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\_adapters.py',
+   'PYMODULE'),
+  ('importlib._bootstrap',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\_bootstrap.py',
+   'PYMODULE'),
+  ('importlib._bootstrap_external',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\_bootstrap_external.py',
+   'PYMODULE'),
+  ('importlib._common',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\_common.py',
+   'PYMODULE'),
+  ('importlib.abc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\abc.py',
+   'PYMODULE'),
+  ('importlib.machinery',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\machinery.py',
+   'PYMODULE'),
+  ('importlib.metadata',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\metadata\\__init__.py',
+   'PYMODULE'),
+  ('importlib.metadata._adapters',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\metadata\\_adapters.py',
+   'PYMODULE'),
+  ('importlib.metadata._collections',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\metadata\\_collections.py',
+   'PYMODULE'),
+  ('importlib.metadata._functools',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\metadata\\_functools.py',
+   'PYMODULE'),
+  ('importlib.metadata._itertools',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\metadata\\_itertools.py',
+   'PYMODULE'),
+  ('importlib.metadata._meta',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\metadata\\_meta.py',
+   'PYMODULE'),
+  ('importlib.metadata._text',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\metadata\\_text.py',
+   'PYMODULE'),
+  ('importlib.readers',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\readers.py',
+   'PYMODULE'),
+  ('importlib.resources',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\resources.py',
+   'PYMODULE'),
+  ('importlib.util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\importlib\\util.py',
+   'PYMODULE'),
+  ('inspect',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\inspect.py',
+   'PYMODULE'),
+  ('ipaddress',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\ipaddress.py',
+   'PYMODULE'),
+  ('itsdangerous',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\__init__.py',
+   'PYMODULE'),
+  ('itsdangerous._json',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\_json.py',
+   'PYMODULE'),
+  ('itsdangerous.encoding',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\encoding.py',
+   'PYMODULE'),
+  ('itsdangerous.exc',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\exc.py',
+   'PYMODULE'),
+  ('itsdangerous.serializer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\serializer.py',
+   'PYMODULE'),
+  ('itsdangerous.signer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\signer.py',
+   'PYMODULE'),
+  ('itsdangerous.timed',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\timed.py',
+   'PYMODULE'),
+  ('itsdangerous.url_safe',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous\\url_safe.py',
+   'PYMODULE'),
+  ('jaraco', '-', 'PYMODULE'),
+  ('jinja2',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\__init__.py',
+   'PYMODULE'),
+  ('jinja2._identifier',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\_identifier.py',
+   'PYMODULE'),
+  ('jinja2.async_utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\async_utils.py',
+   'PYMODULE'),
+  ('jinja2.bccache',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\bccache.py',
+   'PYMODULE'),
+  ('jinja2.compiler',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\compiler.py',
+   'PYMODULE'),
+  ('jinja2.constants',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\constants.py',
+   'PYMODULE'),
+  ('jinja2.debug',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\debug.py',
+   'PYMODULE'),
+  ('jinja2.defaults',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\defaults.py',
+   'PYMODULE'),
+  ('jinja2.environment',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\environment.py',
+   'PYMODULE'),
+  ('jinja2.exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\exceptions.py',
+   'PYMODULE'),
+  ('jinja2.ext',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\ext.py',
+   'PYMODULE'),
+  ('jinja2.filters',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\filters.py',
+   'PYMODULE'),
+  ('jinja2.idtracking',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\idtracking.py',
+   'PYMODULE'),
+  ('jinja2.lexer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\lexer.py',
+   'PYMODULE'),
+  ('jinja2.loaders',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\loaders.py',
+   'PYMODULE'),
+  ('jinja2.nodes',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\nodes.py',
+   'PYMODULE'),
+  ('jinja2.optimizer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\optimizer.py',
+   'PYMODULE'),
+  ('jinja2.parser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\parser.py',
+   'PYMODULE'),
+  ('jinja2.runtime',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\runtime.py',
+   'PYMODULE'),
+  ('jinja2.sandbox',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\sandbox.py',
+   'PYMODULE'),
+  ('jinja2.tests',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\tests.py',
+   'PYMODULE'),
+  ('jinja2.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\utils.py',
+   'PYMODULE'),
+  ('jinja2.visitor',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\jinja2\\visitor.py',
+   'PYMODULE'),
+  ('json',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\json\\__init__.py',
+   'PYMODULE'),
+  ('json.decoder',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\json\\decoder.py',
+   'PYMODULE'),
+  ('json.encoder',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\json\\encoder.py',
+   'PYMODULE'),
+  ('json.scanner',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\json\\scanner.py',
+   'PYMODULE'),
+  ('logging',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\logging\\__init__.py',
+   'PYMODULE'),
+  ('lzma',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\lzma.py',
+   'PYMODULE'),
+  ('markupsafe',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\markupsafe\\__init__.py',
+   'PYMODULE'),
+  ('markupsafe._native',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\markupsafe\\_native.py',
+   'PYMODULE'),
+  ('mimetypes',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\mimetypes.py',
+   'PYMODULE'),
+  ('multiprocessing',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\__init__.py',
+   'PYMODULE'),
+  ('multiprocessing.connection',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\connection.py',
+   'PYMODULE'),
+  ('multiprocessing.context',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\context.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\dummy\\__init__.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy.connection',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\dummy\\connection.py',
+   'PYMODULE'),
+  ('multiprocessing.forkserver',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.heap',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\heap.py',
+   'PYMODULE'),
+  ('multiprocessing.managers',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\managers.py',
+   'PYMODULE'),
+  ('multiprocessing.pool',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\pool.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_fork',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\popen_fork.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_forkserver',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\popen_forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_posix',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\popen_spawn_posix.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_win32',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\popen_spawn_win32.py',
+   'PYMODULE'),
+  ('multiprocessing.process',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\process.py',
+   'PYMODULE'),
+  ('multiprocessing.queues',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\queues.py',
+   'PYMODULE'),
+  ('multiprocessing.reduction',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\reduction.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_sharer',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\resource_sharer.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_tracker',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\resource_tracker.py',
+   'PYMODULE'),
+  ('multiprocessing.shared_memory',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\shared_memory.py',
+   'PYMODULE'),
+  ('multiprocessing.sharedctypes',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\sharedctypes.py',
+   'PYMODULE'),
+  ('multiprocessing.spawn',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\spawn.py',
+   'PYMODULE'),
+  ('multiprocessing.synchronize',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\synchronize.py',
+   'PYMODULE'),
+  ('multiprocessing.util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\multiprocessing\\util.py',
+   'PYMODULE'),
+  ('mysql',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector._decorating',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\_decorating.py',
+   'PYMODULE'),
+  ('mysql.connector._scripting',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\_scripting.py',
+   'PYMODULE'),
+  ('mysql.connector.abstracts',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\abstracts.py',
+   'PYMODULE'),
+  ('mysql.connector.authentication',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\authentication.py',
+   'PYMODULE'),
+  ('mysql.connector.charsets',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\charsets.py',
+   'PYMODULE'),
+  ('mysql.connector.connection',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\connection.py',
+   'PYMODULE'),
+  ('mysql.connector.connection_cext',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\connection_cext.py',
+   'PYMODULE'),
+  ('mysql.connector.constants',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\constants.py',
+   'PYMODULE'),
+  ('mysql.connector.conversion',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\conversion.py',
+   'PYMODULE'),
+  ('mysql.connector.cursor',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\cursor.py',
+   'PYMODULE'),
+  ('mysql.connector.cursor_cext',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\cursor_cext.py',
+   'PYMODULE'),
+  ('mysql.connector.custom_types',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\custom_types.py',
+   'PYMODULE'),
+  ('mysql.connector.dbapi',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\dbapi.py',
+   'PYMODULE'),
+  ('mysql.connector.errorcode',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\errorcode.py',
+   'PYMODULE'),
+  ('mysql.connector.errors',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\errors.py',
+   'PYMODULE'),
+  ('mysql.connector.locales',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\locales\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector.logger',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\logger.py',
+   'PYMODULE'),
+  ('mysql.connector.network',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\network.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\opentelemetry\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry.constants',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\opentelemetry\\constants.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry.context_propagation',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\opentelemetry\\context_propagation.py',
+   'PYMODULE'),
+  ('mysql.connector.opentelemetry.instrumentation',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\opentelemetry\\instrumentation.py',
+   'PYMODULE'),
+  ('mysql.connector.optionfiles',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\optionfiles.py',
+   'PYMODULE'),
+  ('mysql.connector.plugins',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\plugins\\__init__.py',
+   'PYMODULE'),
+  ('mysql.connector.plugins.caching_sha2_password',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\plugins\\caching_sha2_password.py',
+   'PYMODULE'),
+  ('mysql.connector.pooling',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\pooling.py',
+   'PYMODULE'),
+  ('mysql.connector.protocol',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\protocol.py',
+   'PYMODULE'),
+  ('mysql.connector.tls_ciphers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\tls_ciphers.py',
+   'PYMODULE'),
+  ('mysql.connector.types',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\types.py',
+   'PYMODULE'),
+  ('mysql.connector.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\utils.py',
+   'PYMODULE'),
+  ('mysql.connector.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\mysql\\connector\\version.py',
+   'PYMODULE'),
+  ('netrc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\netrc.py',
+   'PYMODULE'),
+  ('nturl2path',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\nturl2path.py',
+   'PYMODULE'),
+  ('numbers',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\numbers.py',
+   'PYMODULE'),
+  ('numpy',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\__init__.py',
+   'PYMODULE'),
+  ('numpy.__config__',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\__config__.py',
+   'PYMODULE'),
+  ('numpy._distributor_init',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_distributor_init.py',
+   'PYMODULE'),
+  ('numpy._globals',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_globals.py',
+   'PYMODULE'),
+  ('numpy._pytesttester',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_pytesttester.py',
+   'PYMODULE'),
+  ('numpy._typing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\__init__.py',
+   'PYMODULE'),
+  ('numpy._typing._add_docstring',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_add_docstring.py',
+   'PYMODULE'),
+  ('numpy._typing._array_like',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_array_like.py',
+   'PYMODULE'),
+  ('numpy._typing._char_codes',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_char_codes.py',
+   'PYMODULE'),
+  ('numpy._typing._dtype_like',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_dtype_like.py',
+   'PYMODULE'),
+  ('numpy._typing._generic_alias',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_generic_alias.py',
+   'PYMODULE'),
+  ('numpy._typing._nbit',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_nbit.py',
+   'PYMODULE'),
+  ('numpy._typing._nested_sequence',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_nested_sequence.py',
+   'PYMODULE'),
+  ('numpy._typing._scalars',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_scalars.py',
+   'PYMODULE'),
+  ('numpy._typing._shape',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_typing\\_shape.py',
+   'PYMODULE'),
+  ('numpy._version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_version.py',
+   'PYMODULE'),
+  ('numpy.array_api',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\__init__.py',
+   'PYMODULE'),
+  ('numpy.array_api._array_object',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_array_object.py',
+   'PYMODULE'),
+  ('numpy.array_api._constants',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_constants.py',
+   'PYMODULE'),
+  ('numpy.array_api._creation_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_creation_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._data_type_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_data_type_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._dtypes',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_dtypes.py',
+   'PYMODULE'),
+  ('numpy.array_api._elementwise_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_elementwise_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._manipulation_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_manipulation_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._searching_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_searching_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._set_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_set_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._sorting_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_sorting_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._statistical_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_statistical_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api._typing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_typing.py',
+   'PYMODULE'),
+  ('numpy.array_api._utility_functions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\_utility_functions.py',
+   'PYMODULE'),
+  ('numpy.array_api.linalg',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\array_api\\linalg.py',
+   'PYMODULE'),
+  ('numpy.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\compat\\__init__.py',
+   'PYMODULE'),
+  ('numpy.compat._inspect',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\compat\\_inspect.py',
+   'PYMODULE'),
+  ('numpy.compat.py3k',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\compat\\py3k.py',
+   'PYMODULE'),
+  ('numpy.core',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\__init__.py',
+   'PYMODULE'),
+  ('numpy.core._add_newdocs',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_add_newdocs.py',
+   'PYMODULE'),
+  ('numpy.core._add_newdocs_scalars',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_add_newdocs_scalars.py',
+   'PYMODULE'),
+  ('numpy.core._asarray',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_asarray.py',
+   'PYMODULE'),
+  ('numpy.core._dtype',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_dtype.py',
+   'PYMODULE'),
+  ('numpy.core._dtype_ctypes',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_dtype_ctypes.py',
+   'PYMODULE'),
+  ('numpy.core._exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_exceptions.py',
+   'PYMODULE'),
+  ('numpy.core._internal',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_internal.py',
+   'PYMODULE'),
+  ('numpy.core._machar',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_machar.py',
+   'PYMODULE'),
+  ('numpy.core._methods',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_methods.py',
+   'PYMODULE'),
+  ('numpy.core._string_helpers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_string_helpers.py',
+   'PYMODULE'),
+  ('numpy.core._type_aliases',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_type_aliases.py',
+   'PYMODULE'),
+  ('numpy.core._ufunc_config',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_ufunc_config.py',
+   'PYMODULE'),
+  ('numpy.core.arrayprint',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\arrayprint.py',
+   'PYMODULE'),
+  ('numpy.core.defchararray',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\defchararray.py',
+   'PYMODULE'),
+  ('numpy.core.einsumfunc',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\einsumfunc.py',
+   'PYMODULE'),
+  ('numpy.core.fromnumeric',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\fromnumeric.py',
+   'PYMODULE'),
+  ('numpy.core.function_base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\function_base.py',
+   'PYMODULE'),
+  ('numpy.core.getlimits',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\getlimits.py',
+   'PYMODULE'),
+  ('numpy.core.memmap',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\memmap.py',
+   'PYMODULE'),
+  ('numpy.core.multiarray',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\multiarray.py',
+   'PYMODULE'),
+  ('numpy.core.numeric',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\numeric.py',
+   'PYMODULE'),
+  ('numpy.core.numerictypes',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\numerictypes.py',
+   'PYMODULE'),
+  ('numpy.core.overrides',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\overrides.py',
+   'PYMODULE'),
+  ('numpy.core.records',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\records.py',
+   'PYMODULE'),
+  ('numpy.core.shape_base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.core.umath',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\umath.py',
+   'PYMODULE'),
+  ('numpy.ctypeslib',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\ctypeslib.py',
+   'PYMODULE'),
+  ('numpy.fft',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\fft\\__init__.py',
+   'PYMODULE'),
+  ('numpy.fft._pocketfft',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\fft\\_pocketfft.py',
+   'PYMODULE'),
+  ('numpy.fft.helper',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\fft\\helper.py',
+   'PYMODULE'),
+  ('numpy.lib',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.lib._datasource',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\_datasource.py',
+   'PYMODULE'),
+  ('numpy.lib._iotools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\_iotools.py',
+   'PYMODULE'),
+  ('numpy.lib._version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\_version.py',
+   'PYMODULE'),
+  ('numpy.lib.arraypad',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\arraypad.py',
+   'PYMODULE'),
+  ('numpy.lib.arraysetops',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\arraysetops.py',
+   'PYMODULE'),
+  ('numpy.lib.arrayterator',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\arrayterator.py',
+   'PYMODULE'),
+  ('numpy.lib.format',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\format.py',
+   'PYMODULE'),
+  ('numpy.lib.function_base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\function_base.py',
+   'PYMODULE'),
+  ('numpy.lib.histograms',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\histograms.py',
+   'PYMODULE'),
+  ('numpy.lib.index_tricks',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\index_tricks.py',
+   'PYMODULE'),
+  ('numpy.lib.mixins',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\mixins.py',
+   'PYMODULE'),
+  ('numpy.lib.nanfunctions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\nanfunctions.py',
+   'PYMODULE'),
+  ('numpy.lib.npyio',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\npyio.py',
+   'PYMODULE'),
+  ('numpy.lib.polynomial',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.lib.scimath',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\scimath.py',
+   'PYMODULE'),
+  ('numpy.lib.shape_base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.lib.stride_tricks',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\stride_tricks.py',
+   'PYMODULE'),
+  ('numpy.lib.twodim_base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\twodim_base.py',
+   'PYMODULE'),
+  ('numpy.lib.type_check',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\type_check.py',
+   'PYMODULE'),
+  ('numpy.lib.ufunclike',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\ufunclike.py',
+   'PYMODULE'),
+  ('numpy.lib.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\lib\\utils.py',
+   'PYMODULE'),
+  ('numpy.linalg',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\linalg\\__init__.py',
+   'PYMODULE'),
+  ('numpy.linalg.linalg',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\linalg\\linalg.py',
+   'PYMODULE'),
+  ('numpy.ma',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\ma\\__init__.py',
+   'PYMODULE'),
+  ('numpy.ma.core',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\ma\\core.py',
+   'PYMODULE'),
+  ('numpy.ma.extras',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\ma\\extras.py',
+   'PYMODULE'),
+  ('numpy.ma.mrecords',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\ma\\mrecords.py',
+   'PYMODULE'),
+  ('numpy.matrixlib',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\matrixlib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.matrixlib.defmatrix',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\matrixlib\\defmatrix.py',
+   'PYMODULE'),
+  ('numpy.polynomial',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\__init__.py',
+   'PYMODULE'),
+  ('numpy.polynomial._polybase',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\_polybase.py',
+   'PYMODULE'),
+  ('numpy.polynomial.chebyshev',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\chebyshev.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\hermite.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite_e',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\hermite_e.py',
+   'PYMODULE'),
+  ('numpy.polynomial.laguerre',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\laguerre.py',
+   'PYMODULE'),
+  ('numpy.polynomial.legendre',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\legendre.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polynomial',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polyutils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\polynomial\\polyutils.py',
+   'PYMODULE'),
+  ('numpy.random',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\random\\__init__.py',
+   'PYMODULE'),
+  ('numpy.random._pickle',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\random\\_pickle.py',
+   'PYMODULE'),
+  ('numpy.testing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\__init__.py',
+   'PYMODULE'),
+  ('numpy.testing._private',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\_private\\__init__.py',
+   'PYMODULE'),
+  ('numpy.testing._private.decorators',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\_private\\decorators.py',
+   'PYMODULE'),
+  ('numpy.testing._private.extbuild',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\_private\\extbuild.py',
+   'PYMODULE'),
+  ('numpy.testing._private.noseclasses',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\_private\\noseclasses.py',
+   'PYMODULE'),
+  ('numpy.testing._private.nosetester',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\_private\\nosetester.py',
+   'PYMODULE'),
+  ('numpy.testing._private.parameterized',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\_private\\parameterized.py',
+   'PYMODULE'),
+  ('numpy.testing._private.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\testing\\_private\\utils.py',
+   'PYMODULE'),
+  ('numpy.typing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\typing\\__init__.py',
+   'PYMODULE'),
+  ('numpy.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\version.py',
+   'PYMODULE'),
+  ('opcode',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\opcode.py',
+   'PYMODULE'),
+  ('optparse',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\optparse.py',
+   'PYMODULE'),
+  ('packaging',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('packaging._elffile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\_elffile.py',
+   'PYMODULE'),
+  ('packaging._manylinux',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\_manylinux.py',
+   'PYMODULE'),
+  ('packaging._musllinux',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\_musllinux.py',
+   'PYMODULE'),
+  ('packaging._parser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\_parser.py',
+   'PYMODULE'),
+  ('packaging._structures',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('packaging._tokenizer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\_tokenizer.py',
+   'PYMODULE'),
+  ('packaging.licenses',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\licenses\\__init__.py',
+   'PYMODULE'),
+  ('packaging.licenses._spdx',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\licenses\\_spdx.py',
+   'PYMODULE'),
+  ('packaging.markers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\markers.py',
+   'PYMODULE'),
+  ('packaging.requirements',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('packaging.specifiers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('packaging.tags',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\tags.py',
+   'PYMODULE'),
+  ('packaging.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\utils.py',
+   'PYMODULE'),
+  ('packaging.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\packaging\\version.py',
+   'PYMODULE'),
+  ('pathlib',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pathlib.py',
+   'PYMODULE'),
+  ('pdb',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pdb.py',
+   'PYMODULE'),
+  ('pickle',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pickle.py',
+   'PYMODULE'),
+  ('pkgutil',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pkgutil.py',
+   'PYMODULE'),
+  ('platform',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\platform.py',
+   'PYMODULE'),
+  ('pprint',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pprint.py',
+   'PYMODULE'),
+  ('py_compile',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\py_compile.py',
+   'PYMODULE'),
+  ('pydoc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pydoc.py',
+   'PYMODULE'),
+  ('pydoc_data',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pydoc_data\\__init__.py',
+   'PYMODULE'),
+  ('pydoc_data.topics',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\pydoc_data\\topics.py',
+   'PYMODULE'),
+  ('queue',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\queue.py',
+   'PYMODULE'),
+  ('quopri',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\quopri.py',
+   'PYMODULE'),
+  ('random',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\random.py',
+   'PYMODULE'),
+  ('recommendations',
+   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\recommendations.py',
+   'PYMODULE'),
+  ('requests',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\__init__.py',
+   'PYMODULE'),
+  ('requests.__version__',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\__version__.py',
+   'PYMODULE'),
+  ('requests._internal_utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\_internal_utils.py',
+   'PYMODULE'),
+  ('requests.adapters',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\adapters.py',
+   'PYMODULE'),
+  ('requests.api',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\api.py',
+   'PYMODULE'),
+  ('requests.auth',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\auth.py',
+   'PYMODULE'),
+  ('requests.certs',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\certs.py',
+   'PYMODULE'),
+  ('requests.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\compat.py',
+   'PYMODULE'),
+  ('requests.cookies',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\cookies.py',
+   'PYMODULE'),
+  ('requests.exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\exceptions.py',
+   'PYMODULE'),
+  ('requests.hooks',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\hooks.py',
+   'PYMODULE'),
+  ('requests.models',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\models.py',
+   'PYMODULE'),
+  ('requests.packages',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\packages.py',
+   'PYMODULE'),
+  ('requests.sessions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\sessions.py',
+   'PYMODULE'),
+  ('requests.status_codes',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\status_codes.py',
+   'PYMODULE'),
+  ('requests.structures',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\structures.py',
+   'PYMODULE'),
+  ('requests.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\requests\\utils.py',
+   'PYMODULE'),
+  ('rlcompleter',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\rlcompleter.py',
+   'PYMODULE'),
+  ('runpy',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\runpy.py',
+   'PYMODULE'),
+  ('secrets',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\secrets.py',
+   'PYMODULE'),
+  ('selectors',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\selectors.py',
+   'PYMODULE'),
+  ('setuptools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._core_metadata',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_core_metadata.py',
+   'PYMODULE'),
+  ('setuptools._discovery',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_discovery.py',
+   'PYMODULE'),
+  ('setuptools._distutils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._distutils._log',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\_log.py',
+   'PYMODULE'),
+  ('setuptools._distutils._macos_compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\_macos_compat.py',
+   'PYMODULE'),
+  ('setuptools._distutils._modified',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\_modified.py',
+   'PYMODULE'),
+  ('setuptools._distutils._msvccompiler',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\_msvccompiler.py',
+   'PYMODULE'),
+  ('setuptools._distutils.archive_util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\archive_util.py',
+   'PYMODULE'),
+  ('setuptools._distutils.ccompiler',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\ccompiler.py',
+   'PYMODULE'),
+  ('setuptools._distutils.cmd',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\cmd.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command._framework_compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\_framework_compat.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.bdist',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\bdist.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.bdist_dumb',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\bdist_dumb.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.bdist_rpm',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\bdist_rpm.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.build',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\build.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.build_clib',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\build_clib.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.build_ext',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\build_ext.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.build_py',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\build_py.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.build_scripts',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\build_scripts.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.check',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\check.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.clean',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\clean.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.config',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\config.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.install',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\install.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.install_data',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\install_data.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.install_egg_info',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\install_egg_info.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.install_headers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\install_headers.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.install_lib',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\install_lib.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.install_scripts',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\install_scripts.py',
+   'PYMODULE'),
+  ('setuptools._distutils.command.sdist',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\command\\sdist.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compat\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compat.numpy',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compat\\numpy.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compat.py39',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compat\\py39.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compilers', '-', 'PYMODULE'),
+  ('setuptools._distutils.compilers.C', '-', 'PYMODULE'),
+  ('setuptools._distutils.compilers.C.base',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compilers\\C\\base.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compilers.C.cygwin',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compilers\\C\\cygwin.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compilers.C.errors',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compilers\\C\\errors.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compilers.C.msvc',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compilers\\C\\msvc.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compilers.C.unix',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compilers\\C\\unix.py',
+   'PYMODULE'),
+  ('setuptools._distutils.compilers.C.zos',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\compilers\\C\\zos.py',
+   'PYMODULE'),
+  ('setuptools._distutils.core',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\core.py',
+   'PYMODULE'),
+  ('setuptools._distutils.cygwinccompiler',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\cygwinccompiler.py',
+   'PYMODULE'),
+  ('setuptools._distutils.debug',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\debug.py',
+   'PYMODULE'),
+  ('setuptools._distutils.dep_util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\dep_util.py',
+   'PYMODULE'),
+  ('setuptools._distutils.dir_util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\dir_util.py',
+   'PYMODULE'),
+  ('setuptools._distutils.dist',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\dist.py',
+   'PYMODULE'),
+  ('setuptools._distutils.errors',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\errors.py',
+   'PYMODULE'),
+  ('setuptools._distutils.extension',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\extension.py',
+   'PYMODULE'),
+  ('setuptools._distutils.fancy_getopt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\fancy_getopt.py',
+   'PYMODULE'),
+  ('setuptools._distutils.file_util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\file_util.py',
+   'PYMODULE'),
+  ('setuptools._distutils.filelist',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\filelist.py',
+   'PYMODULE'),
+  ('setuptools._distutils.log',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\log.py',
+   'PYMODULE'),
+  ('setuptools._distutils.spawn',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\spawn.py',
+   'PYMODULE'),
+  ('setuptools._distutils.sysconfig',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\sysconfig.py',
+   'PYMODULE'),
+  ('setuptools._distutils.text_file',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\text_file.py',
+   'PYMODULE'),
+  ('setuptools._distutils.unixccompiler',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\unixccompiler.py',
+   'PYMODULE'),
+  ('setuptools._distutils.util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\util.py',
+   'PYMODULE'),
+  ('setuptools._distutils.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\version.py',
+   'PYMODULE'),
+  ('setuptools._distutils.versionpredicate',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\versionpredicate.py',
+   'PYMODULE'),
+  ('setuptools._distutils.zosccompiler',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_distutils\\zosccompiler.py',
+   'PYMODULE'),
+  ('setuptools._entry_points',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_entry_points.py',
+   'PYMODULE'),
+  ('setuptools._imp',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_imp.py',
+   'PYMODULE'),
+  ('setuptools._importlib',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_importlib.py',
+   'PYMODULE'),
+  ('setuptools._itertools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_itertools.py',
+   'PYMODULE'),
+  ('setuptools._normalization',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_normalization.py',
+   'PYMODULE'),
+  ('setuptools._path',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_path.py',
+   'PYMODULE'),
+  ('setuptools._reqs',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_reqs.py',
+   'PYMODULE'),
+  ('setuptools._shutil',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_shutil.py',
+   'PYMODULE'),
+  ('setuptools._static',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_static.py',
+   'PYMODULE'),
+  ('setuptools._vendor', '-', 'PYMODULE'),
+  ('setuptools._vendor.backports',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\backports\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.backports.tarfile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.backports.tarfile.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\compat\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.backports.tarfile.compat.py38',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\backports\\tarfile\\compat\\py38.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata._adapters',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_adapters.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata._collections',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_collections.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata._compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_compat.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata._functools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_functools.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata._itertools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_itertools.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata._meta',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_meta.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata._text',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\_text.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata.compat.py311',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\py311.py',
+   'PYMODULE'),
+  ('setuptools._vendor.importlib_metadata.compat.py39',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata\\compat\\py39.py',
+   'PYMODULE'),
+  ('setuptools._vendor.jaraco', '-', 'PYMODULE'),
+  ('setuptools._vendor.jaraco.context',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\jaraco\\context.py',
+   'PYMODULE'),
+  ('setuptools._vendor.jaraco.functools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\jaraco\\functools\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.jaraco.text',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\jaraco\\text\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.more_itertools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\more_itertools\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.more_itertools.more',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\more_itertools\\more.py',
+   'PYMODULE'),
+  ('setuptools._vendor.more_itertools.recipes',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\more_itertools\\recipes.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._elffile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_elffile.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._manylinux',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_manylinux.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._musllinux',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_musllinux.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._parser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_parser.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._structures',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging._tokenizer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\_tokenizer.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.markers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\markers.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.requirements',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.specifiers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.tags',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\tags.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\utils.py',
+   'PYMODULE'),
+  ('setuptools._vendor.packaging.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\packaging\\version.py',
+   'PYMODULE'),
+  ('setuptools._vendor.tomli',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\tomli\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.tomli._parser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\tomli\\_parser.py',
+   'PYMODULE'),
+  ('setuptools._vendor.tomli._re',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\tomli\\_re.py',
+   'PYMODULE'),
+  ('setuptools._vendor.tomli._types',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\tomli\\_types.py',
+   'PYMODULE'),
+  ('setuptools._vendor.zipp',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\zipp\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.zipp.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\zipp\\compat\\__init__.py',
+   'PYMODULE'),
+  ('setuptools._vendor.zipp.compat.py310',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\zipp\\compat\\py310.py',
+   'PYMODULE'),
+  ('setuptools._vendor.zipp.glob',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\zipp\\glob.py',
+   'PYMODULE'),
+  ('setuptools.archive_util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\archive_util.py',
+   'PYMODULE'),
+  ('setuptools.command',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\__init__.py',
+   'PYMODULE'),
+  ('setuptools.command._requirestxt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\_requirestxt.py',
+   'PYMODULE'),
+  ('setuptools.command.bdist_egg',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\bdist_egg.py',
+   'PYMODULE'),
+  ('setuptools.command.bdist_wheel',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\bdist_wheel.py',
+   'PYMODULE'),
+  ('setuptools.command.build',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\build.py',
+   'PYMODULE'),
+  ('setuptools.command.egg_info',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\egg_info.py',
+   'PYMODULE'),
+  ('setuptools.command.sdist',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\sdist.py',
+   'PYMODULE'),
+  ('setuptools.command.setopt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\command\\setopt.py',
+   'PYMODULE'),
+  ('setuptools.compat',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\compat\\__init__.py',
+   'PYMODULE'),
+  ('setuptools.compat.py310',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\compat\\py310.py',
+   'PYMODULE'),
+  ('setuptools.compat.py311',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\compat\\py311.py',
+   'PYMODULE'),
+  ('setuptools.compat.py39',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\compat\\py39.py',
+   'PYMODULE'),
+  ('setuptools.config',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\__init__.py',
+   'PYMODULE'),
+  ('setuptools.config._apply_pyprojecttoml',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\_apply_pyprojecttoml.py',
+   'PYMODULE'),
+  ('setuptools.config._validate_pyproject',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\_validate_pyproject\\__init__.py',
+   'PYMODULE'),
+  ('setuptools.config._validate_pyproject.error_reporting',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\_validate_pyproject\\error_reporting.py',
+   'PYMODULE'),
+  ('setuptools.config._validate_pyproject.extra_validations',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\_validate_pyproject\\extra_validations.py',
+   'PYMODULE'),
+  ('setuptools.config._validate_pyproject.fastjsonschema_exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\_validate_pyproject\\fastjsonschema_exceptions.py',
+   'PYMODULE'),
+  ('setuptools.config._validate_pyproject.fastjsonschema_validations',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\_validate_pyproject\\fastjsonschema_validations.py',
+   'PYMODULE'),
+  ('setuptools.config._validate_pyproject.formats',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\_validate_pyproject\\formats.py',
+   'PYMODULE'),
+  ('setuptools.config.expand',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\expand.py',
+   'PYMODULE'),
+  ('setuptools.config.pyprojecttoml',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\pyprojecttoml.py',
+   'PYMODULE'),
+  ('setuptools.config.setupcfg',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\config\\setupcfg.py',
+   'PYMODULE'),
+  ('setuptools.depends',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\depends.py',
+   'PYMODULE'),
+  ('setuptools.discovery',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\discovery.py',
+   'PYMODULE'),
+  ('setuptools.dist',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\dist.py',
+   'PYMODULE'),
+  ('setuptools.errors',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\errors.py',
+   'PYMODULE'),
+  ('setuptools.extension',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\extension.py',
+   'PYMODULE'),
+  ('setuptools.glob',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\glob.py',
+   'PYMODULE'),
+  ('setuptools.installer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\installer.py',
+   'PYMODULE'),
+  ('setuptools.logging',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\logging.py',
+   'PYMODULE'),
+  ('setuptools.monkey',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\monkey.py',
+   'PYMODULE'),
+  ('setuptools.msvc',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\msvc.py',
+   'PYMODULE'),
+  ('setuptools.unicode_utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\unicode_utils.py',
+   'PYMODULE'),
+  ('setuptools.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\version.py',
+   'PYMODULE'),
+  ('setuptools.warnings',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\warnings.py',
+   'PYMODULE'),
+  ('setuptools.wheel',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\wheel.py',
+   'PYMODULE'),
+  ('setuptools.windows_support',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\windows_support.py',
+   'PYMODULE'),
+  ('shlex',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\shlex.py',
+   'PYMODULE'),
+  ('shutil',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\shutil.py',
+   'PYMODULE'),
+  ('signal',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\signal.py',
+   'PYMODULE'),
+  ('site',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\site.py',
+   'PYMODULE'),
+  ('socket',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\socket.py',
+   'PYMODULE'),
+  ('socketserver',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\socketserver.py',
+   'PYMODULE'),
+  ('sqlite3',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\sqlite3\\__init__.py',
+   'PYMODULE'),
+  ('sqlite3.dbapi2',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\sqlite3\\dbapi2.py',
+   'PYMODULE'),
+  ('sqlite3.dump',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\sqlite3\\dump.py',
+   'PYMODULE'),
+  ('ssl',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\ssl.py',
+   'PYMODULE'),
+  ('statistics',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\statistics.py',
+   'PYMODULE'),
+  ('string',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\string.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('subprocess',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\subprocess.py',
+   'PYMODULE'),
+  ('sysconfig',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\sysconfig.py',
+   'PYMODULE'),
+  ('tarfile',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\tarfile.py',
+   'PYMODULE'),
+  ('tempfile',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\tempfile.py',
+   'PYMODULE'),
+  ('textwrap',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\textwrap.py',
+   'PYMODULE'),
+  ('threading',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\threading.py',
+   'PYMODULE'),
+  ('token',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\token.py',
+   'PYMODULE'),
+  ('tokenize',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\tokenize.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\tracemalloc.py',
+   'PYMODULE'),
+  ('tty',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\tty.py',
+   'PYMODULE'),
+  ('typing',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\typing.py',
+   'PYMODULE'),
+  ('typing_extensions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\typing_extensions.py',
+   'PYMODULE'),
+  ('unittest',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\__init__.py',
+   'PYMODULE'),
+  ('unittest._log',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\_log.py',
+   'PYMODULE'),
+  ('unittest.async_case',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\async_case.py',
+   'PYMODULE'),
+  ('unittest.case',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\case.py',
+   'PYMODULE'),
+  ('unittest.loader',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\loader.py',
+   'PYMODULE'),
+  ('unittest.main',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\main.py',
+   'PYMODULE'),
+  ('unittest.mock',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\mock.py',
+   'PYMODULE'),
+  ('unittest.result',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\result.py',
+   'PYMODULE'),
+  ('unittest.runner',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\runner.py',
+   'PYMODULE'),
+  ('unittest.signals',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\signals.py',
+   'PYMODULE'),
+  ('unittest.suite',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\suite.py',
+   'PYMODULE'),
+  ('unittest.util',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\unittest\\util.py',
+   'PYMODULE'),
+  ('urllib',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\urllib\\__init__.py',
+   'PYMODULE'),
+  ('urllib.error',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\urllib\\error.py',
+   'PYMODULE'),
+  ('urllib.parse',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\urllib\\parse.py',
+   'PYMODULE'),
+  ('urllib.request',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\urllib\\request.py',
+   'PYMODULE'),
+  ('urllib.response',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\urllib\\response.py',
+   'PYMODULE'),
+  ('urllib3',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\__init__.py',
+   'PYMODULE'),
+  ('urllib3._base_connection',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\_base_connection.py',
+   'PYMODULE'),
+  ('urllib3._collections',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\_collections.py',
+   'PYMODULE'),
+  ('urllib3._request_methods',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\_request_methods.py',
+   'PYMODULE'),
+  ('urllib3._version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\_version.py',
+   'PYMODULE'),
+  ('urllib3.connection',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\connection.py',
+   'PYMODULE'),
+  ('urllib3.connectionpool',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\connectionpool.py',
+   'PYMODULE'),
+  ('urllib3.contrib',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.connection',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\connection.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.fetch',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\fetch.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.request',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\request.py',
+   'PYMODULE'),
+  ('urllib3.contrib.emscripten.response',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\emscripten\\response.py',
+   'PYMODULE'),
+  ('urllib3.contrib.pyopenssl',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\pyopenssl.py',
+   'PYMODULE'),
+  ('urllib3.contrib.socks',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\contrib\\socks.py',
+   'PYMODULE'),
+  ('urllib3.exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\exceptions.py',
+   'PYMODULE'),
+  ('urllib3.fields',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\fields.py',
+   'PYMODULE'),
+  ('urllib3.filepost',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\filepost.py',
+   'PYMODULE'),
+  ('urllib3.http2',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\http2\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.http2.connection',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\http2\\connection.py',
+   'PYMODULE'),
+  ('urllib3.http2.probe',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\http2\\probe.py',
+   'PYMODULE'),
+  ('urllib3.poolmanager',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\poolmanager.py',
+   'PYMODULE'),
+  ('urllib3.response',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\response.py',
+   'PYMODULE'),
+  ('urllib3.util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\__init__.py',
+   'PYMODULE'),
+  ('urllib3.util.connection',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\connection.py',
+   'PYMODULE'),
+  ('urllib3.util.proxy',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\proxy.py',
+   'PYMODULE'),
+  ('urllib3.util.request',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\request.py',
+   'PYMODULE'),
+  ('urllib3.util.response',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\response.py',
+   'PYMODULE'),
+  ('urllib3.util.retry',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\retry.py',
+   'PYMODULE'),
+  ('urllib3.util.ssl_',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\ssl_.py',
+   'PYMODULE'),
+  ('urllib3.util.ssl_match_hostname',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\ssl_match_hostname.py',
+   'PYMODULE'),
+  ('urllib3.util.ssltransport',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\ssltransport.py',
+   'PYMODULE'),
+  ('urllib3.util.timeout',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\timeout.py',
+   'PYMODULE'),
+  ('urllib3.util.url',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\url.py',
+   'PYMODULE'),
+  ('urllib3.util.util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\util.py',
+   'PYMODULE'),
+  ('urllib3.util.wait',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\urllib3\\util\\wait.py',
+   'PYMODULE'),
+  ('uu',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\uu.py',
+   'PYMODULE'),
+  ('uuid',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\uuid.py',
+   'PYMODULE'),
+  ('uv_index',
+   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\uv_index.py',
+   'PYMODULE'),
+  ('webbrowser',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\webbrowser.py',
+   'PYMODULE'),
+  ('werkzeug',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\__init__.py',
+   'PYMODULE'),
+  ('werkzeug._internal',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\_internal.py',
+   'PYMODULE'),
+  ('werkzeug._reloader',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\_reloader.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\__init__.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.accept',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\accept.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.auth',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\auth.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.cache_control',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\cache_control.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.csp',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\csp.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.etag',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\etag.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.file_storage',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\file_storage.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.headers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\headers.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.mixins',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\mixins.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.range',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\range.py',
+   'PYMODULE'),
+  ('werkzeug.datastructures.structures',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\datastructures\\structures.py',
+   'PYMODULE'),
+  ('werkzeug.debug',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\debug\\__init__.py',
+   'PYMODULE'),
+  ('werkzeug.debug.console',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\debug\\console.py',
+   'PYMODULE'),
+  ('werkzeug.debug.repr',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\debug\\repr.py',
+   'PYMODULE'),
+  ('werkzeug.debug.tbtools',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\debug\\tbtools.py',
+   'PYMODULE'),
+  ('werkzeug.exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\exceptions.py',
+   'PYMODULE'),
+  ('werkzeug.formparser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\formparser.py',
+   'PYMODULE'),
+  ('werkzeug.http',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\http.py',
+   'PYMODULE'),
+  ('werkzeug.local',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\local.py',
+   'PYMODULE'),
+  ('werkzeug.middleware',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\middleware\\__init__.py',
+   'PYMODULE'),
+  ('werkzeug.middleware.shared_data',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\middleware\\shared_data.py',
+   'PYMODULE'),
+  ('werkzeug.routing',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\routing\\__init__.py',
+   'PYMODULE'),
+  ('werkzeug.routing.converters',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\routing\\converters.py',
+   'PYMODULE'),
+  ('werkzeug.routing.exceptions',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\routing\\exceptions.py',
+   'PYMODULE'),
+  ('werkzeug.routing.map',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\routing\\map.py',
+   'PYMODULE'),
+  ('werkzeug.routing.matcher',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\routing\\matcher.py',
+   'PYMODULE'),
+  ('werkzeug.routing.rules',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\routing\\rules.py',
+   'PYMODULE'),
+  ('werkzeug.sansio',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\sansio\\__init__.py',
+   'PYMODULE'),
+  ('werkzeug.sansio.http',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\sansio\\http.py',
+   'PYMODULE'),
+  ('werkzeug.sansio.multipart',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\sansio\\multipart.py',
+   'PYMODULE'),
+  ('werkzeug.sansio.request',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\sansio\\request.py',
+   'PYMODULE'),
+  ('werkzeug.sansio.response',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\sansio\\response.py',
+   'PYMODULE'),
+  ('werkzeug.sansio.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\sansio\\utils.py',
+   'PYMODULE'),
+  ('werkzeug.security',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\security.py',
+   'PYMODULE'),
+  ('werkzeug.serving',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\serving.py',
+   'PYMODULE'),
+  ('werkzeug.test',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\test.py',
+   'PYMODULE'),
+  ('werkzeug.urls',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\urls.py',
+   'PYMODULE'),
+  ('werkzeug.user_agent',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\user_agent.py',
+   'PYMODULE'),
+  ('werkzeug.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\utils.py',
+   'PYMODULE'),
+  ('werkzeug.wrappers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\wrappers\\__init__.py',
+   'PYMODULE'),
+  ('werkzeug.wrappers.request',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\wrappers\\request.py',
+   'PYMODULE'),
+  ('werkzeug.wrappers.response',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\wrappers\\response.py',
+   'PYMODULE'),
+  ('werkzeug.wsgi',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug\\wsgi.py',
+   'PYMODULE'),
+  ('wheel',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\__init__.py',
+   'PYMODULE'),
+  ('wheel.cli',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\cli\\__init__.py',
+   'PYMODULE'),
+  ('wheel.cli.convert',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\cli\\convert.py',
+   'PYMODULE'),
+  ('wheel.cli.pack',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\cli\\pack.py',
+   'PYMODULE'),
+  ('wheel.cli.tags',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\cli\\tags.py',
+   'PYMODULE'),
+  ('wheel.cli.unpack',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\cli\\unpack.py',
+   'PYMODULE'),
+  ('wheel.macosx_libfile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\macosx_libfile.py',
+   'PYMODULE'),
+  ('wheel.metadata',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\metadata.py',
+   'PYMODULE'),
+  ('wheel.util',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\util.py',
+   'PYMODULE'),
+  ('wheel.vendored',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\__init__.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\__init__.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging._elffile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\_elffile.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging._manylinux',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\_manylinux.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging._musllinux',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\_musllinux.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging._parser',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\_parser.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging._structures',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\_structures.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging._tokenizer',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\_tokenizer.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging.markers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\markers.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging.requirements',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\requirements.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging.specifiers',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\specifiers.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging.tags',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\tags.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging.utils',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\utils.py',
+   'PYMODULE'),
+  ('wheel.vendored.packaging.version',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\vendored\\packaging\\version.py',
+   'PYMODULE'),
+  ('wheel.wheelfile',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\wheel\\wheelfile.py',
+   'PYMODULE'),
+  ('xml',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\__init__.py',
+   'PYMODULE'),
+  ('xml.etree',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\etree\\__init__.py',
+   'PYMODULE'),
+  ('xml.etree.ElementInclude',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\etree\\ElementInclude.py',
+   'PYMODULE'),
+  ('xml.etree.ElementPath',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\etree\\ElementPath.py',
+   'PYMODULE'),
+  ('xml.etree.ElementTree',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\etree\\ElementTree.py',
+   'PYMODULE'),
+  ('xml.etree.cElementTree',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\etree\\cElementTree.py',
+   'PYMODULE'),
+  ('xml.parsers',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\parsers\\__init__.py',
+   'PYMODULE'),
+  ('xml.parsers.expat',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\parsers\\expat.py',
+   'PYMODULE'),
+  ('xml.sax',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\sax\\__init__.py',
+   'PYMODULE'),
+  ('xml.sax._exceptions',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\sax\\_exceptions.py',
+   'PYMODULE'),
+  ('xml.sax.expatreader',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\sax\\expatreader.py',
+   'PYMODULE'),
+  ('xml.sax.handler',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\sax\\handler.py',
+   'PYMODULE'),
+  ('xml.sax.saxutils',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\sax\\saxutils.py',
+   'PYMODULE'),
+  ('xml.sax.xmlreader',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xml\\sax\\xmlreader.py',
+   'PYMODULE'),
+  ('xmlrpc',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xmlrpc\\__init__.py',
+   'PYMODULE'),
+  ('xmlrpc.client',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\xmlrpc\\client.py',
+   'PYMODULE'),
+  ('zipfile',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\zipfile.py',
+   'PYMODULE'),
+  ('zipimport',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\lib\\zipimport.py',
+   'PYMODULE')])

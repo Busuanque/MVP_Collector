@@ -1,27 +1,44 @@
-import cv2
-import numpy as np
+from PIL import Image
+import os
 
-def analyze_fitzpatrick(image_path):
-    # Load image
-    image = cv2.imread(image_path)
-    if image is None:
-        raise Exception("Failed to load image.")
-
-    # Convert to HSV for better skin tone analysis
-    hsv_image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+def analyze_fitzpatrick(photo_path):
+    """Basic Fitzpatrick skin type analysis based on average skin tone RGB."""
+    if not os.path.exists(photo_path):
+        raise FileNotFoundError("Photo not found")
     
-    # Calculate average skin tone (simplified)
-    mean_hsv = np.mean(hsv_image, axis=(0, 1))
-    hue = mean_hsv[0]
-
-    # Simplified Fitzpatrick scale classification based on hue
-    # This is a basic approximation; real applications need calibration
-    if hue < 20:
-        return "Type I-II (Very fair to fair)"
-    elif hue < 40:
-        return "Type III-IV (Medium to olive)"
-    else:
-        return "Type V-VI (Dark to very dark)"
-
-    # Note: For accurate results, use machine learning models (e.g., pre-trained CNNs)
-    # trained on labeled skin tone datasets.
+    try:
+        img = Image.open(photo_path)
+        img = img.convert('RGB')
+        # Sample center 50% of image for skin tone (simplified; real would use face detection)
+        width, height = img.size
+        crop_box = (width//4, height//4, 3*width//4, 3*height//4)
+        cropped = img.crop(crop_box)
+        pixels = list(cropped.getdata())
+        
+        # Average RGB
+        r_total, g_total, b_total = 0, 0, 0
+        for pixel in pixels:
+            r, g, b = pixel
+            r_total += r
+            g_total += g
+            b_total += b
+        num_pixels = len(pixels)
+        avg_r = r_total / num_pixels
+        avg_g = g_total / num_pixels
+        avg_b = b_total / num_pixels
+        
+        # Simple mapping: Lighter skin (higher R/G/B) -> Type I/II, etc. (Placeholder logic)
+        lightness = (avg_r + avg_g + avg_b) / 3
+        if lightness > 200:
+            return "I"  # Very fair
+        elif lightness > 150:
+            return "II"  # Fair
+        elif lightness > 100:
+            return "III"  # Medium
+        elif lightness > 50:
+            return "IV"  # Olive
+        else:
+            return "V-VI"  # Dark
+        
+    except Exception as e:
+        raise ValueError(f"Analysis error: {e}")
