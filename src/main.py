@@ -345,6 +345,7 @@ def export_csv():
         return jsonify({"status": "error", "message": f"Erro no export: {str(e)}", "message_color": "#FF0000"})
 
 # Hybrid Kivy Setup for Windows (starts Flask in thread, embeds WebView)
+'''
 try:
     from kivy.app import App
     from kivy.uix.boxlayout import BoxLayout
@@ -352,6 +353,10 @@ try:
     from kivy.uix.label import Label
     import threading
     from webview import create_window  # pywebview for Windows WebView
+
+ 
+    import webbrowser  # Adicione no topo, após imports existentes
+    from kivy.clock import Clock
 
     class CollectorApp(App):
         def build(self):
@@ -361,7 +366,6 @@ try:
             start_btn.bind(on_press=self.start_server)
             layout.add_widget(self.status_label)
             layout.add_widget(start_btn)
-            self.webview = None
             return layout
 
         def start_server(self, instance):
@@ -369,17 +373,19 @@ try:
                 self.flask_thread = threading.Thread(target=app.run, kwargs={'host': '127.0.0.1', 'port': 5000, 'debug': False, 'use_reloader': False})
                 self.flask_thread.daemon = True
                 self.flask_thread.start()
-                # Delay to start webview
-                threading.Timer(2.0, self.open_webview).start()
-                self.status_label.text = 'Server started! Opening UI...'
+                # Agende abertura do browser no main thread (Kivy Clock)
+                Clock.schedule_once(self.open_browser, 3)  # 3s para Flask up
+                self.status_label.text = 'Server started! Opening browser...'
 
-        def open_webview(self):
-            self.webview = create_window('MVP Collector', 'http://127.0.0.1:5000', js_api=None, width=800, height=600)
-            self.webview.show()
+        def open_browser(self, dt):
+            webbrowser.open('http://127.0.0.1:5000')
 
-    if __name__ == '__main__':
+    # -----------------------------------------------------------------
+
+        if __name__ == '__main__':
         CollectorApp().run()
-except ImportError:
-    # Fallback to Flask standalone for Windows
-    if __name__ == '__main__':
-        app.run(host='0.0.0.0', port=5000, debug=True)
+'''
+# Fallback to Flask standalone for Windows
+if __name__ == '__main__':
+    print("Iniciando Flask em http://localhost:5000...")  # Para debug
+    app.run(host='0.0.0.0', port=5000, debug=True)
