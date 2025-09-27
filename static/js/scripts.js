@@ -1,3 +1,6 @@
+// Versao correta do ficheiro
+
+
 // ===== FUNÇÕES GLOBAIS DE EXPORT =====
 // Função para exportar CSV
 window.exportData = function() {
