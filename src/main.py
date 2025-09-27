@@ -25,9 +25,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv(os.path.join(BASE_DIR, "../.env"))
 
 
-# Configurações fixas (hard-coded no main.py)
+# Configs DB
 SQLITE_CONFIG = {
-    "path": "scp.db"  # Caminho fixo para o arquivo SQLite
+    "path": "scp.db"  # Arquivo SQLite local (cria se não existir)
+}
+
+MYSQL_CONFIG = {
+    "host": "localhost",
+    "port": 3306,
+    "user": "scp_user",
+    "password": "sua_senha_forte_aqui",  # Substitua pela senha real
+    "database": "scp"
 }
 
 # Configuração do Flask
@@ -49,8 +57,7 @@ def get_db_connection_sqlite():
     return conn
 
 def get_db_connection_mysql():
-    cfg = DB_CONFIG
-
+    cfg = MYSQL_CONFIG
     return mysql.connector.connect(
         host=cfg["host"], port=cfg["port"],
         user=cfg["user"], password=cfg["password"],
@@ -248,66 +255,89 @@ def export_csv():
     return response
 
 #
-#
+# -------------------------------------------------------------------------------------------------------------------------------------
 #
 
-@app.route("/export_db", methods=["POST"])
 def export_db():
-
-    print(f"")
-    print("Iniciando export_db..")
-    # 1) Ler dados do SQLite
-    sqlite_path = SQLITE_CONFIG["path"]
-    with sqlite3.connect(sqlite_path) as conn_s:
-        cur_s = conn_s.cursor()
-        # Use placeholder ? para filtro
-        cur_s.execute("SELECT id, id_collector, timestamp, input_value, location, uv_index, fitzpatrick_type, recommendations, status_message FROM analysis_log")
-        rows = cur_s.fetchall()
-
-    # 2) Conectar ao MySQL e inserir cada row
-    cfg = DB_CONFIG.copy()
-    cfg.pop("type", None)
-    conn_m = mysql.connector.connect(**cfg)
-    cur_m = conn_m.cursor()
-
-    sql_insert = """
-    INSERT INTO scp.analises
-      (id_colletor, data_hora, nome_imagem, localizacao,
-       indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
-    """
-
-    for row in rows:
-        _, id_col, ts, img_path, loc, uv, skin, recs, status = row
-        # Carregar blob
-        img_blob = None
-        if img_path and os.path.exists(img_path):
-            with open(img_path, "rb") as f:
-                img_blob = f.read()
-
-        params = (
-            id_col,
-            ts,
-            os.path.basename(img_path) if img_path else None,
-            loc,
-            uv,
-            skin,
-            recs,
-            status,
-            img_blob
-        )
-        cur_m.execute(sql_insert, params)
-
-    conn_m.commit()
-    cur_m.close()
-    conn_m.close()
-
-    print("export_db finalizado com sucesso.")
-    return jsonify({"status": "success", "message": "Dados exportados para MySQL", "quantidade": len(rows)})
-
+    sqlite_conn = None
+    mysql_conn = None
+    sqlite_cursor = None
+    mysql_cursor = None
+    try:
+        # Conecta ao SQLite e lê todos os registros (ajuste colunas conforme nomes exatos)
+        sqlite_conn = sqlite3.connect(SQLITE_CONFIG["path"], check_same_thread=False)
+        sqlite_cursor = sqlite_conn.cursor()
+        sqlite_cursor.execute("""
+            SELECT "Data/Hora" AS data_hora, "Nome da Imagem" AS nome_imagem, 
+                   "Localização" AS localizacao, "Índice UV" AS indice_uv,
+                   "Tipo de Pele" AS tipo_pele, "Recomendações" AS recomendacoes,
+                   "Mensagem" AS estado  -- Assumindo que "Mensagem" mapeia para "estado"
+            FROM analises  -- Assuma tabela 'analises' no SQLite; ajuste se diferente
+        """)
+        records = sqlite_cursor.fetchall()
+        
+        if not records:
+            print("Nenhum registro encontrado no SQLite")
+            return
+        
+        print(f"Encontrados {len(records)} registros para transferir")
+        
+        # Conecta ao MySQL
+        mysql_conn = mysql.connector.connect(**MYSQL_CONFIG)
+        mysql_cursor = mysql_conn.cursor()
+        
+        # Insere os registros no MySQL (mapeamento de colunas; imagem_blob como None se não disponível)
+        for record in records:
+            mysql_cursor.execute("""
+                INSERT INTO scp.analises 
+                (id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (
+                'default_collector',  # id_colletor fixo ou derive do SQLite se disponível
+                record[0],  # data_hora
+                record[1],  # nome_imagem
+                record[2],  # localizacao
+                record[3],  # indice_uv
+                record[4],  # tipo_pele
+                record[5],  # recomendacoes
+                record[6],  # estado (de "Mensagem")
+                None  # imagem_blob (adicione lógica para blob se disponível no SQLite)
+            ))
+        
+        mysql_conn.commit()
+        print(f"Transferidos {len(records)} registros para MySQL com sucesso")
+        
+        # Opcional: Apague do SQLite se tudo OK (descomente se necessário)
+        # sqlite_cursor.execute("DELETE FROM analises")
+        # sqlite_conn.commit()
+        # print("Registros apagados do SQLite")
+        
+    except sqlite3.error as sqlite_err:
+        print(f"Erro no SQLite: {sqlite_err}")
+        if sqlite_conn:
+            sqlite_conn.rollback()
+    except error as mysql_err:
+        print(f"Erro no MySQL: {mysql_err}")
+        if mysql_conn:
+            mysql_conn.rollback()
+    except Exception as e:
+        print(f"Erro geral: {e}")
+        if mysql_conn:
+            mysql_conn.rollback()
+        if sqlite_conn:
+            sqlite_conn.rollback()
+    finally:
+        if sqlite_cursor:
+            sqlite_cursor.close()
+        if mysql_conn and mysql_cursor:
+            mysql_cursor.close()
+        if mysql_conn and mysql_conn.is_connected():
+            mysql_conn.close()
+        if sqlite_conn:
+            sqlite_conn.close()
 #
-#
-#
+# -------------------------------------------------------------------------------------------------------------------------------------
+# 
 
 if __name__ == "__main__":
     print("Iniciando Flask em http://localhost:5000...")
