@@ -43,6 +43,10 @@ def get_db_connection_sqlite():
 
 def get_db_connection_mysql():
     cfg = MYSQL_CONFIG
+
+    print("-------------------") 
+    print("get_db_connection_mysql cfg:", cfg)
+    print("-------------------") 
     return mysql.connector.connect(
         host=cfg["host"], port=cfg["port"],
         user=cfg["user"], password=cfg["password"],
@@ -52,69 +56,13 @@ def get_db_connection_mysql():
 def init_db():
     """Inicializa schemas em MySQL e SQLite."""
     statuses = {}
-    # MySQL
-    try:
-        conn = get_db_connection_mysql()
-        cur = conn.cursor()
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS analysis_log (
-                id_collector VARCHAR(255),
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                timestamp DATETIME NOT NULL,
-                event_type VARCHAR(255) NOT NULL,
-                input_type VARCHAR(255),
-                input_value TEXT,
-                location TEXT,
-                uv_index DECIMAL(3,1),
-                fitzpatrick_type VARCHAR(10),
-                recommendations TEXT,
-                status_message TEXT
-            )
-        """)
-        cur.execute("SHOW COLUMNS FROM analysis_log LIKE 'id_collector'")
-        if not cur.fetchone():
-            cur.execute("ALTER TABLE analysis_log ADD COLUMN id_collector VARCHAR(255) FIRST")
-        conn.commit()
-        statuses["mysql"] = "MySQL pronto"
-    except Exception as e:
-        statuses["mysql"] = f"Erro MySQL: {e}"
-    finally:
-        cur.close(); conn.close()
-
-    # SQLite
-    try:
-        conn = get_db_connection_sqlite()
-        cur = conn.cursor()
-        cur.execute("""
-            CREATE TABLE IF NOT EXISTS analysis_log (
-                id_collector TEXT,
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                timestamp TEXT NOT NULL,
-                event_type TEXT NOT NULL,
-                input_type TEXT,
-                input_value TEXT,
-                location TEXT,
-                uv_index REAL,
-                fitzpatrick_type TEXT,
-                recommendations TEXT,
-                status_message TEXT
-            )
-        """)
-        cur.execute("PRAGMA table_info(analysis_log)")
-        cols = [r[1] for r in cur.fetchall()]
-        if "id_collector" not in cols:
-            cur.execute("ALTER TABLE analysis_log ADD COLUMN id_collector TEXT")
-        conn.commit()
-        statuses["sqlite"] = "SQLite pronto"
-    except Exception as e:
-        statuses["sqlite"] = f"Erro SQLite: {e}"
-    finally:
-        cur.close(); conn.close()
+    statuses["mysql"] = "MySQL pronto"
+    statuses["sqlite"] = "SQLite pronto"
 
     return statuses
 
 def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
-    print("Log_analisys chamada:", event_type, input_type, input_value, kwargs)
+    #print("Log_analisys chamada:", event_type, input_type, input_value, kwargs)
     ts = datetime.now().isoformat()
     recs = json.dumps(kwargs.get("recommendations", []))
     data = (
@@ -247,10 +195,6 @@ def count_analyses():
 def export_alias():
     return export_csv()
 
-#
-#
-#
-
 def log_sqlite(event, input_type=None, input_val=None, **kwargs):
     """Grava apenas no SQLite."""
     conn = get_db_connection_sqlite()
@@ -299,8 +243,15 @@ def export_csv():
     response.headers["Content-Type"] = "text/csv; charset=utf-8"
     return response
 
+#
+#
+#
+
 @app.route("/export_db", methods=["POST"])
 def export_db():
+
+    print("\n== Entrou na export_db")
+
     """Lê do SQLite e grava no MySQL."""
     # Lê todos os registros do SQLite
     conn_s = get_db_connection_sqlite()
@@ -315,21 +266,24 @@ def export_db():
     rows = cur_s.fetchall()
     cur_s.close()
     conn_s.close()
+    print(f"Total registros lidos do SQLite: {len(rows)}")
 
     # Insere cada registro no MySQL
+    print
     conn_m = get_db_connection_mysql()
     cur_m = conn_m.cursor()
+    print("Conexão MySQL estabelecida.")
     sql = """
-        INSERT INTO analysis_log
-        (id_collector, timestamp, event_type, input_type, input_value,
-         location, uv_index, fitzpatrick_type, recommendations, status_message)
-        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-    """
+          INSERT INTO analises id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado)
+          VALUES (%s, %s, %s, %s, %s, %s, %s, %s)    
+        """
     for row in rows:
+        print("registro sendo gravado no MySQL:", row)
         cur_m.execute(sql, row)
     conn_m.commit()
     cur_m.close()
     conn_m.close()
+    print("== Saindo da export_db\n")
 
     return jsonify(
         status="success",

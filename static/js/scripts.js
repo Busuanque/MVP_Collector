@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dataMessage) dataMessage.innerHTML = '📥 Preparando exportação CSV...';
         const link = document.createElement("a");
         link.href = '/export';
-        link.download = `analises_pele_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
+        link.download = `analises_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -248,10 +248,10 @@ document.addEventListener("DOMContentLoaded", () => {
             if (msgEl) msgEl.textContent = `❌ Erro: ${error.message}`;
         }
 
-        // Limpar mensagem após 5s
+        // Limpar mensagem após 1s
         setTimeout(() => {
             if (msgEl) msgEl.textContent = "";
-        }, 5000);
+        }, 1000);
     };
 
 
