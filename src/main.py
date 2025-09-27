@@ -257,7 +257,16 @@ def analyze():
     if not session.get("location"):
         return jsonify({"status": "error", "message": "Localização não detectada. Detete primeiro.", "message_color": "#FF0000"})
     
-    photo_path = session.get("photo_path")
+    # CORREÇÃO: Aceitar filename do request JSON
+    data = request.get_json()
+    filename = data.get('filename') if data else None
+    
+    if filename:
+        # Construir caminho completo da foto
+        photo_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
+    else:
+        photo_path = session.get("photo_path")
+    
     if not photo_path or not os.path.exists(photo_path):
         return jsonify({"status": "error", "message": "Foto não encontrada.", "message_color": "#FF0000"})
     
@@ -269,19 +278,30 @@ def analyze():
         # Analyze skin
         skin_type = analyze_fitzpatrick(photo_path)
         
+        # Get recommendations
+        recs = get_recommendations(uv_index, skin_type)
+        
+        # Format result
+        result_text = f"**Índice UV:** {uv_index:.1f}\n\n"
+        result_text += f"**Tipo de Pele:** {skin_type}\n\n"
+        result_text += "**Recomendações:**\n"
+        for rec in recs[:5]:
+            result_text += f"• {rec}\n"
+        
         # Log
-        log_analysis("analysis_completed", "photo+location", photo_path, uv_index=uv_index, fitzpatrick_type=skin_type)
+        log_analysis("analysis_completed", "photo+location", photo_path, 
+                    uv_index=uv_index, fitzpatrick_type=skin_type, recommendations=recs)
         
         session["uv_index"] = uv_index
         session["skin_type"] = skin_type
         
         return jsonify({
             "status": "success",
-            "uv_index": uv_index,
-            "skin_type": skin_type,
+            "result": result_text,
             "message": "Análise concluída!",
             "message_color": "#00B300"
         })
+        
     except Exception as e:
         log_analysis("analysis_failed", None, None, status_message=str(e))
         return jsonify({
@@ -370,6 +390,81 @@ def count_analyses():
     except Exception as e:
         print(f"Count error: {e}")
         return jsonify({"status": "error", "message": str(e), "count": 0})
+
+@app.route("/export_db", methods=["POST"])
+def export_db():
+    """Export current session data to MySQL database."""
+    try:
+        # Get session data
+        session_data = {
+            'location': session.get('location'),
+            'photo_path': session.get('photo_path'),
+            'uv_index': session.get('uv_index'),
+            'skin_type': session.get('skin_type')
+        }
+        
+        if not any(session_data.values()):
+            return jsonify({
+                "status": "warning", 
+                "message": "Nenhum dado de sessão para exportar",
+                "quantidade": 0
+            })
+
+        # Log the session data to database
+        log_analysis(
+            "session_export", 
+            "manual_export", 
+            json.dumps(session_data),
+            **session_data
+        )
+        
+        return jsonify({
+            "status": "success",
+            "message": "Dados da sessão exportados para MySQL",
+            "quantidade": 1
+        })
+        
+    except Exception as e:
+        return jsonify({
+            "status": "error", 
+            "message": f"Erro ao exportar: {str(e)}",
+            "quantidade": 0
+        })
+
+# ==== ROTAS PARA SUPRIMIR ERROS DE CHROME DEVTOOLS ====
+@app.route('/.well-known/appspecific/com.chrome.devtools.json')
+def chrome_devtools():
+    """Suppress Chrome DevTools 404 error."""
+    return jsonify({
+        "name": "MVP Collector",
+        "version": "1.0.0",
+        "devtools": False
+    })
+
+@app.route('/manifest.json')
+def manifest():
+    """Basic web app manifest."""
+    return jsonify({
+        "name": "MVP Collector - Proteção Solar",
+        "short_name": "MVP Collector",
+        "description": "Aplicação para análise de proteção solar baseada em IA",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#ffffff",
+        "theme_color": "#218096",
+        "icons": [
+            {
+                "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIGZpbGw9IiMyMTgwOTYiLz48L3N2Zz4=",
+                "sizes": "192x192",
+                "type": "image/svg+xml"
+            }
+        ]
+    })
+
+@app.route('/favicon.ico')
+def favicon():
+    """Serve favicon or return 204 No Content."""
+    return '', 204
 
 
 
