@@ -186,8 +186,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     const res = response.data;
                     if (spinner) spinner.classList.add("d-none");
                     showStatus(res.message, res.message_color);
+
                     if (res.status === "success" && resultLabel) {
-                        resultLabel.innerHTML = res.result;
+                        resultLabel.innerHTML = res.result_html;
                         updateAnalysisCount();
                         photoUpload.value = "";
                         photoPath = null;
@@ -198,6 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         analyzeButton.disabled = false;
                         analyzeButton.textContent = "🔍 Analisar e Obter Dicas";
                     }
+
                 })
                 .catch(error => {
                     console.error("Erro análise:", error);
@@ -226,15 +228,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Export MySQL
     window.exportDb = async function() {
-        if (dataMessage) dataMessage.innerHTML = '💾 Exportando para MySQL...';
+        const msgEl = document.getElementById("data-message");
+        if (msgEl) msgEl.textContent = '💾 Exportando para MySQL...';
+
         try {
-            const res = await axios.post('/export_db', {});
-            if (dataMessage) dataMessage.innerHTML = `✓ ${res.data.quantidade || 'Registros'} salvos no MySQL!`;
+            const response = await axios.post('/export_db', {});
+            const res = response.data;
+            if (msgEl) {
+                if (res.status === "success") {
+                    msgEl.textContent = `✓ ${res.quantidade} registro(s) salvos no MySQL!`;
+                } else {
+                    msgEl.textContent = `⚠️ ${res.message}`;
+                }
+            }
+            // Atualizar contador de análises se necessário
             updateAnalysisCount();
-        } catch (err) {
-            console.error("Erro MySQL:", err);
-            if (dataMessage) dataMessage.innerHTML = `❌ Erro: ${err.message}`;
+        } catch (error) {
+            console.error("Erro exportDb:", error);
+            if (msgEl) msgEl.textContent = `❌ Erro: ${error.message}`;
         }
-        setTimeout(() => { if (dataMessage) dataMessage.innerHTML = ''; }, 5000);
+
+        // Limpar mensagem após 5s
+        setTimeout(() => {
+            if (msgEl) msgEl.textContent = "";
+        }, 5000);
     };
+
+
+
 });

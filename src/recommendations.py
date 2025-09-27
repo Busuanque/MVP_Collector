@@ -1,26 +1,18 @@
+# src/recommendations.py
+
 def get_recommendations(uv_index, skin_type):
-    """Get personalized sun protection recommendations."""
-    
+    """Retorna lista de recomendações personalizadas."""
     # UV level categories
-    uv_level = "baixo"
-    if uv_index >= 8:
-        uv_level = "muito alto"
-    elif uv_index >= 6:
-        uv_level = "alto"
-    elif uv_index >= 3:
-        uv_level = "moderado"
-    
-    # Base recommendations
     recommendations = []
-    
-    # UV-based recommendations
+
     if uv_index >= 6:
-        recommendations.append("🕶️ Use óculos de sol com proteção UV")
-        recommendations.append("👒 Use chapéu ou boné")
-        recommendations.append("🏠 Evite exposição entre 10h-16h")
-    
-    # Skin type specific recommendations
-    skin_recommendations = {
+        recommendations += [
+            "🕶️ Use óculos de sol com proteção UV",
+            "👒 Use chapéu ou boné",
+            "🏠 Evite exposição entre 10h-16h"
+        ]
+
+    skin_map = {
         "Tipo I": [
             "🧴 Use protetor solar FPS 50+",
             "⏰ Limite exposição a 10-15 minutos",
@@ -52,13 +44,30 @@ def get_recommendations(uv_index, skin_type):
             "💧 Mantenha hidratação"
         ]
     }
-    
-    # Add skin-specific recommendations
-    if skin_type in skin_recommendations:
-        recommendations.extend(skin_recommendations[skin_type])
-    
-    # Add general advice
-    recommendations.append("💧 Beba bastante água")
-    recommendations.append("🍅 Consuma alimentos ricos em antioxidantes")
-    
+    recommendations += skin_map.get(skin_type, [])
+    recommendations.append(f"💧 Beba bastante água")
+    recommendations.append(f"🍅 Coma alimentos ricos em antioxidantes")
+    # Adicionar resumo de UV no final
+    risco = (
+        "Alto risco" if uv_index >= 8 else
+        "Risco moderado" if uv_index >= 6 else
+        "Baixo risco"
+    )
+    recommendations.append(f"🌡️ UV atual: {uv_index:.1f} – {risco}")
     return recommendations
+
+
+def format_analysis_html(uv_index, skin_type, recommendations):
+    """
+    Gera bloco HTML estruturado para exibir:
+    - Índice UV
+    - Tipo de Pele
+    - Lista de Recomendações
+    """
+    html = f"<p><strong>Índice UV:</strong> {uv_index:.1f}</p>"
+    html += f"<p><strong>Tipo de Pele:</strong> {skin_type}</p>"
+    html += "<p><strong>Recomendações:</strong></p><ul>"
+    for rec in recommendations:
+        html += f"<li>{rec}</li>"
+    html += "</ul>"
+    return html
