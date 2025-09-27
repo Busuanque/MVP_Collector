@@ -1,44 +1,39 @@
 from PIL import Image
-import os
+import numpy as np
 
-def analyze_fitzpatrick(photo_path):
-    """Basic Fitzpatrick skin type analysis based on average skin tone RGB."""
-    if not os.path.exists(photo_path):
-        raise FileNotFoundError("Photo not found")
-    
+def analyze_fitzpatrick(image_path):
+    """Analyze skin type based on Fitzpatrick scale (simplified version)."""
     try:
-        img = Image.open(photo_path)
+        # Open and convert image
+        img = Image.open(image_path)
         img = img.convert('RGB')
-        # Sample center 50% of image for skin tone (simplified; real would use face detection)
-        width, height = img.size
-        crop_box = (width//4, height//4, 3*width//4, 3*height//4)
-        cropped = img.crop(crop_box)
-        pixels = list(cropped.getdata())
+        img = img.resize((100, 100))  # Resize for processing
         
-        # Average RGB
-        r_total, g_total, b_total = 0, 0, 0
-        for pixel in pixels:
-            r, g, b = pixel
-            r_total += r
-            g_total += g
-            b_total += b
-        num_pixels = len(pixels)
-        avg_r = r_total / num_pixels
-        avg_g = g_total / num_pixels
-        avg_b = b_total / num_pixels
+        # Convert to numpy array
+        img_array = np.array(img)
         
-        # Simple mapping: Lighter skin (higher R/G/B) -> Type I/II, etc. (Placeholder logic)
-        lightness = (avg_r + avg_g + avg_b) / 3
-        if lightness > 200:
-            return "I"  # Very fair
-        elif lightness > 150:
-            return "II"  # Fair
-        elif lightness > 100:
-            return "III"  # Medium
-        elif lightness > 50:
-            return "IV"  # Olive
+        # Calculate average RGB values
+        avg_r = np.mean(img_array[:,:,0])
+        avg_g = np.mean(img_array[:,:,1])  
+        avg_b = np.mean(img_array[:,:,2])
+        
+        # Simple brightness calculation
+        brightness = (avg_r + avg_g + avg_b) / 3
+        
+        # Map brightness to Fitzpatrick types (simplified)
+        if brightness > 200:
+            return "Tipo I"
+        elif brightness > 180:
+            return "Tipo II"
+        elif brightness > 160:
+            return "Tipo III"
+        elif brightness > 140:
+            return "Tipo IV"
+        elif brightness > 120:
+            return "Tipo V"
         else:
-            return "V-VI"  # Dark
-        
+            return "Tipo VI"
+            
     except Exception as e:
-        raise ValueError(f"Analysis error: {e}")
+        print(f"Fitzpatrick analysis error: {e}")
+        return "Tipo III"  # Default fallback

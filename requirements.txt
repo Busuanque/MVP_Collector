@@ -3,7 +3,6 @@ pillow==10.4.0
 requests==2.32.3
 python-dotenv==1.0.1
 geopy==2.4.1
-kivy==2.3.0
-kivymd==1.2.0
-pywebview==5.1
 mysql-connector-python==9.1.0
+numpy==1.24.3
+werkzeug==3.0.4
