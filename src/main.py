@@ -44,9 +44,6 @@ def get_db_connection_sqlite():
 def get_db_connection_mysql():
     cfg = MYSQL_CONFIG
 
-    print("-------------------") 
-    print("get_db_connection_mysql cfg:", cfg)
-    print("-------------------") 
     return mysql.connector.connect(
         host=cfg["host"], port=cfg["port"],
         user=cfg["user"], password=cfg["password"],
@@ -250,7 +247,8 @@ def export_csv():
 @app.route("/export_db", methods=["POST"])
 def export_db():
 
-    print("\n== Entrou na export_db")
+    print("================================================")  
+    print("Iniciando export_db..")
 
     """Lê do SQLite e grava no MySQL."""
     # Lê todos os registros do SQLite
@@ -260,36 +258,65 @@ def export_db():
         SELECT id_collector, timestamp, event_type, input_type, input_value,
                location, uv_index, fitzpatrick_type, recommendations, status_message
         FROM analysis_log
-        WHERE id_collector = ?
-        ORDER BY timestamp
     """, (ID_COLLECTOR,))
     rows = cur_s.fetchall()
     cur_s.close()
     conn_s.close()
-    print(f"Total registros lidos do SQLite: {len(rows)}")
+    
+    print(f"Total registros lidos do SQLite: {len(rows)}\n")
 
-    # Insere cada registro no MySQL
-    print
-    conn_m = get_db_connection_mysql()
-    cur_m = conn_m.cursor()
-    print("Conexão MySQL estabelecida.")
+
+    print("================================================")  
+    print("Iniciando exportação para MySQL...")
+    # 1. Conectar ao MySQL
+    #conn = mysql.connector.connect(**{k: v for k, v in DB_CONFIG.items() if k != "type"})
+    conn = get_db_connection_mysql()
+    cur_m = conn.cursor()
+    print("Conectado ao MySQL.")
+
+    # 2. Montar SQL com todas as colunas, incluindo imagem_blob
     sql = """
-          INSERT INTO analises id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado)
-          VALUES (%s, %s, %s, %s, %s, %s, %s, %s)    
-        """
-    for row in rows:
-        print("registro sendo gravado no MySQL:", row)
-        cur_m.execute(sql, row)
-    conn_m.commit()
-    cur_m.close()
-    conn_m.close()
-    print("== Saindo da export_db\n")
+    INSERT INTO scp.analises
+    (id_colletor, data_hora, nome_imagem, localizacao,
+    indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """
 
-    return jsonify(
-        status="success",
-        message="Dados exportados para MySQL",
-        quantidade=len(rows)
+    # 3. Preparar parâmetros
+    filename = os.path.basename(session.get("photo_path") or "")
+    # lê o blob da imagem
+    with open(session.get("photo_path"), "rb") as f:
+        img_blob = f.read()
+
+    params = (
+        ID_COLLECTOR,                         # id_colletor
+        datetime.now(),                       # data_hora
+        filename,                             # nome_imagem
+        session.get("location"),              # localizacao
+        session.get("uv_index"),              # indice_uv
+        session.get("skin_type"),             # tipo_pele
+        json.dumps(session.get("recommendations", [])),  # recomendacoes
+        "Análise concluída com sucesso",      # estado
+        img_blob                              # imagem_blob
     )
+
+    # 4. Executar INSERT e commitar
+    cur_m.execute(sql, params)
+    conn.commit()
+    cur_m.close()
+    conn.close()
+
+    # 5. Retornar sucesso
+    return jsonify({
+        "status": "success",
+        "message": "Dados exportados para MySQL com blob da imagem",
+        "quantidade": 1
+    })
+
+
+
+
+
 
 #
 #
