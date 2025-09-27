@@ -114,7 +114,7 @@ def init_db():
     return statuses
 
 def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
-    """Grava evento em ambos bancos."""
+    print("Log_analisys chamada:", event_type, input_type, input_value, kwargs)
     ts = datetime.now().isoformat()
     recs = json.dumps(kwargs.get("recommendations", []))
     data = (
@@ -122,22 +122,6 @@ def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
         session.get("location"), kwargs.get("uv_index"),
         kwargs.get("fitzpatrick_type"), recs, kwargs.get("status_message")
     )
-    # MySQL
-    try:
-        conn = get_db_connection_mysql()
-        cur = conn.cursor()
-        cur.execute("""
-            INSERT INTO analysis_log
-            (id_collector,timestamp,event_type,input_type,input_value,
-             location,uv_index,fitzpatrick_type,recommendations,status_message)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-        """, data)
-        conn.commit()
-    except:
-        pass
-    finally:
-        cur.close(); conn.close()
-
     # SQLite
     try:
         conn = get_db_connection_sqlite()
@@ -174,7 +158,6 @@ def detect_location():
                 c = json.load(f)
             if time.time() - c["timestamp"] < 3600:
                 session["location"] = c["location"]
-                log_analysis("location_detected", "cache", c["location"])
                 return jsonify(
                     status="success",
                     location=c["location"],
@@ -194,7 +177,6 @@ def detect_location():
         session["location"] = loc
         with open(cache, "w") as f:
             json.dump({"location": loc, "timestamp": time.time()}, f)
-        log_analysis("location_detected", "api", loc)
         return jsonify(status="success", location=loc, message="Localização detectada!", message_color="#00B300")
     except Exception as e:
         try:
@@ -218,7 +200,6 @@ def upload_photo():
     path = os.path.join(app.config["UPLOAD_FOLDER"], fn)
     f.save(path)
     session["photo_path"] = path
-    log_analysis("photo_uploaded", "file", fn)
     return jsonify(status="success", filename=fn, message="Foto carregada!", message_color="#00B300")
 
 @app.route("/analyze", methods=["POST"])
