@@ -12,6 +12,8 @@ from flask import Flask, render_template, request, jsonify, session, make_respon
 from werkzeug.utils import secure_filename
 import sqlite3
 import mysql.connector
+from mysql.connector import Error as MySQLError
+
 from dotenv import load_dotenv
 
 from dbconfig import ID_COLLECTOR, DB_CONFIG
@@ -26,15 +28,16 @@ load_dotenv(os.path.join(BASE_DIR, "../.env"))
 
 
 # Configs DB
+print("DB Path:", os.path.join(BASE_DIR,"analysis.db"))
 SQLITE_CONFIG = {
-    "path": "scp.db"  # Arquivo SQLite local (cria se não existir)
+    "path": os.path.join(BASE_DIR,"analysis.db")
 }
 
 MYSQL_CONFIG = {
     "host": "localhost",
     "port": 3306,
     "user": "scp_user",
-    "password": "sua_senha_forte_aqui",  # Substitua pela senha real
+    "password": "scp_user",  # Substitua pela senha real
     "database": "scp"
 }
 
@@ -46,6 +49,9 @@ app.secret_key = os.urandom(24)
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
+
+analises_coletadas = []
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -191,8 +197,7 @@ def count_analyses():
         conn = get_db_connection_sqlite()
         cur = conn.cursor()
         cur.execute(
-            "SELECT COUNT(*) FROM analysis_log WHERE id_collector = ?",
-            (ID_COLLECTOR,)
+            "SELECT COUNT(*) FROM analysis_log"
         )
         count = cur.fetchone()[0]
         cur.close()
@@ -234,8 +239,7 @@ def export_csv():
     conn = get_db_connection_sqlite()
     cur = conn.cursor()
     cur.execute(
-        "SELECT * FROM analysis_log WHERE id_collector = ? ORDER BY timestamp",
-        (ID_COLLECTOR,)
+        "SELECT * FROM analysis_log"
     )
     rows = cur.fetchall()
     cols = [d[0] for d in cur.description]
@@ -257,51 +261,68 @@ def export_csv():
 #
 # -------------------------------------------------------------------------------------------------------------------------------------
 #
-
+@app.route("/export_db", methods=["POST"])
 def export_db():
     sqlite_conn = None
     mysql_conn = None
     sqlite_cursor = None
     mysql_cursor = None
+
     try:
-        # Conecta ao SQLite e lê todos os registros (ajuste colunas conforme nomes exatos)
-        sqlite_conn = sqlite3.connect(SQLITE_CONFIG["path"], check_same_thread=False)
+        sqlite_conn = get_db_connection_sqlite()
         sqlite_cursor = sqlite_conn.cursor()
-        sqlite_cursor.execute("""
-            SELECT "Data/Hora" AS data_hora, "Nome da Imagem" AS nome_imagem, 
-                   "Localização" AS localizacao, "Índice UV" AS indice_uv,
-                   "Tipo de Pele" AS tipo_pele, "Recomendações" AS recomendacoes,
-                   "Mensagem" AS estado  -- Assumindo que "Mensagem" mapeia para "estado"
-            FROM analises  -- Assuma tabela 'analises' no SQLite; ajuste se diferente
-        """)
+        sqlite_cursor.execute(
+            "SELECT * FROM analysis_log"
+        )
         records = sqlite_cursor.fetchall()
-        
+
         if not records:
             print("Nenhum registro encontrado no SQLite")
             return
-        
-        print(f"Encontrados {len(records)} registros para transferir")
-        
+
+        #print("---------------------------------------------")
+        #print(f"Registros lidos do SQLite: {len(records)}")
+        #print(sqlite_cursor, records[:5])  # Mostra os primeiros 2 registros para verificação
+
         # Conecta ao MySQL
         mysql_conn = mysql.connector.connect(**MYSQL_CONFIG)
         mysql_cursor = mysql_conn.cursor()
-        
+    
         # Insere os registros no MySQL (mapeamento de colunas; imagem_blob como None se não disponível)
         for record in records:
+
+            # Testes
+            print("\n")
+            print("---------------------------------------------")
+            print("Inserindo registro:", record)
+            #print("---------------------------------------------")
+            print("\n")
+
+            print("id_collector",   record[0])   # id_collector
+            print("data_hora",      record[2])   # data_hora
+            print("nome_imagem",    records.record[3])   # nome_imagem
+            print("localizacao",    records.record[4])   # localizacao
+            print("indice_uv",      records.record[5])   # indice_uv
+            print("tipo_pele",      records.record[6])   # tipo_pele
+            print("recomendacoes",  records.record[7])   # recomendacoes
+            print("estado",         records.record[8])   # estado
+            print("\n")
+          
+                        
             mysql_cursor.execute("""
                 INSERT INTO scp.analises 
                 (id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, (
-                'default_collector',  # id_colletor fixo ou derive do SQLite se disponível
-                record[0],  # data_hora
-                record[1],  # nome_imagem
-                record[2],  # localizacao
-                record[3],  # indice_uv
-                record[4],  # tipo_pele
-                record[5],  # recomendacoes
-                record[6],  # estado (de "Mensagem")
-                None  # imagem_blob (adicione lógica para blob se disponível no SQLite)
+                record[0],  # id_collector
+                record[2],  # data_hora
+                record[3],  # nome_imagem
+                record[4],  # localizacao
+                record[5],  # indice_uv
+                record[6],  # tipo_pele
+                record[7],  # recomendacoes
+                record[8],  # estado (de "Mensagem")
+                ""          # imagem_blob
             ))
         
         mysql_conn.commit()
@@ -312,32 +333,35 @@ def export_db():
         # sqlite_conn.commit()
         # print("Registros apagados do SQLite")
         
-    except sqlite3.error as sqlite_err:
+    except sqlite3.Error as sqlite_err:
         print(f"Erro no SQLite: {sqlite_err}")
         if sqlite_conn:
             sqlite_conn.rollback()
-    except error as mysql_err:
+
+    except MySQLError as mysql_err:
         print(f"Erro no MySQL: {mysql_err}")
         if mysql_conn:
             mysql_conn.rollback()
+
     except Exception as e:
         print(f"Erro geral: {e}")
         if mysql_conn:
             mysql_conn.rollback()
         if sqlite_conn:
             sqlite_conn.rollback()
+
     finally:
         if sqlite_cursor:
             sqlite_cursor.close()
-        if mysql_conn and mysql_cursor:
+        if mysql_cursor:
             mysql_cursor.close()
         if mysql_conn and mysql_conn.is_connected():
             mysql_conn.close()
         if sqlite_conn:
-            sqlite_conn.close()
-#
+            sqlite_conn.close()#
 # -------------------------------------------------------------------------------------------------------------------------------------
 # 
+
 
 if __name__ == "__main__":
     print("Iniciando Flask em http://localhost:5000...")
