@@ -242,58 +242,6 @@ def analyze():
         log_analysis("analysis_failed", None, None, status_message=str(e))
         return jsonify(status="error", message=f"Erro na análise: {e}", message_color="#FF0000")
 
-@app.route("/export_csv", methods=["GET"])
-def export_csv():
-    try:
-        conn = get_db_connection_sqlite()
-        cur = conn.cursor()
-        cur.execute("SELECT * FROM analysis_log WHERE id_collector = ? ORDER BY timestamp", (ID_COLLECTOR,))
-        rows = cur.fetchall()
-        cols = [d[0] for d in cur.description]
-        sio = StringIO()
-        import csv
-        w = csv.writer(sio)
-        w.writerow(cols)
-        w.writerows(rows)
-        data = sio.getvalue()
-        cur.close(); conn.close()
-        resp = make_response(data)
-        resp.headers["Content-Disposition"] = f"attachment; filename=analysis_{ID_COLLECTOR}.csv"
-        resp.headers["Content-Type"] = "text/csv; charset=utf-8"
-        return resp
-    except Exception as e:
-        return jsonify(status="error", message=f"Erro export_csv: {e}", message_color="#FF0000")
-
-@app.route("/export_db", methods=["POST"])
-def export_db():
-    try:
-        d = {
-            "location": session.get("location"),
-            "photo_path": session.get("photo_path"),
-            "uv_index": session.get("uv_index"),
-            "skin_type": session.get("skin_type")
-        }
-        if not any(d.values()):
-            return jsonify(status="warning", message="Nenhum dado para exportar", quantidade=0)
-        conn = get_db_connection_mysql()
-        cur = conn.cursor()
-        sql = """
-            INSERT INTO analysis_log
-            (id_collector,timestamp,event_type,input_type,input_value,location,uv_index,fitzpatrick_type,recommendations,status_message)
-            VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
-        """
-        params = (
-            ID_COLLECTOR, datetime.now(),
-            "manual_export", "session", json.dumps(d),
-            d["location"], d["uv_index"], d["skin_type"], json.dumps([]), "Export manual"
-        )
-        cur.execute(sql, params)
-        conn.commit()
-        cur.close(); conn.close()
-        return jsonify(status="success", message="Dados exportados para MySQL", quantidade=1)
-    except Exception as e:
-        return jsonify(status="error", message=f"Erro export_db: {e}", quantidade=0)
-
 @app.route("/count_analyses", methods=["GET"])
 def count_analyses():
     """
@@ -317,6 +265,100 @@ def count_analyses():
 @app.route("/export", methods=["GET"])
 def export_alias():
     return export_csv()
+
+#
+#
+#
+
+def log_sqlite(event, input_type=None, input_val=None, **kwargs):
+    """Grava apenas no SQLite."""
+    conn = get_db_connection_sqlite()
+    cur = conn.cursor()
+    ts = datetime.now().isoformat()
+    recs = json.dumps(kwargs.get("recommendations", []))
+    data = (
+        ID_COLLECTOR, ts, event, input_type, input_val,
+        session.get("location"), kwargs.get("uv_index"),
+        kwargs.get("fitzpatrick_type"), recs, kwargs.get("status_message")
+    )
+    cur.execute("""
+        INSERT INTO analysis_log
+        (id_collector,timestamp,event_type,input_type,input_value,
+         location,uv_index,fitzpatrick_type,recommendations,status_message)
+        VALUES (?,?,?,?,?,?,?,?,?,?)
+    """, data)
+    conn.commit()
+    cur.close()
+    conn.close()
+
+@app.route("/export_csv", methods=["GET"])
+def export_csv():
+    """Lê do SQLite e gera CSV."""
+    conn = get_db_connection_sqlite()
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT * FROM analysis_log WHERE id_collector = ? ORDER BY timestamp",
+        (ID_COLLECTOR,)
+    )
+    rows = cur.fetchall()
+    cols = [d[0] for d in cur.description]
+
+    output = StringIO()
+    import csv
+    writer = csv.writer(output)
+    writer.writerow(cols)
+    writer.writerows(rows)
+    csv_data = output.getvalue()
+
+    cur.close()
+    conn.close()
+
+    response = make_response(csv_data)
+    response.headers["Content-Disposition"] = f"attachment; filename=analysis_{ID_COLLECTOR}.csv"
+    response.headers["Content-Type"] = "text/csv; charset=utf-8"
+    return response
+
+@app.route("/export_db", methods=["POST"])
+def export_db():
+    """Lê do SQLite e grava no MySQL."""
+    # Lê todos os registros do SQLite
+    conn_s = get_db_connection_sqlite()
+    cur_s = conn_s.cursor()
+    cur_s.execute("""
+        SELECT id_collector, timestamp, event_type, input_type, input_value,
+               location, uv_index, fitzpatrick_type, recommendations, status_message
+        FROM analysis_log
+        WHERE id_collector = ?
+        ORDER BY timestamp
+    """, (ID_COLLECTOR,))
+    rows = cur_s.fetchall()
+    cur_s.close()
+    conn_s.close()
+
+    # Insere cada registro no MySQL
+    conn_m = get_db_connection_mysql()
+    cur_m = conn_m.cursor()
+    sql = """
+        INSERT INTO analysis_log
+        (id_collector, timestamp, event_type, input_type, input_value,
+         location, uv_index, fitzpatrick_type, recommendations, status_message)
+        VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
+    """
+    for row in rows:
+        cur_m.execute(sql, row)
+    conn_m.commit()
+    cur_m.close()
+    conn_m.close()
+
+    return jsonify(
+        status="success",
+        message="Dados exportados para MySQL",
+        quantidade=len(rows)
+    )
+
+#
+#
+#
 
 if __name__ == "__main__":
     print("Iniciando Flask em http://localhost:5000...")
