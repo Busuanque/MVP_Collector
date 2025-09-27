@@ -14,18 +14,25 @@ import sqlite3
 import mysql.connector
 from dotenv import load_dotenv
 
-from dbconfig import ID_COLLECTOR, SQLITE_CONFIG, MYSQL_CONFIG
+from dbconfig import ID_COLLECTOR, DB_CONFIG
 from uv_index import get_uv_index
 from fitzpatrick import analyze_fitzpatrick
 from recommendations import get_recommendations, format_analysis_html
 
 # Carrega variáveis de ambiente
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 load_dotenv(os.path.join(BASE_DIR, "../.env"))
+
+
+# Configurações fixas (hard-coded no main.py)
+SQLITE_CONFIG = {
+    "path": "scp.db"  # Caminho fixo para o arquivo SQLite
+}
 
 # Configuração do Flask
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
-app.config["UPLOAD_FOLDER"] = os.getenv("UPLOAD_FOLDER", "uploads")
+app.config["UPLOAD_FOLDER"] = "uploads"
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 app.secret_key = os.urandom(24)
 os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
@@ -42,7 +49,7 @@ def get_db_connection_sqlite():
     return conn
 
 def get_db_connection_mysql():
-    cfg = MYSQL_CONFIG
+    cfg = DB_CONFIG
 
     return mysql.connector.connect(
         host=cfg["host"], port=cfg["port"],
@@ -215,6 +222,7 @@ def log_sqlite(event, input_type=None, input_val=None, **kwargs):
 
 @app.route("/export_csv", methods=["GET"])
 def export_csv():
+    import csv
     """Lê do SQLite e gera CSV."""
     conn = get_db_connection_sqlite()
     cur = conn.cursor()
@@ -226,7 +234,6 @@ def export_csv():
     cols = [d[0] for d in cur.description]
 
     output = StringIO()
-    import csv
     writer = csv.writer(output)
     writer.writerow(cols)
     writer.writerows(rows)
@@ -247,76 +254,56 @@ def export_csv():
 @app.route("/export_db", methods=["POST"])
 def export_db():
 
-    print("================================================")  
+    print(f"")
     print("Iniciando export_db..")
+    # 1) Ler dados do SQLite
+    sqlite_path = SQLITE_CONFIG["path"]
+    with sqlite3.connect(sqlite_path) as conn_s:
+        cur_s = conn_s.cursor()
+        # Use placeholder ? para filtro
+        cur_s.execute("SELECT id, id_collector, timestamp, input_value, location, uv_index, fitzpatrick_type, recommendations, status_message FROM analysis_log")
+        rows = cur_s.fetchall()
 
-    """Lê do SQLite e grava no MySQL."""
-    # Lê todos os registros do SQLite
-    conn_s = get_db_connection_sqlite()
-    cur_s = conn_s.cursor()
-    cur_s.execute("""
-        SELECT id_collector, timestamp, event_type, input_type, input_value,
-               location, uv_index, fitzpatrick_type, recommendations, status_message
-        FROM analysis_log
-    """, (ID_COLLECTOR,))
-    rows = cur_s.fetchall()
-    cur_s.close()
-    conn_s.close()
-    
-    print(f"Total registros lidos do SQLite: {len(rows)}\n")
+    # 2) Conectar ao MySQL e inserir cada row
+    cfg = DB_CONFIG.copy()
+    cfg.pop("type", None)
+    conn_m = mysql.connector.connect(**cfg)
+    cur_m = conn_m.cursor()
 
-
-    print("================================================")  
-    print("Iniciando exportação para MySQL...")
-    # 1. Conectar ao MySQL
-    #conn = mysql.connector.connect(**{k: v for k, v in DB_CONFIG.items() if k != "type"})
-    conn = get_db_connection_mysql()
-    cur_m = conn.cursor()
-    print("Conectado ao MySQL.")
-
-    # 2. Montar SQL com todas as colunas, incluindo imagem_blob
-    sql = """
+    sql_insert = """
     INSERT INTO scp.analises
-    (id_colletor, data_hora, nome_imagem, localizacao,
-    indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
+      (id_colletor, data_hora, nome_imagem, localizacao,
+       indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
     VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
     """
 
-    # 3. Preparar parâmetros
-    filename = os.path.basename(session.get("photo_path") or "")
-    # lê o blob da imagem
-    with open(session.get("photo_path"), "rb") as f:
-        img_blob = f.read()
+    for row in rows:
+        _, id_col, ts, img_path, loc, uv, skin, recs, status = row
+        # Carregar blob
+        img_blob = None
+        if img_path and os.path.exists(img_path):
+            with open(img_path, "rb") as f:
+                img_blob = f.read()
 
-    params = (
-        ID_COLLECTOR,                         # id_colletor
-        datetime.now(),                       # data_hora
-        filename,                             # nome_imagem
-        session.get("location"),              # localizacao
-        session.get("uv_index"),              # indice_uv
-        session.get("skin_type"),             # tipo_pele
-        json.dumps(session.get("recommendations", [])),  # recomendacoes
-        "Análise concluída com sucesso",      # estado
-        img_blob                              # imagem_blob
-    )
+        params = (
+            id_col,
+            ts,
+            os.path.basename(img_path) if img_path else None,
+            loc,
+            uv,
+            skin,
+            recs,
+            status,
+            img_blob
+        )
+        cur_m.execute(sql_insert, params)
 
-    # 4. Executar INSERT e commitar
-    cur_m.execute(sql, params)
-    conn.commit()
+    conn_m.commit()
     cur_m.close()
-    conn.close()
+    conn_m.close()
 
-    # 5. Retornar sucesso
-    return jsonify({
-        "status": "success",
-        "message": "Dados exportados para MySQL com blob da imagem",
-        "quantidade": 1
-    })
-
-
-
-
-
+    print("export_db finalizado com sucesso.")
+    return jsonify({"status": "success", "message": "Dados exportados para MySQL", "quantidade": len(rows)})
 
 #
 #
