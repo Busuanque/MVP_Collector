@@ -43,10 +43,15 @@ MYSQL_CONFIG = {
 
 # Configuração do Flask
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
+
+# Criar pastas se não existirem
 app.config["UPLOAD_FOLDER"] = "uploads"
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+app.config["EXPORT_FOLDER"] = "exports"
+os.makedirs(app.config["EXPORT_FOLDER"], exist_ok=True)
+
 app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
 app.secret_key = os.urandom(24)
-os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
@@ -163,6 +168,10 @@ def upload_photo():
         return jsonify(status="error", message="Tipo inválido.", message_color="#FF0000")
     fn = secure_filename(f"{uuid.uuid4()}_{f.filename}")
     path = os.path.join(app.config["UPLOAD_FOLDER"], fn)
+
+    # Logging
+    print("Salvando foto em:", path)
+    
     f.save(path)
     session["photo_path"] = path
     return jsonify(status="success", filename=fn, message="Foto carregada!", message_color="#00B300")
@@ -180,7 +189,7 @@ def analyze():
         st = analyze_fitzpatrick(pp)
         recs = get_recommendations(uv_index, st)
         html = format_analysis_html(uv_index, st, recs)
-        log_analysis("analysis_completed", "photo+location", pp, uv_index=uv_index, fitzpatrick_type=st, recommendations=recs)
+        log_analysis("analysis_completed", "photo+location", pp, uv_index=uv_index, fitzpatrick_type=st, recommendations=recs, status_message="Análise concluída!")
         session["uv_index"] = uv_index
         session["skin_type"] = st
         return jsonify(status="success", result_html=html, message="Análise concluída!", message_color="#00B300")
@@ -210,8 +219,6 @@ def count_analyses():
 @app.route("/export", methods=["GET"])
 def export_alias():
     return export_csv()
-
-
 
 def log_sqlite(event, input_type=None, input_val=None, **kwargs):
     """Grava apenas no SQLite."""
@@ -245,9 +252,11 @@ def log_sqlite(event, input_type=None, input_val=None, **kwargs):
     cur.close()
     conn.close()
 
+'''
 @app.route("/export_csv", methods=["GET"])
 def export_csv():
     import csv
+
     """Lê do SQLite e gera CSV."""
     conn = get_db_connection_sqlite()
     cur = conn.cursor()
@@ -266,10 +275,59 @@ def export_csv():
     cur.close()
     conn.close()
 
+    # Gera um identificador único baseado em UUID
+    unique_hash = uuid.uuid4().hex
+    # Monta o nome do arquivo iniciando com o ID_COLLECTOR
+    temp_filename = f"{ID_COLLECTOR}_{unique_hash}.csv"
+
+    temp_filepath = os.path.join(app.config["EXPORT_FOLDER"], temp_filename)
+    print("-------------------------------------------------------------------------")
+    print(app.config["EXPORT_FOLDER"])
+    print("Salvando CSV em:", temp_filepath)
+
     response = make_response(csv_data)
-    response.headers["Content-Disposition"] = f"attachment; filename=analysis_{ID_COLLECTOR}.csv"
+    response.headers["Content-Disposition"] = f"attachment; filename={temp_filepath}"
     response.headers["Content-Type"] = "text/csv; charset=utf-8"
     return response
+'''
+from io import StringIO
+import uuid, os, csv
+from flask import make_response
+
+@app.route("/export_csv", methods=["GET"])
+def export_csv():
+    # 1. Lê do SQLite e prepara CSV em memória
+    conn = get_db_connection_sqlite()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM analysis_log")
+    rows = cur.fetchall()
+    cols = [d[0] for d in cur.description]
+    cur.close()
+    conn.close()
+
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(cols)
+    writer.writerows(rows)
+    csv_data = output.getvalue()
+
+    # 2. Gera nome único e caminho completo
+    unique_hash = uuid.uuid4().hex
+    filename = f"{ID_COLLECTOR}_{unique_hash}.csv"
+    full_path = os.path.join(app.config["EXPORT_FOLDER"], filename)
+    print("--> Salvando CSV em:", full_path)
+
+    # 3. Grava o CSV no diretório de export
+    with open(full_path, "w", encoding="utf-8", newline="") as f:
+        f.write(csv_data)
+
+    # 4. Retorna o CSV como download, usando apenas o nome do arquivo
+    response = make_response(csv_data)
+    response.headers["Content-Disposition"] = f"attachment; filename={filename}"
+    response.headers["Content-Type"] = "text/csv; charset=utf-8"
+    return response
+
+
 
 #
 # -------------------------------------------------------------------------------------------------------------------------------------
@@ -303,13 +361,11 @@ def export_db():
                 "transferred": 0
             }), 200
 
-        print(f"Encontrados {len(records)} registros no SQLite")
-
         # 2. Conectar ao MySQL
-        print("Conectando ao MySQL...")
+        #print("Conectando ao MySQL...")
         mysql_conn = get_db_connection_mysql()
         mysql_cursor = mysql_conn.cursor()
-        print("Conectado ao MySQL com sucesso")
+        #print("Conectado ao MySQL com sucesso")
 
         # 3. Processar e inserir cada registro
         transferred_count = 0
@@ -328,12 +384,18 @@ def export_db():
             # Preparar imagem_blob (path + nome da imagem)
             imagem_blob = None
             if input_value:
-                # Assumindo que você tem uma variável path_imagens definida
-                # path_imagens = "/caminho/para/uploads/"  # Defina conforme necessário
-                # imagem_blob = path_imagens + input_value
-                imagem_blob = input_value  # Por enquanto, usar apenas o nome
+                #image_path = os.path.join(app.config["UPLOAD_FOLDER"], input_value)
+                print("UPLOAD_FOLDER:", app.config["UPLOAD_FOLDER"])
+                try:
+                    with open(input_value, "rb") as f:
+                        imagem_blob = f.read()
+                except Exception as e:
+                    print(f"Falha ao ler imagem: {e}")
+                    imagem_blob = None
 
+            '''
             # Debug: mostrar dados que serão inseridos
+            print("----------------------------------------------------------------")
             print(f"\nInserindo registro {transferred_count + 1}:")
             print(f"  id_colletor: {id_collector}")
             print(f"  data_hora: {timestamp}")
@@ -344,6 +406,8 @@ def export_db():
             print(f"  recomendacoes: {recommendations}")
             print(f"  estado: {status_message}")
             print(f"  imagem_blob: {imagem_blob}")
+            print("----------------------------------------------------------------")
+            '''
 
             # Inserir no MySQL (id é auto-incremental, não precisa ser especificado)
             mysql_cursor.execute("""
@@ -367,12 +431,11 @@ def export_db():
 
         # 4. Confirmar transação MySQL
         mysql_conn.commit()
-        print(f"Transferidos {transferred_count} registros para MySQL com sucesso")
+        print(f"--> Transferidos {transferred_count} registros para MySQL com sucesso")
 
-        # 5. Opcional: limpar SQLite após sucesso
-        # sqlite_cursor.execute("DELETE FROM analysis_log")
-        # sqlite_conn.commit()
-        # print("Registros removidos do SQLite")
+        # 5. limpar SQLite após sucesso
+        sqlite_cursor.execute("DELETE FROM analysis_log")
+        sqlite_conn.commit()
 
         return jsonify({
             "status": "success",
