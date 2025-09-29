@@ -6,8 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const photoUpload = document.getElementById("photo-upload");
     const uploadButton = document.getElementById("upload-button");
     const cameraButton = document.getElementById("camera-button");
+    
+    const cameraContainer = document.querySelector(".camera-container");
     const captureButton = document.getElementById("capture-button");
     const cameraFeed = document.getElementById("camera-feed");
+
     const analyzeButton = document.getElementById("analyze-button");
     const spinner = document.getElementById("spinner");
     const resultLabel = document.getElementById("result-label");
@@ -110,6 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 cameraFeed.srcObject = stream;
                 cameraFeed.classList.remove("d-none");
                 captureButton.classList.remove("d-none");
+                cameraContainer.classList.remove("d-none");
+                
                 showStatus("Posicione a mão e capture a foto", "#0080FF");
             } catch (err) {
                 console.error("Erro câmera:", err);
@@ -160,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (cameraFeed) cameraFeed.classList.add("d-none");
         if (captureButton) captureButton.classList.add("d-none");
+        if (cameraContainer) cameraContainer.classList.add("d-none");
     }
 
     // Análise
