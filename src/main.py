@@ -211,16 +211,29 @@ def count_analyses():
 def export_alias():
     return export_csv()
 
+
+
 def log_sqlite(event, input_type=None, input_val=None, **kwargs):
     """Grava apenas no SQLite."""
     conn = get_db_connection_sqlite()
     cur = conn.cursor()
     ts = datetime.now().isoformat()
-    recs = json.dumps(kwargs.get("recommendations", []))
+
+    #recs = json.dumps(kwargs.get("recommendations", []))
+    # Usar ensure_ascii=True para converter Unicode
+    recs = json.dumps(kwargs.get("recommendations", []), ensure_ascii=True)
+
+    # Limpar status_message
+    status_message = kwargs.get("status_message", "")
+    if status_message:
+        # Remove caracteres não-ASCII
+        status_message = status_message.encode('ascii', 'ignore').decode('ascii')
+        status_message = ' '.join(status_message.split())  # Remove espaços extras
+
     data = (
         ID_COLLECTOR, ts, event, input_type, input_val,
         session.get("location"), kwargs.get("uv_index"),
-        kwargs.get("fitzpatrick_type"), recs, kwargs.get("status_message")
+        kwargs.get("fitzpatrick_type"), recs, status_message
     )
     cur.execute("""
         INSERT INTO analysis_log
@@ -269,79 +282,123 @@ def export_db():
     mysql_cursor = None
 
     try:
+        # 1. Conectar ao SQLite e ler registros
         sqlite_conn = get_db_connection_sqlite()
         sqlite_cursor = sqlite_conn.cursor()
-        sqlite_cursor.execute(
-            "SELECT * FROM analysis_log"
-        )
+        
+        # Selecionar campos específicos na ordem correta
+        sqlite_cursor.execute("""
+            SELECT id_collector, id, timestamp, event_type, input_type, 
+                   input_value, location, uv_index, fitzpatrick_type, 
+                   recommendations, status_message
+            FROM analysis_log
+        """)
         records = sqlite_cursor.fetchall()
 
         if not records:
             print("Nenhum registro encontrado no SQLite")
-            return
+            return jsonify({
+                "status": "warning",
+                "message": "Nenhum registro encontrado no SQLite",
+                "transferred": 0
+            }), 200
 
-        #print("---------------------------------------------")
-        #print(f"Registros lidos do SQLite: {len(records)}")
-        #print(sqlite_cursor, records[:5])  # Mostra os primeiros 2 registros para verificação
+        print(f"Encontrados {len(records)} registros no SQLite")
 
-        # Conecta ao MySQL
-        mysql_conn = mysql.connector.connect(**MYSQL_CONFIG)
+        # 2. Conectar ao MySQL
+        print("Conectando ao MySQL...")
+        mysql_conn = get_db_connection_mysql()
         mysql_cursor = mysql_conn.cursor()
-    
-        # Insere os registros no MySQL (mapeamento de colunas; imagem_blob como None se não disponível)
+        print("Conectado ao MySQL com sucesso")
+
+        # 3. Processar e inserir cada registro
+        transferred_count = 0
+        
         for record in records:
+            # Mapeamento dos campos conforme especificado
+            id_collector = record[0]        # analysis_log.id_collector
+            timestamp = record[2]           # analysis_log.timestamp  
+            input_value = record[5]         # analysis_log.input_value (nome_imagem)
+            location = record[6]            # analysis_log.location
+            uv_index = record[7]            # analysis_log.uv_index
+            fitzpatrick_type = record[8]    # analysis_log.fitzpatrick_type
+            recommendations = record[9]     # analysis_log.recommendations
+            status_message = record[10]     # analysis_log.status_message
 
-            # Testes
-            print("\n")
-            print("---------------------------------------------")
-            print("Inserindo registro:", record)
-            #print("---------------------------------------------")
-            print("\n")
+            # Preparar imagem_blob (path + nome da imagem)
+            imagem_blob = None
+            if input_value:
+                # Assumindo que você tem uma variável path_imagens definida
+                # path_imagens = "/caminho/para/uploads/"  # Defina conforme necessário
+                # imagem_blob = path_imagens + input_value
+                imagem_blob = input_value  # Por enquanto, usar apenas o nome
 
-            print("id_collector",   record[0])   # id_collector
-            print("data_hora",      record[2])   # data_hora
-            print("nome_imagem",    records.record[3])   # nome_imagem
-            print("localizacao",    records.record[4])   # localizacao
-            print("indice_uv",      records.record[5])   # indice_uv
-            print("tipo_pele",      records.record[6])   # tipo_pele
-            print("recomendacoes",  records.record[7])   # recomendacoes
-            print("estado",         records.record[8])   # estado
-            print("\n")
-          
-                        
+            # Debug: mostrar dados que serão inseridos
+            print(f"\nInserindo registro {transferred_count + 1}:")
+            print(f"  id_colletor: {id_collector}")
+            print(f"  data_hora: {timestamp}")
+            print(f"  nome_imagem: {input_value}")
+            print(f"  localizacao: {location}")
+            print(f"  indice_uv: {uv_index}")
+            print(f"  tipo_pele: {fitzpatrick_type}")
+            print(f"  recomendacoes: {recommendations}")
+            print(f"  estado: {status_message}")
+            print(f"  imagem_blob: {imagem_blob}")
+
+            # Inserir no MySQL (id é auto-incremental, não precisa ser especificado)
             mysql_cursor.execute("""
                 INSERT INTO scp.analises 
-                (id_colletor, data_hora, nome_imagem, localizacao, indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
+                (id_colletor, data_hora, nome_imagem, localizacao, 
+                 indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
                 VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             """, (
-                record[0],  # id_collector
-                record[2],  # data_hora
-                record[3],  # nome_imagem
-                record[4],  # localizacao
-                record[5],  # indice_uv
-                record[6],  # tipo_pele
-                record[7],  # recomendacoes
-                record[8],  # estado (de "Mensagem")
-                ""          # imagem_blob
+                id_collector,     # analises.id_colletor
+                timestamp,        # analises.data_hora
+                input_value,      # analises.nome_imagem
+                location,         # analises.localizacao
+                uv_index,         # analises.indice_uv
+                fitzpatrick_type, # analises.tipo_pele
+                recommendations,  # analises.recomendacoes
+                status_message,   # analises.estado
+                imagem_blob       # analises.imagem_blob
             ))
-        
+            
+            transferred_count += 1
+
+        # 4. Confirmar transação MySQL
         mysql_conn.commit()
-        print(f"Transferidos {len(records)} registros para MySQL com sucesso")
-        
-        # Opcional: Apague do SQLite se tudo OK (descomente se necessário)
-        # sqlite_cursor.execute("DELETE FROM analises")
+        print(f"Transferidos {transferred_count} registros para MySQL com sucesso")
+
+        # 5. Opcional: limpar SQLite após sucesso
+        # sqlite_cursor.execute("DELETE FROM analysis_log")
         # sqlite_conn.commit()
-        # print("Registros apagados do SQLite")
-        
+        # print("Registros removidos do SQLite")
+
+        return jsonify({
+            "status": "success",
+            "message": f"{transferred_count} registros transferidos com sucesso",
+            "transferred": transferred_count
+        }), 200
+
     except sqlite3.Error as sqlite_err:
         print(f"Erro no SQLite: {sqlite_err}")
         if sqlite_conn:
             sqlite_conn.rollback()
+        return jsonify({
+            "status": "error",
+            "message": f"Erro no SQLite: {sqlite_err}",
+            "transferred": 0
+        }), 500
 
     except MySQLError as mysql_err:
         print(f"Erro no MySQL: {mysql_err}")
         if mysql_conn:
             mysql_conn.rollback()
+        return jsonify({
+            "status": "error",
+            "message": f"Erro no MySQL: {mysql_err}",
+            "transferred": 0
+        }), 500
 
     except Exception as e:
         print(f"Erro geral: {e}")
@@ -349,8 +406,14 @@ def export_db():
             mysql_conn.rollback()
         if sqlite_conn:
             sqlite_conn.rollback()
+        return jsonify({
+            "status": "error",
+            "message": f"Erro geral: {e}",
+            "transferred": 0
+        }), 500
 
     finally:
+        # Fechar conexões
         if sqlite_cursor:
             sqlite_cursor.close()
         if mysql_cursor:
@@ -358,7 +421,9 @@ def export_db():
         if mysql_conn and mysql_conn.is_connected():
             mysql_conn.close()
         if sqlite_conn:
-            sqlite_conn.close()#
+            sqlite_conn.close()
+            
+            
 # -------------------------------------------------------------------------------------------------------------------------------------
 # 
 
