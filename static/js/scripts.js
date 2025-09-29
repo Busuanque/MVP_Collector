@@ -6,8 +6,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const photoUpload = document.getElementById("photo-upload");
     const uploadButton = document.getElementById("upload-button");
     const cameraButton = document.getElementById("camera-button");
+    
+    const cameraContainer = document.querySelector(".camera-container");
     const captureButton = document.getElementById("capture-button");
     const cameraFeed = document.getElementById("camera-feed");
+
     const analyzeButton = document.getElementById("analyze-button");
     const spinner = document.getElementById("spinner");
     const resultLabel = document.getElementById("result-label");
@@ -110,6 +113,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 cameraFeed.srcObject = stream;
                 cameraFeed.classList.remove("d-none");
                 captureButton.classList.remove("d-none");
+                cameraContainer.classList.remove("d-none");
+                
                 showStatus("Posicione a mão e capture a foto", "#0080FF");
             } catch (err) {
                 console.error("Erro câmera:", err);
@@ -160,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (cameraFeed) cameraFeed.classList.add("d-none");
         if (captureButton) captureButton.classList.add("d-none");
+        if (cameraContainer) cameraContainer.classList.add("d-none");
     }
 
     // Análise
@@ -186,8 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     const res = response.data;
                     if (spinner) spinner.classList.add("d-none");
                     showStatus(res.message, res.message_color);
+
                     if (res.status === "success" && resultLabel) {
-                        resultLabel.innerHTML = res.result;
+                        resultLabel.innerHTML = res.result_html;
                         updateAnalysisCount();
                         photoUpload.value = "";
                         photoPath = null;
@@ -198,6 +205,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         analyzeButton.disabled = false;
                         analyzeButton.textContent = "🔍 Analisar e Obter Dicas";
                     }
+
                 })
                 .catch(error => {
                     console.error("Erro análise:", error);
@@ -217,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (dataMessage) dataMessage.innerHTML = '📥 Preparando exportação CSV...';
         const link = document.createElement("a");
         link.href = '/export';
-        link.download = `analises_pele_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
+        link.download = `analises_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.csv`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -226,15 +234,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Export MySQL
     window.exportDb = async function() {
-        if (dataMessage) dataMessage.innerHTML = '💾 Exportando para MySQL...';
+        const msgEl = document.getElementById("data-message");
+        if (msgEl) msgEl.textContent = '💾 Exportando para MySQL...';
+
         try {
-            const res = await axios.post('/export_db', {});
-            if (dataMessage) dataMessage.innerHTML = `✓ ${res.data.quantidade || 'Registros'} salvos no MySQL!`;
+            const response = await axios.post('/export_db', {});
+            const res = response.data;
+            if (msgEl) {
+                if (res.status === "success") {
+                    msgEl.textContent = `✓ ${res.quantidade} registro(s) salvos no MySQL!`;
+                } else {
+                    msgEl.textContent = `⚠️ ${res.message}`;
+                }
+            }
+            // Atualizar contador de análises se necessário
             updateAnalysisCount();
-        } catch (err) {
-            console.error("Erro MySQL:", err);
-            if (dataMessage) dataMessage.innerHTML = `❌ Erro: ${err.message}`;
+        } catch (error) {
+            console.error("Erro exportDb:", error);
+            if (msgEl) msgEl.textContent = `❌ Erro: ${error.message}`;
         }
-        setTimeout(() => { if (dataMessage) dataMessage.innerHTML = ''; }, 5000);
+
+        // Limpar mensagem após 1s
+        setTimeout(() => {
+            if (msgEl) msgEl.textContent = "";
+        }, 1000);
     };
+
+
+
 });

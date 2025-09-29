@@ -1,474 +1,496 @@
-from flask import Flask, render_template, request, jsonify, session
-from werkzeug.utils import secure_filename
-from dotenv import load_dotenv
-from dbconfig import DB_CONFIG, ID_COLLECTOR
+# src/main.py
+
+#python
 import os
 import json
 import time
-from datetime import datetime
 import uuid
-import requests
-import csv
+from datetime import datetime
 from io import StringIO
-from flask import make_response
-import mysql.connector
-import sqlite3
 
-# Import modules (assume created)
+from flask import Flask, render_template, request, jsonify, session, make_response
+from werkzeug.utils import secure_filename
+import sqlite3
+import mysql.connector
+from mysql.connector import Error as MySQLError
+
+from dotenv import load_dotenv
+
+from dbconfig import ID_COLLECTOR, DB_CONFIG
 from uv_index import get_uv_index
 from fitzpatrick import analyze_fitzpatrick
-from recommendations import get_recommendations
+from recommendations import get_recommendations, format_analysis_html
 
-load_dotenv()
-analises_coletadas = []  # Lista temporária para dados de análises
+# Carrega variáveis de ambiente
+ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default")
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(os.path.join(BASE_DIR, "../.env"))
 
+
+# Configs DB
+print("DB Path:", os.path.join(BASE_DIR,"analysis.db"))
+SQLITE_CONFIG = {
+    "path": os.path.join(BASE_DIR,"analysis.db")
+}
+
+MYSQL_CONFIG = {
+    "host": "localhost",
+    "port": 3306,
+    "user": "scp_user",
+    "password": "scp_user",  # Substitua pela senha real
+    "database": "scp"
+}
+
+# Configuração do Flask
 app = Flask(__name__, template_folder="../templates", static_folder="../static")
-app.config["UPLOAD_FOLDER"] = os.getenv("UPLOAD_FOLDER", "uploads")
-app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024  # 16MB max file size
-app.secret_key = os.urandom(24)  # For session management
-os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
 
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+# Criar pastas se não existirem
+app.config["UPLOAD_FOLDER"] = "uploads"
+os.makedirs(app.config["UPLOAD_FOLDER"], exist_ok=True)
+app.config["EXPORT_FOLDER"] = "exports"
+os.makedirs(app.config["EXPORT_FOLDER"], exist_ok=True)
+
+app.config["MAX_CONTENT_LENGTH"] = 16 * 1024 * 1024
+app.secret_key = os.urandom(24)
+
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
+
+
+analises_coletadas = []
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def get_db_connection_sqlite():
+    cfg = SQLITE_CONFIG
+    conn = sqlite3.connect(cfg["path"], check_same_thread=False)
+    conn.execute("PRAGMA foreign_keys = ON;")
+    return conn
+
+def get_db_connection_mysql():
+    cfg = MYSQL_CONFIG
+    return mysql.connector.connect(
+        host=cfg["host"], port=cfg["port"],
+        user=cfg["user"], password=cfg["password"],
+        database=cfg["database"], charset="utf8mb4"
+    )
 
 def init_db():
-    """Initialize or update database schema with id_collector support (MySQL preservado)."""
-    try:
-        if DB_CONFIG["type"] == "mysql":
-            conn = mysql.connector.connect(**{k: v for k, v in DB_CONFIG.items() if k != "type"})
-            cursor = conn.cursor()
-            # Check if table exists
-            cursor.execute("SHOW TABLES LIKE 'analysis_log'")
-            table_exists = cursor.fetchone()
-            if not table_exists:
-                # Create new table
-                cursor.execute("""
-                    CREATE TABLE analysis_log (
-                        id_collector VARCHAR(255),
-                        id INT AUTO_INCREMENT PRIMARY KEY,
-                        timestamp DATETIME NOT NULL,
-                        event_type VARCHAR(255) NOT NULL,
-                        input_type VARCHAR(255),
-                        input_value TEXT,
-                        location TEXT,
-                        uv_index DECIMAL(3,1),
-                        fitzpatrick_type VARCHAR(10),
-                        recommendations TEXT,
-                        status_message TEXT
-                    )
-                """)
-                conn.commit()
-                return {"status": "success", "message": "Banco MySQL criado com id_collector!"}
-            
-            # Check column
-            cursor.execute("DESCRIBE analysis_log")
-            columns = [col[0] for col in cursor.fetchall()]
-            if "id_collector" not in columns:
-                cursor.execute("ALTER TABLE analysis_log ADD COLUMN id_collector VARCHAR(255) FIRST")
-                cursor.execute("UPDATE analysis_log SET id_collector = %s WHERE id_collector IS NULL", (ID_COLLECTOR,))
-                conn.commit()
-                return {"status": "success", "message": "Banco MySQL migrado com id_collector!"}
-            return {"status": "success", "message": "Banco MySQL pronto com id_collector!"}
-        else:
-            import sqlite3
-            with sqlite3.connect(DB_CONFIG["path"]) as conn:
-                cursor = conn.cursor()
-                # Check if table exists
-                cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='analysis_log'")
-                table_exists = cursor.fetchone()
-                if not table_exists:
-                    # Create new table
-                    cursor.execute("""
-                        CREATE TABLE analysis_log (
-                            id_collector TEXT,
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            timestamp TEXT NOT NULL,
-                            event_type TEXT NOT NULL,
-                            input_type TEXT,
-                            input_value TEXT,
-                            location TEXT,
-                            uv_index REAL,
-                            fitzpatrick_type TEXT,
-                            recommendations TEXT,
-                            status_message TEXT
-                        )
-                    """)
-                    conn.commit()
-                    return {"status": "success", "message": "Banco SQLite criado com id_collector!"}
-                
-                # Check column
-                cursor.execute("PRAGMA table_info(analysis_log)")
-                columns = [col[1] for col in cursor.fetchall()]
-                if "id_collector" not in columns:
-                    cursor.execute("ALTER TABLE analysis_log ADD COLUMN id_collector TEXT")
-                    cursor.execute("UPDATE analysis_log SET id_collector = ? WHERE id_collector IS NULL", (ID_COLLECTOR,))
-                    conn.commit()
-                    return {"status": "success", "message": "Banco SQLite migrado com id_collector!"}
-                return {"status": "success", "message": "Banco SQLite pronto com id_collector!"}
-    except Exception as e:
-        return {"status": "error", "message": f"Erro no banco: {str(e)}"}
+    """Inicializa schemas em MySQL e SQLite."""
+    statuses = {}
+    statuses["mysql"] = "MySQL pronto"
+    statuses["sqlite"] = "SQLite pronto"
+
+    return statuses
 
 def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
-    """Log analysis events to DB with id_collector (MySQL preservado)."""
+    #print("Log_analisys chamada:", event_type, input_type, input_value, kwargs)
+    ts = datetime.now().isoformat()
+    recs = json.dumps(kwargs.get("recommendations", []))
+    data = (
+        ID_COLLECTOR, ts, event_type, input_type, input_value,
+        session.get("location"), kwargs.get("uv_index"),
+        kwargs.get("fitzpatrick_type"), recs, kwargs.get("status_message")
+    )
+    # SQLite
     try:
-        if DB_CONFIG["type"] == "mysql":
-            conn = mysql.connector.connect(**{k: v for k, v in DB_CONFIG.items() if k != "type"})
-            cursor = conn.cursor()
-            timestamp = datetime.now()
-            cursor.execute("""
-                INSERT INTO analysis_log 
-                (id_collector, timestamp, event_type, input_type, input_value, location, uv_index, fitzpatrick_type, recommendations, status_message)
-                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-            """, (
-                ID_COLLECTOR, timestamp, event_type, input_type, input_value,
-                session.get("location"), kwargs.get("uv_index"), kwargs.get("fitzpatrick_type"),
-                json.dumps(kwargs.get("recommendations", [])), kwargs.get("status_message")
-            ))
-            conn.commit()
-            cursor.close()
-            conn.close()
-        else:
-            import sqlite3
-            with sqlite3.connect(DB_CONFIG["path"]) as conn:
-                cursor = conn.cursor()
-                timestamp = datetime.now().isoformat()
-                cursor.execute("""
-                    INSERT INTO analysis_log 
-                    (id_collector, timestamp, event_type, input_type, input_value, location, uv_index, fitzpatrick_type, recommendations, status_message)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                """, (
-                    ID_COLLECTOR, timestamp, event_type, input_type, input_value,
-                    session.get("location"), kwargs.get("uv_index"), kwargs.get("fitzpatrick_type"),
-                    json.dumps(kwargs.get("recommendations", [])), kwargs.get("status_message")
-                ))
-                conn.commit()
-    except Exception as e:
-        print(f"Log error: {e}")
+        conn = get_db_connection_sqlite()
+        cur = conn.cursor()
+        cur.execute("""
+            INSERT INTO analysis_log
+            (id_collector,timestamp,event_type,input_type,input_value,
+             location,uv_index,fitzpatrick_type,recommendations,status_message)
+            VALUES (?,?,?,?,?,?,?,?,?,?)
+        """, data)
+        conn.commit()
+    except:
+        pass
+    finally:
+        cur.close(); conn.close()
 
 @app.route("/")
 def index():
-    """Render the main page."""
-    db_result = init_db()
+    statuses = init_db()
     session["location"] = None
     session["photo_path"] = None
-    return render_template("index.html", status_message=db_result["message"],
-                         status_color="#00B300" if db_result["status"] == "success" else "#FF0000")
+    return render_template(
+        "index.html",
+        status_message=" | ".join(statuses.values()),
+        status_color="#00B300" if all("pronto" in v.lower() for v in statuses.values()) else "#FF0000"
+    )
 
 @app.route("/detect_location", methods=["GET"])
 def detect_location():
-    """Detect user's location using ipgeolocation.io API with caching and geopy fallback."""
-    cache_file = "location_cache.json"
-    cache_duration = 3600  # 1 hour
+    cache = "location_cache.json"
     try:
-        if os.path.exists(cache_file):
-            with open(cache_file, "r") as f:
-                cache_data = json.load(f)
-            if time.time() - cache_data.get("timestamp", 0) < cache_duration:
-                location = cache_data.get("location")
-                session["location"] = location
-                log_analysis("location_detected", "cache", location)
-                return jsonify({
-                    "status": "success",
-                    "location": location,
-                    "message": "Localização carregada da cache!",
-                    "message_color": "#00B300"
-                })
-    except Exception:
+        if os.path.exists(cache):
+            with open(cache) as f:
+                c = json.load(f)
+            if time.time() - c["timestamp"] < 3600:
+                session["location"] = c["location"]
+                return jsonify(
+                    status="success",
+                    location=c["location"],
+                    message="Localização da cache!",
+                    message_color="#00B300"
+                )
+    except:
         pass
 
     try:
-        api_key = os.getenv("IPGEOLOCATION_API_KEY")
-        if not api_key:
-            raise Exception("IPGEOLOCATION_API_KEY não encontrado no ficheiro .env.")
-        url = f"https://api.ipgeolocation.io/ipgeo?apiKey={api_key}"
-        response = requests.get(url)
-        if response.status_code == 200:
-            data = response.json()
-            location = f"{data.get('city', 'Unknown')}, {data.get('country_name', 'Unknown')}"
-            session["location"] = location
-            # Cache it
-            cache_data = {"location": location, "timestamp": time.time()}
-            with open(cache_file, "w") as f:
-                json.dump(cache_data, f)
-            # Log to DB
-            log_analysis("location_detected", "api", location)
-            return jsonify({
-                "status": "success",
-                "location": location,
-                "message": "Localização detectada!",
-                "message_color": "#00B300"
-            })
-        else:
-            raise Exception(f"API error: {response.status_code}")
+        key = os.getenv("IPGEOLOCATION_API_KEY")
+        if not key:
+            raise Exception("API key faltando")
+        url = f"https://api.ipgeolocation.io/ipgeo?apiKey={key}"
+        r = json.loads(__import__("requests").get(url).text)
+        loc = f"{r.get('city')}, {r.get('country_name')}"
+        session["location"] = loc
+        with open(cache, "w") as f:
+            json.dump({"location": loc, "timestamp": time.time()}, f)
+        return jsonify(status="success", location=loc, message="Localização detectada!", message_color="#00B300")
     except Exception as e:
-        # Fallback to geopy
         try:
             from geopy.geocoders import Nominatim
-            geolocator = Nominatim(user_agent="mvp_collector")
-            # Default fallback; in production, use user-provided coords
-            location = geolocator.geocode("Lisbon, Portugal").address if geolocator else "Unknown"
-            session["location"] = location
-            log_analysis("location_detected", "fallback", location, status_message=str(e))
-            return jsonify({
-                "status": "warning",
-                "location": location,
-                "message": f"Fallback usado: {str(e)}",
-                "message_color": "#FFA500"
-            })
-        except Exception as fallback_e:
-            log_analysis("location_detected", None, None, status_message=str(fallback_e))
-            return jsonify({
-                "status": "error",
-                "location": "Unknown",
-                "message": f"Erro na detecção: {str(fallback_e)}",
-                "message_color": "#FF0000"
-            })
+            loc = Nominatim(user_agent="mvp").geocode("Lisbon, Portugal").address
+            session["location"] = loc
+            log_analysis("location_detected", "fallback", loc, status_message=str(e))
+            return jsonify(status="warning", location=loc, message=f"Fallback: {e}", message_color="#FFA500")
+        except Exception as ex:
+            log_analysis("location_failed", None, None, status_message=str(ex))
+            return jsonify(status="error", location="Unknown", message="Erro localização", message_color="#FF0000")
 
 @app.route("/upload", methods=["POST"])
 def upload_photo():
-    """Handle photo upload and save securely."""
     if "photo" not in request.files:
-        return jsonify({"status": "error", "message": "Nenhuma foto enviada.", "message_color": "#FF0000"})
+        return jsonify(status="error", message="Nenhuma foto enviada.", message_color="#FF0000")
+    f = request.files["photo"]
+    if f.filename == "" or not allowed_file(f.filename):
+        return jsonify(status="error", message="Tipo inválido.", message_color="#FF0000")
+    fn = secure_filename(f"{uuid.uuid4()}_{f.filename}")
+    path = os.path.join(app.config["UPLOAD_FOLDER"], fn)
+
+    # Logging
+    print("Salvando foto em:", path)
     
-    file = request.files["photo"]
-    if file.filename == "":
-        return jsonify({"status": "error", "message": "Nenhum ficheiro selecionado.", "message_color": "#FF0000"})
-    
-    if file and allowed_file(file.filename):
-        filename = secure_filename(f"{uuid.uuid4()}_{file.filename}")
-        filepath = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-        file.save(filepath)
-        session["photo_path"] = filepath
-        log_analysis("photo_uploaded", "file", filename)
-        return jsonify({
-            "status": "success",
-            "filename": filename,
-            "message": "Foto carregada com sucesso!",
-            "message_color": "#00B300"
-        })
-    else:
-        return jsonify({"status": "error", "message": "Tipo de ficheiro não permitido.", "message_color": "#FF0000"})
+    f.save(path)
+    session["photo_path"] = path
+    return jsonify(status="success", filename=fn, message="Foto carregada!", message_color="#00B300")
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
-    """Analyze photo for Fitzpatrick type and get UV index."""
     if not session.get("location"):
-        return jsonify({"status": "error", "message": "Localização não detectada. Detete primeiro.", "message_color": "#FF0000"})
-    
-    # CORREÇÃO: Aceitar filename do request JSON
-    data = request.get_json()
-    filename = data.get('filename') if data else None
-    
-    if filename:
-        # Construir caminho completo da foto
-        photo_path = os.path.join(app.config["UPLOAD_FOLDER"], filename)
-    else:
-        photo_path = session.get("photo_path")
-    
-    if not photo_path or not os.path.exists(photo_path):
-        return jsonify({"status": "error", "message": "Foto não encontrada.", "message_color": "#FF0000"})
-    
+        return jsonify(status="error", message="Localização não detectada.", message_color="#FF0000")
+    pp = session.get("photo_path")
+    if not pp or not os.path.exists(pp):
+        return jsonify(status="error", message="Foto não encontrada.", message_color="#FF0000")
     try:
-        # Get UV
         uv_data = get_uv_index(session["location"])
-        uv_index = uv_data.get("uv", 0) if uv_data else 0
-        
-        # Analyze skin
-        skin_type = analyze_fitzpatrick(photo_path)
-        
-        # Get recommendations
-        recs = get_recommendations(uv_index, skin_type)
-        
-        # Format result
-        result_text = f"**Índice UV:** {uv_index:.1f}\n\n"
-        result_text += f"**Tipo de Pele:** {skin_type}\n\n"
-        result_text += "**Recomendações:**\n"
-        for rec in recs[:5]:
-            result_text += f"• {rec}\n"
-        
-        # Log
-        log_analysis("analysis_completed", "photo+location", photo_path, 
-                    uv_index=uv_index, fitzpatrick_type=skin_type, recommendations=recs)
-        
+        uv_index = uv_data.get("uv", 0) if isinstance(uv_data, dict) else 0
+        st = analyze_fitzpatrick(pp)
+        recs = get_recommendations(uv_index, st)
+        html = format_analysis_html(uv_index, st, recs)
+        log_analysis("analysis_completed", "photo+location", pp, uv_index=uv_index, fitzpatrick_type=st, recommendations=recs, status_message="Análise concluída!")
         session["uv_index"] = uv_index
-        session["skin_type"] = skin_type
-        
-        return jsonify({
-            "status": "success",
-            "result": result_text,
-            "message": "Análise concluída!",
-            "message_color": "#00B300"
-        })
-        
+        session["skin_type"] = st
+        return jsonify(status="success", result_html=html, message="Análise concluída!", message_color="#00B300")
     except Exception as e:
         log_analysis("analysis_failed", None, None, status_message=str(e))
-        return jsonify({
-            "status": "error",
-            "message": f"Erro na análise: {str(e)}",
-            "message_color": "#FF0000"
-        })
-
-@app.route("/recommend", methods=["GET"])
-def recommend():
-    """Get personalized recommendations."""
-    location = session.get("location")
-    uv_index = session.get("uv_index", 0)
-    skin_type = session.get("skin_type")
-    
-    if not all([location, uv_index, skin_type]):
-        return jsonify({"status": "error", "message": "Análise incompleta. Analise primeiro.", "message_color": "#FF0000"})
-    
-    recs = get_recommendations(uv_index, skin_type)
-    log_analysis("recommendations_generated", "uv+skin", f"{uv_index}-{skin_type}", recommendations=recs)
-    
-    return jsonify({
-        "status": "success",
-        "recommendations": recs,
-        "message": "Recomendações geradas!",
-        "message_color": "#00B300"
-    })
-
-@app.route("/export", methods=["GET"])
-def export_csv():
-    """Export logs as CSV for this id_collector (preserva MySQL query)."""
-    try:
-        if DB_CONFIG["type"] == "mysql":
-            conn = mysql.connector.connect(**{k: v for k, v in DB_CONFIG.items() if k != "type"})
-            cursor = conn.cursor()
-            cursor.execute("SELECT * FROM analysis_log WHERE id_collector = %s ORDER BY timestamp", (ID_COLLECTOR,))
-            rows = cursor.fetchall()
-            columns = [desc[0] for desc in cursor.description]
-            cursor.close()
-            conn.close()
-        else:
-            import sqlite3
-            with sqlite3.connect(DB_CONFIG["path"]) as conn:
-                cursor = conn.cursor()
-                cursor.execute("SELECT * FROM analysis_log WHERE id_collector = ? ORDER BY timestamp", (ID_COLLECTOR,))
-                rows = cursor.fetchall()
-                columns = [desc[0] for desc in cursor.description]
-        
-        output = StringIO()
-        writer = csv.writer(output)
-        writer.writerow(columns)
-        writer.writerows(rows)
-        
-        response = make_response(output.getvalue())
-        response.headers["Content-Disposition"] = f"attachment; filename=analysis_{ID_COLLECTOR}.csv"
-        response.headers["Content-type"] = "text/csv"
-        return response
-    except Exception as e:
-        return jsonify({"status": "error", "message": f"Erro no export: {str(e)}", "message_color": "#FF0000"})
-
-
-#
-# 
-# 
-# 
-# 
+        return jsonify(status="error", message=f"Erro na análise: {e}", message_color="#FF0000")
 
 @app.route("/count_analyses", methods=["GET"])
 def count_analyses():
-    """Rota para contar análises no DB (corrige 404 no JS)."""
+    """
+    Retorna o total de registros no SQLite para este ID_COLLECTOR.
+    """
     try:
-        if DB_CONFIG["type"] == "mysql":
-            conn = mysql.connector.connect(**{k: v for k, v in DB_CONFIG.items() if k != "type"})
-            cursor = conn.cursor()
-            cursor.execute("SELECT COUNT(*) FROM analysis_log WHERE id_collector = %s", (ID_COLLECTOR,))
-            count = cursor.fetchone()[0]
-            cursor.close()
-            conn.close()
-        else:
-            with sqlite3.connect(DB_CONFIG["path"]) as conn:
-                cursor = conn.cursor()
-                cursor.execute("SELECT COUNT(*) FROM analysis_log WHERE id_collector = ?", (ID_COLLECTOR,))
-                count = cursor.fetchone()[0]
-        
-        return jsonify({"status": "success", "count": count})
+        conn = get_db_connection_sqlite()
+        cur = conn.cursor()
+        cur.execute(
+            "SELECT COUNT(*) FROM analysis_log"
+        )
+        count = cur.fetchone()[0]
+        cur.close()
+        conn.close()
+        return jsonify(status="success", count=count)
     except Exception as e:
-        print(f"Count error: {e}")
-        return jsonify({"status": "error", "message": str(e), "count": 0})
+        return jsonify(status="error", message=str(e), count=0)
 
+# Alias para /export
+@app.route("/export", methods=["GET"])
+def export_alias():
+    return export_csv()
+
+def log_sqlite(event, input_type=None, input_val=None, **kwargs):
+    """Grava apenas no SQLite."""
+    conn = get_db_connection_sqlite()
+    cur = conn.cursor()
+    ts = datetime.now().isoformat()
+
+    #recs = json.dumps(kwargs.get("recommendations", []))
+    # Usar ensure_ascii=True para converter Unicode
+    recs = json.dumps(kwargs.get("recommendations", []), ensure_ascii=True)
+
+    # Limpar status_message
+    status_message = kwargs.get("status_message", "")
+    if status_message:
+        # Remove caracteres não-ASCII
+        status_message = status_message.encode('ascii', 'ignore').decode('ascii')
+        status_message = ' '.join(status_message.split())  # Remove espaços extras
+
+    data = (
+        ID_COLLECTOR, ts, event, input_type, input_val,
+        session.get("location"), kwargs.get("uv_index"),
+        kwargs.get("fitzpatrick_type"), recs, status_message
+    )
+    cur.execute("""
+        INSERT INTO analysis_log
+        (id_collector,timestamp,event_type,input_type,input_value,
+         location,uv_index,fitzpatrick_type,recommendations,status_message)
+        VALUES (?,?,?,?,?,?,?,?,?,?)
+    """, data)
+    conn.commit()
+    cur.close()
+    conn.close()
+
+'''
+@app.route("/export_csv", methods=["GET"])
+def export_csv():
+    import csv
+
+    """Lê do SQLite e gera CSV."""
+    conn = get_db_connection_sqlite()
+    cur = conn.cursor()
+    cur.execute(
+        "SELECT * FROM analysis_log"
+    )
+    rows = cur.fetchall()
+    cols = [d[0] for d in cur.description]
+
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(cols)
+    writer.writerows(rows)
+    csv_data = output.getvalue()
+
+    cur.close()
+    conn.close()
+
+    # Gera um identificador único baseado em UUID
+    unique_hash = uuid.uuid4().hex
+    # Monta o nome do arquivo iniciando com o ID_COLLECTOR
+    temp_filename = f"{ID_COLLECTOR}_{unique_hash}.csv"
+
+    temp_filepath = os.path.join(app.config["EXPORT_FOLDER"], temp_filename)
+    print("-------------------------------------------------------------------------")
+    print(app.config["EXPORT_FOLDER"])
+    print("Salvando CSV em:", temp_filepath)
+
+    response = make_response(csv_data)
+    response.headers["Content-Disposition"] = f"attachment; filename={temp_filepath}"
+    response.headers["Content-Type"] = "text/csv; charset=utf-8"
+    return response
+'''
+from io import StringIO
+import uuid, os, csv
+from flask import make_response
+
+@app.route("/export_csv", methods=["GET"])
+def export_csv():
+    # 1. Lê do SQLite e prepara CSV em memória
+    conn = get_db_connection_sqlite()
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM analysis_log")
+    rows = cur.fetchall()
+    cols = [d[0] for d in cur.description]
+    cur.close()
+    conn.close()
+
+    output = StringIO()
+    writer = csv.writer(output)
+    writer.writerow(cols)
+    writer.writerows(rows)
+    csv_data = output.getvalue()
+
+    # 2. Gera nome único e caminho completo
+    unique_hash = uuid.uuid4().hex
+    filename = f"{ID_COLLECTOR}_{unique_hash}.csv"
+    full_path = os.path.join(app.config["EXPORT_FOLDER"], filename)
+    print("--> Salvando CSV em:", full_path)
+
+    # 3. Grava o CSV no diretório de export
+    with open(full_path, "w", encoding="utf-8", newline="") as f:
+        f.write(csv_data)
+
+    # 4. Retorna o CSV como download, usando apenas o nome do arquivo
+    response = make_response(csv_data)
+    response.headers["Content-Disposition"] = f"attachment; filename={filename}"
+    response.headers["Content-Type"] = "text/csv; charset=utf-8"
+    return response
+
+
+
+#
+# -------------------------------------------------------------------------------------------------------------------------------------
+#
 @app.route("/export_db", methods=["POST"])
 def export_db():
-    """Export current session data to MySQL database."""
-    try:
-        # Get session data
-        session_data = {
-            'location': session.get('location'),
-            'photo_path': session.get('photo_path'),
-            'uv_index': session.get('uv_index'),
-            'skin_type': session.get('skin_type')
-        }
-        
-        if not any(session_data.values()):
-            return jsonify({
-                "status": "warning", 
-                "message": "Nenhum dado de sessão para exportar",
-                "quantidade": 0
-            })
+    sqlite_conn = None
+    mysql_conn = None
+    sqlite_cursor = None
+    mysql_cursor = None
 
-        # Log the session data to database
-        log_analysis(
-            "session_export", 
-            "manual_export", 
-            json.dumps(session_data),
-            **session_data
-        )
+    try:
+        # 1. Conectar ao SQLite e ler registros
+        sqlite_conn = get_db_connection_sqlite()
+        sqlite_cursor = sqlite_conn.cursor()
         
+        # Selecionar campos específicos na ordem correta
+        sqlite_cursor.execute("""
+            SELECT id_collector, id, timestamp, event_type, input_type, 
+                   input_value, location, uv_index, fitzpatrick_type, 
+                   recommendations, status_message
+            FROM analysis_log
+        """)
+        records = sqlite_cursor.fetchall()
+
+        if not records:
+            print("Nenhum registro encontrado no SQLite")
+            return jsonify({
+                "status": "warning",
+                "message": "Nenhum registro encontrado no SQLite",
+                "transferred": 0
+            }), 200
+
+        # 2. Conectar ao MySQL
+        #print("Conectando ao MySQL...")
+        mysql_conn = get_db_connection_mysql()
+        mysql_cursor = mysql_conn.cursor()
+        #print("Conectado ao MySQL com sucesso")
+
+        # 3. Processar e inserir cada registro
+        transferred_count = 0
+        
+        for record in records:
+            # Mapeamento dos campos conforme especificado
+            id_collector = record[0]        # analysis_log.id_collector
+            timestamp = record[2]           # analysis_log.timestamp  
+            input_value = record[5]         # analysis_log.input_value (nome_imagem)
+            location = record[6]            # analysis_log.location
+            uv_index = record[7]            # analysis_log.uv_index
+            fitzpatrick_type = record[8]    # analysis_log.fitzpatrick_type
+            recommendations = record[9]     # analysis_log.recommendations
+            status_message = record[10]     # analysis_log.status_message
+
+            # Preparar imagem_blob (path + nome da imagem)
+            imagem_blob = None
+            if input_value:
+                #image_path = os.path.join(app.config["UPLOAD_FOLDER"], input_value)
+                print("UPLOAD_FOLDER:", app.config["UPLOAD_FOLDER"])
+                try:
+                    with open(input_value, "rb") as f:
+                        imagem_blob = f.read()
+                except Exception as e:
+                    print(f"Falha ao ler imagem: {e}")
+                    imagem_blob = None
+
+            '''
+            # Debug: mostrar dados que serão inseridos
+            print("----------------------------------------------------------------")
+            print(f"\nInserindo registro {transferred_count + 1}:")
+            print(f"  id_colletor: {id_collector}")
+            print(f"  data_hora: {timestamp}")
+            print(f"  nome_imagem: {input_value}")
+            print(f"  localizacao: {location}")
+            print(f"  indice_uv: {uv_index}")
+            print(f"  tipo_pele: {fitzpatrick_type}")
+            print(f"  recomendacoes: {recommendations}")
+            print(f"  estado: {status_message}")
+            print(f"  imagem_blob: {imagem_blob}")
+            print("----------------------------------------------------------------")
+            '''
+
+            # Inserir no MySQL (id é auto-incremental, não precisa ser especificado)
+            mysql_cursor.execute("""
+                INSERT INTO scp.analises 
+                (id_colletor, data_hora, nome_imagem, localizacao, 
+                 indice_uv, tipo_pele, recomendacoes, estado, imagem_blob)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+            """, (
+                id_collector,     # analises.id_colletor
+                timestamp,        # analises.data_hora
+                input_value,      # analises.nome_imagem
+                location,         # analises.localizacao
+                uv_index,         # analises.indice_uv
+                fitzpatrick_type, # analises.tipo_pele
+                recommendations,  # analises.recomendacoes
+                status_message,   # analises.estado
+                imagem_blob       # analises.imagem_blob
+            ))
+            
+            transferred_count += 1
+
+        # 4. Confirmar transação MySQL
+        mysql_conn.commit()
+        print(f"--> Transferidos {transferred_count} registros para MySQL com sucesso")
+
+        # 5. limpar SQLite após sucesso
+        sqlite_cursor.execute("DELETE FROM analysis_log")
+        sqlite_conn.commit()
+
         return jsonify({
             "status": "success",
-            "message": "Dados da sessão exportados para MySQL",
-            "quantidade": 1
-        })
-        
-    except Exception as e:
+            "message": f"{transferred_count} registros transferidos com sucesso",
+            "transferred": transferred_count
+        }), 200
+
+    except sqlite3.Error as sqlite_err:
+        print(f"Erro no SQLite: {sqlite_err}")
+        if sqlite_conn:
+            sqlite_conn.rollback()
         return jsonify({
-            "status": "error", 
-            "message": f"Erro ao exportar: {str(e)}",
-            "quantidade": 0
-        })
+            "status": "error",
+            "message": f"Erro no SQLite: {sqlite_err}",
+            "transferred": 0
+        }), 500
 
-# ==== ROTAS PARA SUPRIMIR ERROS DE CHROME DEVTOOLS ====
-@app.route('/.well-known/appspecific/com.chrome.devtools.json')
-def chrome_devtools():
-    """Suppress Chrome DevTools 404 error."""
-    return jsonify({
-        "name": "MVP Collector",
-        "version": "1.0.0",
-        "devtools": False
-    })
+    except MySQLError as mysql_err:
+        print(f"Erro no MySQL: {mysql_err}")
+        if mysql_conn:
+            mysql_conn.rollback()
+        return jsonify({
+            "status": "error",
+            "message": f"Erro no MySQL: {mysql_err}",
+            "transferred": 0
+        }), 500
 
-@app.route('/manifest.json')
-def manifest():
-    """Basic web app manifest."""
-    return jsonify({
-        "name": "MVP Collector - Proteção Solar",
-        "short_name": "MVP Collector",
-        "description": "Aplicação para análise de proteção solar baseada em IA",
-        "start_url": "/",
-        "display": "standalone",
-        "background_color": "#ffffff",
-        "theme_color": "#218096",
-        "icons": [
-            {
-                "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIGZpbGw9IiMyMTgwOTYiLz48L3N2Zz4=",
-                "sizes": "192x192",
-                "type": "image/svg+xml"
-            }
-        ]
-    })
+    except Exception as e:
+        print(f"Erro geral: {e}")
+        if mysql_conn:
+            mysql_conn.rollback()
+        if sqlite_conn:
+            sqlite_conn.rollback()
+        return jsonify({
+            "status": "error",
+            "message": f"Erro geral: {e}",
+            "transferred": 0
+        }), 500
 
-@app.route('/favicon.ico')
-def favicon():
-    """Serve favicon or return 204 No Content."""
-    return '', 204
+    finally:
+        # Fechar conexões
+        if sqlite_cursor:
+            sqlite_cursor.close()
+        if mysql_cursor:
+            mysql_cursor.close()
+        if mysql_conn and mysql_conn.is_connected():
+            mysql_conn.close()
+        if sqlite_conn:
+            sqlite_conn.close()
+            
+            
+# -------------------------------------------------------------------------------------------------------------------------------------
+# 
 
 
-
-# ========== Flask standalone for Windows ===================================
-if __name__ == '__main__':
-    print("Iniciando Flask em http://localhost:5000...")  # Para debug
-    app.run(host='0.0.0.0', port=5000, debug=True)
+if __name__ == "__main__":
+    print("Iniciando Flask em http://localhost:5000...")
+    app.run(host="0.0.0.0", port=5000, debug=True)

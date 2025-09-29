@@ -3,30 +3,30 @@ import os
 from datetime import datetime
 
 def query_db():
-    """Query the analysis_log table and display each analysis with its unique image name."""
+    """Query the analises table and display each analysis with its unique image name."""
     db_path = "E:\\OneDrive\\02. IPCB\\Prototipo\\MVP_V2\\analysis.db"
     try:
         # Connect to the database
         with sqlite3.connect(db_path) as conn:
             cursor = conn.cursor()
             # Verify table exists and get schema
-            cursor.execute("PRAGMA table_info(analysis_log)")
+            cursor.execute("PRAGMA table_info(analises)")
             columns = [col[1] for col in cursor.fetchall()]
             expected_columns = [
                 "id", "timestamp", "event_type", "input_type", "input_value",
                 "location", "uv_index", "fitzpatrick_type", "recommendations", "status_message"
             ]
             if not all(col in columns for col in expected_columns):
-                print("Erro: O esquema da tabela analysis_log está incompleto. Colunas esperadas:", expected_columns)
+                print("Erro: O esquema da tabela analises está incompleto. Colunas esperadas:", expected_columns)
                 print("Colunas encontradas:", columns)
                 return
 
             # Query all rows
-            cursor.execute("SELECT * FROM analysis_log WHERE event_type = 'ANALYSIS'")
+            cursor.execute("SELECT * FROM analises WHERE event_type = 'ANALYSIS'")
             rows = cursor.fetchall()
 
             if not rows:
-                print("Nenhum registo de análise encontrado na tabela analysis_log.")
+                print("Nenhum registo de análise encontrado na tabela analises.")
                 return
 
             # Print header
