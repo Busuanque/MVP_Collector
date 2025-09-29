@@ -6,5 +6,5 @@ __pycache__/
 .env
 analysis.db
 location_cache.json
-Uploads/
+uploads/
 exports/

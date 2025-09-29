@@ -28,7 +28,7 @@ load_dotenv(os.path.join(BASE_DIR, "../.env"))
 
 
 # Configs DB
-print("DB Path:", os.path.join(BASE_DIR,"analysis.db"))
+#print("DB Path:", os.path.join(BASE_DIR,"analysis.db"))
 SQLITE_CONFIG = {
     "path": os.path.join(BASE_DIR,"analysis.db")
 }
@@ -83,15 +83,38 @@ def init_db():
 
     return statuses
 
+import re
+def clean_text(text):
+    """Remove emojis e escapes Unicode, mantendo texto legível."""
+    # Remove emojis e símbolos Unicode
+    text = re.sub(r'[\U0001F000-\U0001F9FF\u2600-\u26FF\u2700-\u27BF\uFE0F]', '', str(text))
+    # Remove escapes como \uXXXX
+    text = text.encode('utf-8').decode('unicode_escape')
+    # Remove espaços duplicados
+    return ' '.join(text.split())
+
 def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
     #print("Log_analisys chamada:", event_type, input_type, input_value, kwargs)
     ts = datetime.now().isoformat()
-    recs = json.dumps(kwargs.get("recommendations", []))
+    
+    # Limpa cada recomendação antes de serializar
+    raw_recs = kwargs.get("recommendations", [])
+    cleaned_recs = [ clean_text(rec) for rec in raw_recs ]
+    recs_json = json.dumps(cleaned_recs, ensure_ascii=False)
+    
     data = (
-        ID_COLLECTOR, ts, event_type, input_type, input_value,
-        session.get("location"), kwargs.get("uv_index"),
-        kwargs.get("fitzpatrick_type"), recs, kwargs.get("status_message")
+        ID_COLLECTOR, 
+        ts, 
+        event_type, 
+        input_type, 
+        input_value,
+        session.get("location"), 
+        kwargs.get("uv_index"),
+        kwargs.get("fitzpatrick_type"), 
+        recs_json, 
+        kwargs.get("status_message")
     )
+
     # SQLite
     try:
         conn = get_db_connection_sqlite()
@@ -170,7 +193,7 @@ def upload_photo():
     path = os.path.join(app.config["UPLOAD_FOLDER"], fn)
 
     # Logging
-    print("Salvando foto em:", path)
+    #print("Salvando foto em:", path)
     
     f.save(path)
     session["photo_path"] = path
@@ -252,44 +275,7 @@ def log_sqlite(event, input_type=None, input_val=None, **kwargs):
     cur.close()
     conn.close()
 
-'''
-@app.route("/export_csv", methods=["GET"])
-def export_csv():
-    import csv
 
-    """Lê do SQLite e gera CSV."""
-    conn = get_db_connection_sqlite()
-    cur = conn.cursor()
-    cur.execute(
-        "SELECT * FROM analysis_log"
-    )
-    rows = cur.fetchall()
-    cols = [d[0] for d in cur.description]
-
-    output = StringIO()
-    writer = csv.writer(output)
-    writer.writerow(cols)
-    writer.writerows(rows)
-    csv_data = output.getvalue()
-
-    cur.close()
-    conn.close()
-
-    # Gera um identificador único baseado em UUID
-    unique_hash = uuid.uuid4().hex
-    # Monta o nome do arquivo iniciando com o ID_COLLECTOR
-    temp_filename = f"{ID_COLLECTOR}_{unique_hash}.csv"
-
-    temp_filepath = os.path.join(app.config["EXPORT_FOLDER"], temp_filename)
-    print("-------------------------------------------------------------------------")
-    print(app.config["EXPORT_FOLDER"])
-    print("Salvando CSV em:", temp_filepath)
-
-    response = make_response(csv_data)
-    response.headers["Content-Disposition"] = f"attachment; filename={temp_filepath}"
-    response.headers["Content-Type"] = "text/csv; charset=utf-8"
-    return response
-'''
 from io import StringIO
 import uuid, os, csv
 from flask import make_response
@@ -315,7 +301,7 @@ def export_csv():
     unique_hash = uuid.uuid4().hex
     filename = f"{ID_COLLECTOR}_{unique_hash}.csv"
     full_path = os.path.join(app.config["EXPORT_FOLDER"], filename)
-    print("--> Salvando CSV em:", full_path)
+    #print("--> Salvando CSV em:", full_path)
 
     # 3. Grava o CSV no diretório de export
     with open(full_path, "w", encoding="utf-8", newline="") as f:
@@ -374,7 +360,7 @@ def export_db():
             # Mapeamento dos campos conforme especificado
             id_collector = record[0]        # analysis_log.id_collector
             timestamp = record[2]           # analysis_log.timestamp  
-            input_value = record[5]         # analysis_log.input_value (nome_imagem)
+            input_value = record[5] or ""   # analysis_log.input_value (nome_imagem)
             location = record[6]            # analysis_log.location
             uv_index = record[7]            # analysis_log.uv_index
             fitzpatrick_type = record[8]    # analysis_log.fitzpatrick_type
@@ -385,7 +371,7 @@ def export_db():
             imagem_blob = None
             if input_value:
                 #image_path = os.path.join(app.config["UPLOAD_FOLDER"], input_value)
-                print("UPLOAD_FOLDER:", app.config["UPLOAD_FOLDER"])
+                #print("UPLOAD_FOLDER:", app.config["UPLOAD_FOLDER"])
                 try:
                     with open(input_value, "rb") as f:
                         imagem_blob = f.read()
@@ -485,6 +471,7 @@ def export_db():
             mysql_conn.close()
         if sqlite_conn:
             sqlite_conn.close()
+        #####
             
             
 # -------------------------------------------------------------------------------------------------------------------------------------
