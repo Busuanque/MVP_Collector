@@ -1,9 +1,9 @@
 ('E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\dist\\main.exe',
- False,
+ True,
  False,
  False,
  'E:\\OneDrive\\02. '
- 'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-windowed.ico',
+ 'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PyInstaller\\bootloader\\images\\icon-console.ico',
  None,
  False,
  False,
@@ -82,13 +82,13 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\python310.dll',
    'BINARY'),
-  ('numpy\\.libs\\libopenblas64__v0.3.21-gcc_10_3_0.dll',
+  ('numpy.libs\\msvcp140-263139962577ecda4cd9469ca360a746.dll',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\.libs\\libopenblas64__v0.3.21-gcc_10_3_0.dll',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy.libs\\msvcp140-263139962577ecda4cd9469ca360a746.dll',
    'BINARY'),
-  ('cv2\\opencv_videoio_ffmpeg4100_64.dll',
+  ('numpy.libs\\libscipy_openblas64_-13e2df515630b4a41f92893938845698.dll',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\opencv_videoio_ffmpeg4100_64.dll',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy.libs\\libscipy_openblas64_-13e2df515630b4a41f92893938845698.dll',
    'BINARY'),
   ('_decimal.pyd',
    'C:\\Program '
@@ -146,10 +146,6 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\_asyncio.pyd',
    'EXTENSION'),
-  ('_mysql_connector.cp310-win_amd64.pyd',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\_mysql_connector.cp310-win_amd64.pyd',
-   'EXTENSION'),
   ('charset_normalizer\\md__mypyc.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\md__mypyc.cp310-win_amd64.pyd',
@@ -158,33 +154,25 @@
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\charset_normalizer\\md.cp310-win_amd64.pyd',
    'EXTENSION'),
-  ('_uuid.pyd',
+  ('_elementtree.pyd',
    'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\_uuid.pyd',
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\_elementtree.pyd',
    'EXTENSION'),
-  ('PIL\\_webp.cp310-win_amd64.pyd',
+  ('numpy\\_core\\_multiarray_tests.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_webp.cp310-win_amd64.pyd',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_core\\_multiarray_tests.cp310-win_amd64.pyd',
    'EXTENSION'),
-  ('PIL\\_imagingtk.cp310-win_amd64.pyd',
+  ('numpy\\_core\\_multiarray_umath.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_imagingtk.cp310-win_amd64.pyd',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\_core\\_multiarray_umath.cp310-win_amd64.pyd',
    'EXTENSION'),
-  ('PIL\\_imagingcms.cp310-win_amd64.pyd',
+  ('win32\\win32pdh.pyd',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_imagingcms.cp310-win_amd64.pyd',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\win32\\win32pdh.pyd',
    'EXTENSION'),
-  ('numpy\\core\\_multiarray_tests.cp310-win_amd64.pyd',
+  ('numpy\\linalg\\_umath_linalg.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_multiarray_tests.cp310-win_amd64.pyd',
-   'EXTENSION'),
-  ('numpy\\core\\_multiarray_umath.cp310-win_amd64.pyd',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\core\\_multiarray_umath.cp310-win_amd64.pyd',
-   'EXTENSION'),
-  ('numpy\\linalg\\lapack_lite.cp310-win_amd64.pyd',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\linalg\\lapack_lite.cp310-win_amd64.pyd',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\linalg\\_umath_linalg.cp310-win_amd64.pyd',
    'EXTENSION'),
   ('numpy\\random\\mtrand.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
@@ -222,41 +210,57 @@
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\random\\_common.cp310-win_amd64.pyd',
    'EXTENSION'),
-  ('numpy\\fft\\_pocketfft_internal.cp310-win_amd64.pyd',
+  ('numpy\\fft\\_pocketfft_umath.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\fft\\_pocketfft_internal.cp310-win_amd64.pyd',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\fft\\_pocketfft_umath.cp310-win_amd64.pyd',
    'EXTENSION'),
-  ('numpy\\linalg\\_umath_linalg.cp310-win_amd64.pyd',
+  ('PIL\\_webp.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy\\linalg\\_umath_linalg.cp310-win_amd64.pyd',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_webp.cp310-win_amd64.pyd',
+   'EXTENSION'),
+  ('PIL\\_imagingtk.cp310-win_amd64.pyd',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_imagingtk.cp310-win_amd64.pyd',
+   'EXTENSION'),
+  ('PIL\\_imagingcms.cp310-win_amd64.pyd',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_imagingcms.cp310-win_amd64.pyd',
    'EXTENSION'),
   ('PIL\\_imagingmath.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_imagingmath.cp310-win_amd64.pyd',
    'EXTENSION'),
+  ('_cffi_backend.cp310-win_amd64.pyd',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\_cffi_backend.cp310-win_amd64.pyd',
+   'EXTENSION'),
   ('PIL\\_imaging.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PIL\\_imaging.cp310-win_amd64.pyd',
+   'EXTENSION'),
+  ('_mysql_connector.cp310-win_amd64.pyd',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\_mysql_connector.cp310-win_amd64.pyd',
    'EXTENSION'),
   ('_sqlite3.pyd',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\_sqlite3.pyd',
    'EXTENSION'),
-  ('cv2\\cv2.pyd',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\cv2.pyd',
-   'EXTENSION'),
-  ('_elementtree.pyd',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\_elementtree.pyd',
-   'EXTENSION'),
   ('markupsafe\\_speedups.cp310-win_amd64.pyd',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\markupsafe\\_speedups.cp310-win_amd64.pyd',
    'EXTENSION'),
+  ('_uuid.pyd',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\_uuid.pyd',
+   'EXTENSION'),
   ('VCRUNTIME140.dll',
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('VCRUNTIME140_1.dll',
+   'C:\\Program '
+   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\VCRUNTIME140_1.dll',
    'BINARY'),
   ('libcrypto-1_1.dll',
    'C:\\Program '
@@ -270,6 +274,10 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\libffi-7.dll',
    'BINARY'),
+  ('pywin32_system32\\pywintypes310.dll',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\pywin32_system32\\pywintypes310.dll',
+   'BINARY'),
   ('libmysql.dll',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\libmysql.dll',
@@ -278,99 +286,15 @@
    'C:\\Program '
    'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\DLLs\\sqlite3.dll',
    'BINARY'),
-  ('python3.dll',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\python3.dll',
-   'BINARY'),
-  ('libssl-3-x64.dll',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\libssl-3-x64.dll',
-   'BINARY'),
-  ('VCRUNTIME140_1.dll',
-   'C:\\Program '
-   'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\VCRUNTIME140_1.dll',
-   'BINARY'),
   ('libcrypto-3-x64.dll',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\libcrypto-3-x64.dll',
    'BINARY'),
   ('MSVCP140.dll', 'C:\\WINDOWS\\system32\\MSVCP140.dll', 'BINARY'),
-  ('src\\.env',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\.env',
-   'DATA'),
-  ('src\\__pycache__\\database.cpython-310.pyc',
+  ('libssl-3-x64.dll',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\database.cpython-310.pyc',
-   'DATA'),
-  ('src\\__pycache__\\database.cpython-313.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\database.cpython-313.pyc',
-   'DATA'),
-  ('src\\__pycache__\\database_export.cpython-310.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\database_export.cpython-310.pyc',
-   'DATA'),
-  ('src\\__pycache__\\dbconfig.cpython-310.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\dbconfig.cpython-310.pyc',
-   'DATA'),
-  ('src\\__pycache__\\fitzpatrick.cpython-310.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\fitzpatrick.cpython-310.pyc',
-   'DATA'),
-  ('src\\__pycache__\\fitzpatrick.cpython-313.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\fitzpatrick.cpython-313.pyc',
-   'DATA'),
-  ('src\\__pycache__\\recommendations.cpython-310.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\recommendations.cpython-310.pyc',
-   'DATA'),
-  ('src\\__pycache__\\uv_index.cpython-310.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\uv_index.cpython-310.pyc',
-   'DATA'),
-  ('src\\__pycache__\\uv_index.cpython-313.pyc',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\src\\__pycache__\\uv_index.cpython-313.pyc',
-   'DATA'),
-  ('src\\dbconfig.py',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\dbconfig.py',
-   'DATA'),
-  ('src\\fitzpatrick.py',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\fitzpatrick.py',
-   'DATA'),
-  ('src\\main.py',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\main.py',
-   'DATA'),
-  ('src\\queryDB.py',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\queryDB.py',
-   'DATA'),
-  ('src\\recommendations.py',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\recommendations.py',
-   'DATA'),
-  ('src\\utils.py',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\utils.py',
-   'DATA'),
-  ('src\\uv_index.py',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\src\\uv_index.py',
-   'DATA'),
-  ('static\\css\\styles.css',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\static\\css\\styles.css',
-   'DATA'),
-  ('static\\js\\scripts.js',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\static\\js\\scripts.js',
-   'DATA'),
-  ('static\\js\\service-worker.js',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\static\\js\\service-worker.js',
-   'DATA'),
-  ('static\\manifest.json',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\static\\manifest.json',
-   'DATA'),
-  ('templates\\index.html',
-   'E:\\OneDrive\\02. IPCB\\Prototipo\\SCP_Collector\\templates\\index.html',
-   'DATA'),
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\libssl-3-x64.dll',
+   'BINARY'),
   ('certifi\\cacert.pem',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\certifi\\cacert.pem',
@@ -379,134 +303,50 @@
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\certifi\\py.typed',
    'DATA'),
-  ('cv2\\load_config_py3.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\load_config_py3.py',
-   'DATA'),
-  ('cv2\\config-3.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\config-3.py',
-   'DATA'),
-  ('cv2\\config.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\config.py',
-   'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\RECORD',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\RECORD',
-   'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\WHEEL',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\WHEEL',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\REQUESTED',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\REQUESTED',
    'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\LICENSE',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\LICENSE',
+   'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\METADATA',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\METADATA',
+   'DATA'),
+  ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\top_level.txt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\top_level.txt',
    'DATA'),
   ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\INSTALLER',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\INSTALLER',
    'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\LICENSE',
+  ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\WHEEL',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\LICENSE',
-   'DATA'),
-  ('setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\top_level.txt',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\top_level.txt',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\importlib_metadata-8.0.0.dist-info\\WHEEL',
    'DATA'),
   ('setuptools\\_vendor\\jaraco\\text\\Lorem ipsum.txt',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\setuptools\\_vendor\\jaraco\\text\\Lorem '
    'ipsum.txt',
    'DATA'),
-  ('flask-3.0.3.dist-info\\LICENSE.txt',
+  ('click-8.3.0.dist-info\\RECORD',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\LICENSE.txt',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.3.0.dist-info\\RECORD',
    'DATA'),
   ('werkzeug-3.1.3.dist-info\\LICENSE.txt',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\LICENSE.txt',
    'DATA'),
-  ('click-8.2.1.dist-info\\METADATA',
+  ('numpy-2.2.6.dist-info\\INSTALLER',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.2.1.dist-info\\METADATA',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\METADATA',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\METADATA',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\METADATA',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\METADATA',
-   'DATA'),
-  ('flask-3.0.3.dist-info\\RECORD',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\RECORD',
-   'DATA'),
-  ('flask-3.0.3.dist-info\\INSTALLER',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\INSTALLER',
-   'DATA'),
-  ('flask-3.0.3.dist-info\\entry_points.txt',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\entry_points.txt',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\RECORD',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\INSTALLER',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\INSTALLER',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
-   'DATA'),
-  ('flask-3.0.3.dist-info\\WHEEL',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\WHEEL',
-   'DATA'),
-  ('werkzeug-3.1.3.dist-info\\RECORD',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\RECORD',
-   'DATA'),
-  ('click-8.2.1.dist-info\\WHEEL',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.2.1.dist-info\\WHEEL',
-   'DATA'),
-  ('flask-3.0.3.dist-info\\REQUESTED',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\REQUESTED',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\INSTALLER',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\INSTALLER',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
-   'DATA'),
-  ('click-8.2.1.dist-info\\RECORD',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.2.1.dist-info\\RECORD',
-   'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\WHEEL',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\WHEEL',
-   'DATA'),
-  ('itsdangerous-2.2.0.dist-info\\WHEEL',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\INSTALLER',
    'DATA'),
   ('flask-3.0.3.dist-info\\METADATA',
    'E:\\OneDrive\\02. '
@@ -516,61 +356,133 @@
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\METADATA',
    'DATA'),
-  ('MarkupSafe-3.0.2.dist-info\\RECORD',
+  ('click-8.3.0.dist-info\\METADATA',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\RECORD',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.3.0.dist-info\\METADATA',
+   'DATA'),
+  ('numpy-2.2.6.dist-info\\METADATA',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\METADATA',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\WHEEL',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\WHEEL',
+   'DATA'),
+  ('flask-3.0.3.dist-info\\entry_points.txt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\entry_points.txt',
    'DATA'),
   ('werkzeug-3.1.3.dist-info\\WHEEL',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\WHEEL',
    'DATA'),
-  ('click-8.2.1.dist-info\\licenses\\LICENSE.txt',
+  ('itsdangerous-2.2.0.dist-info\\WHEEL',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.2.1.dist-info\\licenses\\LICENSE.txt',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\WHEEL',
    'DATA'),
-  ('click-8.2.1.dist-info\\INSTALLER',
+  ('numpy-2.2.6.dist-info\\DELVEWHEEL',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.2.1.dist-info\\INSTALLER',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\DELVEWHEEL',
+   'DATA'),
+  ('numpy-2.2.6.dist-info\\entry_points.txt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\entry_points.txt',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\METADATA',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\METADATA',
+   'DATA'),
+  ('numpy-2.2.6.dist-info\\REQUESTED',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\REQUESTED',
+   'DATA'),
+  ('numpy-2.2.6.dist-info\\RECORD',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\RECORD',
+   'DATA'),
+  ('numpy-2.2.6.dist-info\\LICENSE.txt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\RECORD',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\RECORD',
+   'DATA'),
+  ('click-8.3.0.dist-info\\licenses\\LICENSE.txt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.3.0.dist-info\\licenses\\LICENSE.txt',
+   'DATA'),
+  ('click-8.3.0.dist-info\\WHEEL',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.3.0.dist-info\\WHEEL',
+   'DATA'),
+  ('flask-3.0.3.dist-info\\REQUESTED',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\REQUESTED',
+   'DATA'),
+  ('click-8.3.0.dist-info\\INSTALLER',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.3.0.dist-info\\INSTALLER',
+   'DATA'),
+  ('itsdangerous-2.2.0.dist-info\\INSTALLER',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\INSTALLER',
+   'DATA'),
+  ('flask-3.0.3.dist-info\\LICENSE.txt',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\LICENSE.txt',
+   'DATA'),
+  ('flask-3.0.3.dist-info\\WHEEL',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\WHEEL',
+   'DATA'),
+  ('flask-3.0.3.dist-info\\RECORD',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\RECORD',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\INSTALLER',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\INSTALLER',
+   'DATA'),
+  ('werkzeug-3.1.3.dist-info\\METADATA',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\METADATA',
+   'DATA'),
+  ('numpy-2.2.6.dist-info\\WHEEL',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\numpy-2.2.6.dist-info\\WHEEL',
+   'DATA'),
+  ('MarkupSafe-3.0.2.dist-info\\INSTALLER',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\INSTALLER',
+   'DATA'),
+  ('click-8.3.0.dist-info\\REQUESTED',
+   'E:\\OneDrive\\02. '
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\click-8.3.0.dist-info\\REQUESTED',
    'DATA'),
   ('MarkupSafe-3.0.2.dist-info\\top_level.txt',
    'E:\\OneDrive\\02. '
    'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\MarkupSafe-3.0.2.dist-info\\top_level.txt',
    'DATA'),
-  ('cv2\\__init__.py',
+  ('flask-3.0.3.dist-info\\INSTALLER',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\__init__.py',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\flask-3.0.3.dist-info\\INSTALLER',
    'DATA'),
-  ('cv2\\version.py',
+  ('werkzeug-3.1.3.dist-info\\RECORD',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\version.py',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\werkzeug-3.1.3.dist-info\\RECORD',
    'DATA'),
-  ('cv2\\utils\\__init__.py',
+  ('itsdangerous-2.2.0.dist-info\\RECORD',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\utils\\__init__.py',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\RECORD',
    'DATA'),
-  ('cv2\\typing\\__init__.py',
+  ('itsdangerous-2.2.0.dist-info\\LICENSE.txt',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\typing\\__init__.py',
-   'DATA'),
-  ('cv2\\misc\\version.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\misc\\version.py',
-   'DATA'),
-  ('cv2\\misc\\__init__.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\misc\\__init__.py',
-   'DATA'),
-  ('cv2\\mat_wrapper\\__init__.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\mat_wrapper\\__init__.py',
-   'DATA'),
-  ('cv2\\gapi\\__init__.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\gapi\\__init__.py',
-   'DATA'),
-  ('cv2\\data\\__init__.py',
-   'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\cv2\\data\\__init__.py',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\itsdangerous-2.2.0.dist-info\\LICENSE.txt',
    'DATA'),
   ('base_library.zip',
    'E:\\OneDrive\\02. '
@@ -579,10 +491,10 @@
  [],
  False,
  False,
- 1758905414,
- [('runw.exe',
+ 1759223914,
+ [('run.exe',
    'E:\\OneDrive\\02. '
-   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\runw.exe',
+   'IPCB\\Prototipo\\SCP_Collector\\.venv\\lib\\site-packages\\PyInstaller\\bootloader\\Windows-64bit-intel\\run.exe',
    'EXECUTABLE')],
  'C:\\Program '
  'Files\\WindowsApps\\PythonSoftwareFoundation.Python.3.10_3.10.3056.0_x64__qbz5n2kfra8p0\\python310.dll')

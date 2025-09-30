@@ -1,10 +1,14 @@
 __pycache__/
-*.pyc
 .venv/
+uploads/
+exports/
+dist/
+build/
+docs/
+bin/
 *.jpg
+*.pyc
 *.png
 .env
 analysis.db
 location_cache.json
-uploads/
-exports/
