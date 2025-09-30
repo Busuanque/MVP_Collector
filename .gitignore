@@ -4,6 +4,7 @@ uploads/
 exports/
 dist/
 build/
+output/
 docs/
 bin/
 *.jpg

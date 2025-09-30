@@ -21,6 +21,8 @@ from uv_index import get_uv_index
 from fitzpatrick import analyze_fitzpatrick
 from recommendations import get_recommendations, format_analysis_html
 
+import sys
+
 # Carrega variáveis de ambiente
 ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default")
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,8 +43,34 @@ MYSQL_CONFIG = {
     "database": "scp"
 }
 
+# Função para obter caminho correto para recursos
+def get_resource_path(relative_path):
+    """Obtém o caminho correto para recursos, seja em desenvolvimento ou executável"""
+    try:
+        # PyInstaller cria uma pasta temporária e armazena o caminho em _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+def create_flask_app():
+    """Cria a aplicação Flask com caminhos corretos"""
+    if getattr(sys, 'frozen', False):
+        # Executando como executável PyInstaller
+        template_dir = get_resource_path('templates')
+        static_dir = get_resource_path('static')
+    else:
+        # Executando em desenvolvimento
+        template_dir = os.path.join(os.path.dirname(__file__), '../templates')
+        static_dir = os.path.join(os.path.dirname(__file__), '../static')
+    
+    return Flask(__name__, 
+                template_folder=template_dir, 
+                static_folder=static_dir)
+
 # Configuração do Flask
-app = Flask(__name__, template_folder="../templates", static_folder="../static")
+#app = Flask(__name__, template_folder="../templates", static_folder="../static")
+app = create_flask_app()
 
 # Criar pastas se não existirem
 app.config["UPLOAD_FOLDER"] = "uploads"
