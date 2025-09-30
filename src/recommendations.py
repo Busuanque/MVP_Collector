@@ -61,8 +61,16 @@ def get_recommendations(uv_index, skin_type):
 
 def get_recommendations(uv_index, skin_type):
     """Retorna lista de recomendações personalizadas."""
+
     # UV level categories
     recommendations = []
+
+    risco = (
+        "Alto risco" if uv_index >= 8 else
+        "Risco moderado" if uv_index >= 6 else
+        "Baixo risco"
+    )
+    recommendations.append(f"Risco: {risco}")
 
     if uv_index >= 6:
         recommendations += [
@@ -103,29 +111,23 @@ def get_recommendations(uv_index, skin_type):
             "Mantenha hidratação"
         ]
     }
-    recommendations += skin_map.get(skin_type, [])
-    recommendations.append(f"-> Beba bastante água")
-    recommendations.append(f"-> Coma alimentos ricos em antioxidantes")
-    # Adicionar resumo de UV no final
-    risco = (
-        "Alto risco" if uv_index >= 8 else
-        "Risco moderado" if uv_index >= 6 else
-        "Baixo risco"
-    )
-    recommendations.append(f"UV atual: {uv_index:.1f} – {risco}")
+    #recommendations += skin_map.get(skin_type, [])
+    recommendations += next((v for k, v in skin_map.items() if skin_type in k),[])
+
+    recommendations.append(f"Beba bastante água")
+    recommendations.append(f"Coma alimentos ricos em antioxidantes")
     return recommendations
 
 def format_analysis_html(uv_index, skin_type, recommendations):
-    """
-    Gera bloco HTML estruturado para exibir:
-    - Índice UV
-    - Tipo de Pele
-    - Lista de Recomendações
-    """
-    html = f"<p><strong>Índice UV:</strong> {uv_index:.1f}</p>"
+    #Gera bloco HTML estruturado para exibir:
+    #- Índice UV
+    #- Tipo de Pele
+    #- Lista de Recomendações
+    html = f"<p><strong>Índice UV:</strong> {uv_index:}</p>"
     html += f"<p><strong>Tipo de Pele:</strong> {skin_type}</p>"
     html += "<p><strong>Recomendações:</strong></p><ul>"
     for rec in recommendations:
         html += f"<li>{rec}</li>"
     html += "</ul>"
     return html
+    

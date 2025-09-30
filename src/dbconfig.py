@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 # ID do coletor
 ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default")
 
-DB_CONFIG = {
+MYSQL_CONFIG = {
     'host': 'localhost',
     'database': 'scp',
     'user': 'scp_user',

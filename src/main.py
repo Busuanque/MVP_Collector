@@ -16,7 +16,7 @@ from mysql.connector import Error as MySQLError
 
 from dotenv import load_dotenv
 
-from dbconfig import ID_COLLECTOR, DB_CONFIG
+from dbconfig import ID_COLLECTOR
 from uv_index import get_uv_index
 from fitzpatrick import analyze_fitzpatrick
 from recommendations import get_recommendations, format_analysis_html
@@ -28,7 +28,7 @@ load_dotenv(os.path.join(BASE_DIR, "../.env"))
 
 
 # Configs DB
-#print("DB Path:", os.path.join(BASE_DIR,"analysis.db"))
+#print("----->DB Path:", os.path.join(BASE_DIR,"analysis.db"))
 SQLITE_CONFIG = {
     "path": os.path.join(BASE_DIR,"analysis.db")
 }
@@ -55,9 +55,37 @@ app.secret_key = os.urandom(24)
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif"}
 
-
 analises_coletadas = []
 
+def ensure_sqlite_table():
+    """Garante que a tabela analysis_log existe no SQLite"""
+    db_path = SQLITE_CONFIG["path"]
+    
+    # Cria diretório se não existir
+    os.makedirs(os.path.dirname(db_path) if os.path.dirname(db_path) else '.', exist_ok=True)
+    
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS analysis_log (
+            id_collector TEXT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            timestamp TEXT NOT NULL,
+            event_type TEXT NOT NULL,
+            input_type TEXT,
+            input_value TEXT,
+            location TEXT,
+            uv_index REAL,
+            fitzpatrick_type TEXT,
+            recommendations TEXT,
+            status_message TEXT
+        )
+    """)
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+  
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
@@ -75,14 +103,6 @@ def get_db_connection_mysql():
         database=cfg["database"], charset="utf8mb4"
     )
 
-def init_db():
-    """Inicializa schemas em MySQL e SQLite."""
-    statuses = {}
-    statuses["mysql"] = "MySQL pronto"
-    statuses["sqlite"] = "SQLite pronto"
-
-    return statuses
-
 import re
 def clean_text(text):
     """Remove emojis e escapes Unicode, mantendo texto legível."""
@@ -94,6 +114,9 @@ def clean_text(text):
     return ' '.join(text.split())
 
 def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
+
+    ensure_sqlite_table()  # Garante que a tabela existe
+
     #print("Log_analisys chamada:", event_type, input_type, input_value, kwargs)
     ts = datetime.now().isoformat()
     
@@ -115,10 +138,12 @@ def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
         kwargs.get("status_message")
     )
 
+    conn = get_db_connection_sqlite()
+    cur = conn.cursor()
+
+
     # SQLite
     try:
-        conn = get_db_connection_sqlite()
-        cur = conn.cursor()
         cur.execute("""
             INSERT INTO analysis_log
             (id_collector,timestamp,event_type,input_type,input_value,
@@ -133,14 +158,13 @@ def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
 
 @app.route("/")
 def index():
-    statuses = init_db()
+    statuses = "Databases prontos"
     session["location"] = None
     session["photo_path"] = None
     return render_template(
         "index.html",
-        status_message=" | ".join(statuses.values()),
-        status_color="#00B300" if all("pronto" in v.lower() for v in statuses.values()) else "#FF0000"
-    )
+        status_message=" | ".join(statuses),
+        status_color="#00B300")
 
 @app.route("/detect_location", methods=["GET"])
 def detect_location():
@@ -360,7 +384,7 @@ def export_db():
             # Mapeamento dos campos conforme especificado
             id_collector = record[0]        # analysis_log.id_collector
             timestamp = record[2]           # analysis_log.timestamp  
-            input_value = record[5] or ""   # analysis_log.input_value (nome_imagem)
+            input_value = record[5]         # analysis_log.input_value (nome_imagem)
             location = record[6]            # analysis_log.location
             uv_index = record[7]            # analysis_log.uv_index
             fitzpatrick_type = record[8]    # analysis_log.fitzpatrick_type
@@ -379,7 +403,6 @@ def export_db():
                     print(f"Falha ao ler imagem: {e}")
                     imagem_blob = None
 
-            '''
             # Debug: mostrar dados que serão inseridos
             print("----------------------------------------------------------------")
             print(f"\nInserindo registro {transferred_count + 1}:")
@@ -391,9 +414,7 @@ def export_db():
             print(f"  tipo_pele: {fitzpatrick_type}")
             print(f"  recomendacoes: {recommendations}")
             print(f"  estado: {status_message}")
-            print(f"  imagem_blob: {imagem_blob}")
             print("----------------------------------------------------------------")
-            '''
 
             # Inserir no MySQL (id é auto-incremental, não precisa ser especificado)
             mysql_cursor.execute("""
