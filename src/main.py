@@ -26,6 +26,8 @@ import sys
 # Carrega variáveis de ambiente
 ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default")
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+API_KEY = os.getenv("IPGEOLOCATION_API_KEY", "7f71a225406f419b97557e6e267ba07e")
+
 load_dotenv(os.path.join(BASE_DIR, "../.env"))
 
 
@@ -113,11 +115,11 @@ def ensure_sqlite_table():
     cursor.close()
     conn.close()
 
-  
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def get_db_connection_sqlite():
+    ensure_sqlite_table()  # Garante que a tabela existe
     cfg = SQLITE_CONFIG
     conn = sqlite3.connect(cfg["path"], check_same_thread=False)
     conn.execute("PRAGMA foreign_keys = ON;")
@@ -148,8 +150,6 @@ def clean_text(text):
 
 def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
 
-    ensure_sqlite_table()  # Garante que a tabela existe
-
     #print("Log_analisys chamada:", event_type, input_type, input_value, kwargs)
     ts = datetime.now().isoformat()
     
@@ -157,7 +157,7 @@ def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
     raw_recs = kwargs.get("recommendations", [])
     cleaned_recs = [ clean_text(rec) for rec in raw_recs ]
     recs_json = json.dumps(cleaned_recs, ensure_ascii=False)
-    print("Recomendações limpas:", recs_json)
+    #print("Recomendações limpas:", recs_json)
     
     data = (
         ID_COLLECTOR, 
@@ -175,7 +175,6 @@ def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
     conn = get_db_connection_sqlite()
     cur = conn.cursor()
 
-
     # SQLite
     try:
         cur.execute("""
@@ -185,6 +184,8 @@ def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
             VALUES (?,?,?,?,?,?,?,?,?,?)
         """, data)
         conn.commit()
+        #print("Dados gravados: ",data)
+        print("--> Registros no SQLite: ",data)
     except:
         pass
     finally:
@@ -219,10 +220,11 @@ def detect_location():
         pass
 
     try:
-        key = os.getenv("IPGEOLOCATION_API_KEY")
-        if not key:
+        #key = os.getenv("IPGEOLOCATION_API_KEY")
+        #print("API_KEY:", API_KEY)
+        if not API_KEY:
             raise Exception("API key faltando")
-        url = f"https://api.ipgeolocation.io/ipgeo?apiKey={key}"
+        url = f"https://api.ipgeolocation.io/ipgeo?apiKey={API_KEY}"
         r = json.loads(__import__("requests").get(url).text)
         loc = f"{r.get('city')}, {r.get('country_name')}"
         session["location"] = loc
@@ -265,13 +267,19 @@ def analyze():
     if not pp or not os.path.exists(pp):
         return jsonify(status="error", message="Foto não encontrada.", message_color="#FF0000")
     try:
-        uv_data = get_uv_index(session["location"])
-        uv_index = uv_data.get("uv", 0) if isinstance(uv_data, dict) else 0
-        #get_uv_index = get_uv_index(session["location"])
+        #uv_data = get_uv_index(session["location"])
+        #uv_index = uv_data.get("uv", 0) if isinstance(uv_data, dict) else 0
+        uv_index = get_uv_index(session["location"])
         st = analyze_fitzpatrick(pp)
         recs = get_recommendations(uv_index, st)
         html = format_analysis_html(uv_index, st, recs)
-        log_analysis("analysis_completed", "photo+location", pp, uv_index=uv_index, fitzpatrick_type=st, recommendations=recs, status_message="Análise concluída!")
+        log_analysis("analysis_completed", 
+                     "photo+location", 
+                     pp, 
+                     uv_index=uv_index, 
+                     fitzpatrick_type=st, 
+                     recommendations=recs, 
+                     status_message="Análise concluída!")
         session["uv_index"] = uv_index
         session["skin_type"] = st
         return jsonify(status="success", result_html=html, message="Análise concluída!", message_color="#00B300")

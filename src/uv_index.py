@@ -43,7 +43,7 @@ def get_uv_index(location):
         
         # Extract UV index
         uv_index = data.get("result", {}).get("uv")
-        print("Extracted UV Index:", uv_index)
+        #print("Extracted UV Index:", uv_index)
 
         if uv_index is None:
             raise Exception("UV index not found in API response.")
