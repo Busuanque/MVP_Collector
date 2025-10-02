@@ -133,13 +133,18 @@ def get_db_connection_mysql():
 
 import re
 def clean_text(text):
-    """Remove emojis e escapes Unicode, mantendo texto legível."""
-    # Remove emojis e símbolos Unicode
-    text = re.sub(r'[\U0001F000-\U0001F9FF\u2600-\u26FF\u2700-\u27BF\uFE0F]', '', str(text))
     # Remove escapes como \uXXXX
     text = text.encode('utf-8').decode('unicode_escape')
-    # Remove espaços duplicados
-    return ' '.join(text.split())
+
+    # Remove emojis e símbolos Unicode
+    text = re.sub(r'^\[|\]$', '', text)  # Remove colchetes
+    text = re.sub(r'\\u[0-9a-fA-F]{4}', '', str(text))
+    text = re.sub(r'[\x00-\x1F\x7F-\x9F]', ' ', text)  # Remove caracteres de controle
+    text = re.sub(r'\\[nrt"\\]', ' ', text)  # Remove barras invertidas comuns
+    text = re.sub(r'\s+', ' ', text)  # Remove espaços extras
+    text = re.sub(r'[^\x20-\x7E]', ' ', text)  # Remove caracteres não-ASCII
+
+    return text.strip()
 
 def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
 
@@ -152,6 +157,7 @@ def log_analysis(event_type, input_type=None, input_value=None, **kwargs):
     raw_recs = kwargs.get("recommendations", [])
     cleaned_recs = [ clean_text(rec) for rec in raw_recs ]
     recs_json = json.dumps(cleaned_recs, ensure_ascii=False)
+    print("Recomendações limpas:", recs_json)
     
     data = (
         ID_COLLECTOR, 
@@ -261,6 +267,7 @@ def analyze():
     try:
         uv_data = get_uv_index(session["location"])
         uv_index = uv_data.get("uv", 0) if isinstance(uv_data, dict) else 0
+        #get_uv_index = get_uv_index(session["location"])
         st = analyze_fitzpatrick(pp)
         recs = get_recommendations(uv_index, st)
         html = format_analysis_html(uv_index, st, recs)
@@ -432,6 +439,7 @@ def export_db():
                     imagem_blob = None
 
             # Debug: mostrar dados que serão inseridos
+            '''
             print("----------------------------------------------------------------")
             print(f"\nInserindo registro {transferred_count + 1}:")
             print(f"  id_colletor: {id_collector}")
@@ -443,6 +451,7 @@ def export_db():
             print(f"  recomendacoes: {recommendations}")
             print(f"  estado: {status_message}")
             print("----------------------------------------------------------------")
+            '''
 
             # Inserir no MySQL (id é auto-incremental, não precisa ser especificado)
             mysql_cursor.execute("""
