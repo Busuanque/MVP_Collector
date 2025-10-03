@@ -10,6 +10,5 @@ bin/
 *.jpg
 *.pyc
 *.png
-.env
 analysis.db
 location_cache.json
