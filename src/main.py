@@ -229,6 +229,8 @@ def detect_location():
         url = f"https://api.ipgeolocation.io/ipgeo?apiKey={API_KEY}"
         r = json.loads(__import__("requests").get(url).text)
         loc = f"{r.get('city')}, {r.get('country_name')}"
+        session["lat"] = r.get("latitude")
+        session["lng"] = r.get("longitude")
         session["location"] = loc
         with open(cache, "w") as f:
             json.dump({"location": loc, "timestamp": time.time()}, f)
@@ -275,7 +277,8 @@ def analyze():
     if not pp or not os.path.exists(pp):
         return jsonify(status="error", message="Foto não encontrada.", message_color="#FF0000")
     try:
-        uv_index = get_uv_index(session["location"])
+        #uv_index = get_uv_index(session["location"])
+        uv_index = get_uv_index(lat=session.get("lat"), lng=session.get("lng"))
         st = analyze_fitzpatrick(pp)
         recs = get_recommendations(uv_index, st)
         html = format_analysis_html(uv_index, st, recs)
