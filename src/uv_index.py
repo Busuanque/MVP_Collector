@@ -2,21 +2,9 @@ import requests
 import os
 from geopy.geocoders import Nominatim
 
-API_KEY = os.getenv("IPGEOLOCATION_API_KEY")
+API_KEY = os.getenv("IPGEOLOCATION_API_KEY","openuv-1s7ggrmdefauin-io")
 
 def get_uv_index(location):
-    """
-    Fetch real-time UV index for a given location using OpenUV API.
-    
-    Args:
-        location (str): Location string (e.g., "Lisbon, Portugal").
-    
-    Returns:
-        float: UV index value.
-    
-    Raises:
-        Exception: If location is invalid, API key is missing, or API request fails.
-    """
     # Initialize geocoder
     geolocator = Nominatim(user_agent="SCP_Collector")
     
@@ -31,9 +19,8 @@ def get_uv_index(location):
         raise Exception(f"Geocoding failed: {str(e)}")
 
     # OpenUV API configuration
-    api_key = "openuv-1s7ggrmdefauin-io"  # Replace with your actual OpenUV API key
     url = f"https://api.openuv.io/api/v1/uv?lat={lat}&lng={lng}"
-    headers = {"x-access-token": api_key}
+    headers = {"x-access-token": API_KEY}
 
     # Make API request
     uv_index = 4.4  # Default UV index in case of failure
