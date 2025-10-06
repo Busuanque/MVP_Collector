@@ -7,9 +7,3 @@
 python src\main.py
 
 http://localhost:5000
-
-
-
-------------------------------
-dummy/dummy
-MySql@12345

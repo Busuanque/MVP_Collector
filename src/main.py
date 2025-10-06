@@ -16,20 +16,22 @@ from mysql.connector import Error as MySQLError
 
 from dotenv import load_dotenv
 
-from dbconfig import ID_COLLECTOR
+#from dbconfig import ID_COLLECTOR
 from uv_index import get_uv_index
 from fitzpatrick import analyze_fitzpatrick
 from recommendations import get_recommendations, format_analysis_html
 
 import sys
+from dotenv import load_dotenv
 
-# Carrega variáveis de ambiente
+
+#BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+from pathlib import Path
+BASE_DIR = Path().resolve()
+#load_dotenv(os.path.join(BASE_DIR, "../.env"))
+load_dotenv(BASE_DIR / "./src/.env", override=True)
 ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default")
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 API_KEY = os.getenv("IPGEOLOCATION_API_KEY", "7f71a225406f419b97557e6e267ba07e")
-
-load_dotenv(os.path.join(BASE_DIR, "../.env"))
-
 
 # Configs DB
 #print("----->DB Path:", os.path.join(BASE_DIR,"analysis.db"))
@@ -236,10 +238,10 @@ def detect_location():
             from geopy.geocoders import Nominatim
             loc = Nominatim(user_agent="mvp").geocode("Lisbon, Portugal").address
             session["location"] = loc
-            log_analysis("location_detected", "fallback", loc, status_message=str(e))
+            #log_analysis("location_detected", "fallback", loc, status_message=str(e))
             return jsonify(status="warning", location=loc, message=f"Fallback: {e}", message_color="#FFA500")
         except Exception as ex:
-            log_analysis("location_failed", None, None, status_message=str(ex))
+            #log_analysis("location_failed", None, None, status_message=str(ex))
             return jsonify(status="error", location="Unknown", message="Erro localização", message_color="#FF0000")
 
 @app.route("/upload", methods=["POST"])
@@ -261,6 +263,12 @@ def upload_photo():
 
 @app.route("/analyze", methods=["POST"])
 def analyze():
+    
+    print("Variaveis de ambiente carregadas:")
+    print("base_dir:", BASE_DIR)
+    print("ID_COLLECTOR:", ID_COLLECTOR)
+    print("API_KEY:", API_KEY)
+    
     if not session.get("location"):
         return jsonify(status="error", message="Localização não detectada.", message_color="#FF0000")
     pp = session.get("photo_path")
@@ -284,7 +292,7 @@ def analyze():
         session["skin_type"] = st
         return jsonify(status="success", result_html=html, message="Análise concluída!", message_color="#00B300")
     except Exception as e:
-        log_analysis("analysis_failed", None, None, status_message=str(e))
+        #log_analysis("analysis_failed", None, None, status_message=str(e))
         return jsonify(status="error", message=f"Erro na análise: {e}", message_color="#FF0000")
 
 @app.route("/count_analyses", methods=["GET"])
