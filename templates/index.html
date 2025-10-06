@@ -254,6 +254,7 @@
             // Atualiza contador de análises
             const countEl = document.getElementById("analysis-count");
             if (countEl) {
+            
             axios.get("/count_analyses")
                 .then(res => {
                 if (res.data.status === "success") {
