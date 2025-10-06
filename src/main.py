@@ -1,4 +1,5 @@
 # src/main.py
+# Aplicação Flask para análise de fotos e recomendações de proteção solar
 
 import os
 import json
