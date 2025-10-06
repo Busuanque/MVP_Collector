@@ -1,4 +1,5 @@
 # src/main.py
+# Aplicação Flask para análise de fotos e recomendações de proteção solar
 
 import os
 import json
@@ -29,7 +30,7 @@ from pathlib import Path
 BASE_DIR = Path().resolve()
 #load_dotenv(os.path.join(BASE_DIR, "../.env"))
 load_dotenv(BASE_DIR / "./src/.env", override=True)
-ID_COLLECTOR = os.getenv("ID_COLLECTOR", "default")
+ID_COLLECTOR = os.getenv("ID_COLLECTOR", "COLLECTOR_XXX")
 API_KEY = os.getenv("IPGEOLOCATION_API_KEY", "7f71a225406f419b97557e6e267ba07e")
 
 # Configs DB
@@ -274,8 +275,6 @@ def analyze():
     if not pp or not os.path.exists(pp):
         return jsonify(status="error", message="Foto não encontrada.", message_color="#FF0000")
     try:
-        #uv_data = get_uv_index(session["location"])
-        #uv_index = uv_data.get("uv", 0) if isinstance(uv_data, dict) else 0
         uv_index = get_uv_index(session["location"])
         st = analyze_fitzpatrick(pp)
         recs = get_recommendations(uv_index, st)
