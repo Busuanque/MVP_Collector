@@ -36,8 +36,9 @@ def get_uv_index(location):
     headers = {"x-access-token": api_key}
 
     # Make API request
+    uv_index = 4.4  # Default UV index in case of failure
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, headers=headers, timeout=5)
         response.raise_for_status()  # Raise exception for bad status codes
         data = response.json()
         
@@ -51,3 +52,5 @@ def get_uv_index(location):
         return float(uv_index)
     except requests.exceptions.RequestException as e:
         raise Exception(f"Failed to fetch UV index: {str(e)}")
+    finally:
+        return uv_index
