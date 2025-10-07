@@ -6,10 +6,8 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Carrega .env
 
-# API_KEY do OpenWeather (cadastre grátis em openweathermap.org/api)
-API_KEY = os.getenv("OPENWEATHER_API_KEY")
-if not API_KEY:
-    print("AVISO: OPENWEATHER_API_KEY faltando no .env — use fallback 4.4")
+# FIX: Use a key correta do .env (OPENUV)
+API_KEY = os.getenv("OPENUV_API_KEY") 
 
 # Cache simples (dict global: chave=lat_lng, valor=(uv, timestamp))
 uv_cache = {}
@@ -18,6 +16,7 @@ CACHE_TTL = 1800  # 30 minutos em segundos
 def get_uv_index(location=None, lat=None, lng=None):
     # Primeiro, obtenha lat/lng (como antes)
     if lat is not None and lng is not None:
+        # Use lat/lng direto (rápido, sem geocode)
         print("Usando lat/lng direto (otimizado)")
         cache_key = f"{lat}_{lng}"
     elif location:
@@ -25,7 +24,7 @@ def get_uv_index(location=None, lat=None, lng=None):
         geolocator = Nominatim(user_agent="SCP_Collector")
         try:
             start_geo = time.time()
-            location_data = geolocator.geocode(location, timeout=10)
+            location_data = geolocator.geocode(location, timeout=10)  # Timeout no geocode
             print(f"Geocode tempo: {time.time() - start_geo:.2f}s")
             if not location_data:
                 raise Exception("Invalid location. Please enter a valid city and country (e.g., 'Lisbon, Portugal').")
@@ -37,7 +36,7 @@ def get_uv_index(location=None, lat=None, lng=None):
     else:
         raise Exception("Forneça 'location' OU 'lat' e 'lng'")
 
-    # Checa cache primeiro (instantâneo!)
+    # <-- NOVO: Checa cache primeiro (instantâneo!)
     if cache_key in uv_cache:
         cached_uv, cached_time = uv_cache[cache_key]
         if time.time() - cached_time < CACHE_TTL:
@@ -46,23 +45,18 @@ def get_uv_index(location=None, lat=None, lng=None):
         else:
             print(f"Cache expirado para {cache_key}, atualizando...")
 
-    # OpenWeather UV API (rápida, confiável)
-    if not API_KEY:
-        print("Sem API key — usando fallback 4.4")
-        uv_index = 4.4
-        uv_cache[cache_key] = (uv_index, time.time())  # Cache até fallback
-        return uv_index
+    # OpenUV API configuration (só se cache miss)
+    alt = 0  # Altitude default (opcional)
+    url = f"https://api.openuv.io/api/v1/uv?lat={lat}&lng={lng}&alt={alt}"
+    headers = {"x-access-token": API_KEY}
 
-    url = "https://api.openweathermap.org/data/2.5/uvi"
-    params = {"lat": lat, "lon": lng, "appid": API_KEY}
-
-    # Make API request (com retry)
-    uv_index = 4.4  # Default
+    # Make API request (com retry, como antes)
+    uv_index = 4.4  # Default UV index in case of failure
     try:
         start_api = time.time()
-        for attempt in range(3):
+        for attempt in range(3):  # Retry 3x
             try:
-                response = requests.get(url, params=params, timeout=10)
+                response = requests.get(url, headers=headers, timeout=15)  # 15s
                 print(f"API tentativa {attempt+1}: tempo {time.time() - start_api:.2f}s, status: {response.status_code}")
                 response.raise_for_status()
                 break
@@ -75,15 +69,15 @@ def get_uv_index(location=None, lat=None, lng=None):
             raise requests.exceptions.Timeout("Todas tentativas falharam")
 
         data = response.json()
-        uv_index = data.get("value")  # Formato: {"value": 4.2}
+        uv_index = data.get("result", {}).get("uv")
         if uv_index is None:
             raise Exception("UV index not found in API response.")
         
-        # Salva no cache após sucesso
+        # <-- NOVO: Salva no cache após sucesso
         uv_cache[cache_key] = (float(uv_index), time.time())
         print(f"Cache atualizado para {cache_key}: UV {uv_index}")
         
-        return float(uv_index)
+        return uv_index
     except requests.exceptions.RequestException as e:
         print(f"Request failed: {e}. Using default UV index value.")
         raise Exception(f"Failed to fetch UV index: {str(e)}")

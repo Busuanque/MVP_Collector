@@ -17,7 +17,7 @@ from mysql.connector import Error as MySQLError
 from dotenv import load_dotenv
 
 #from dbconfig import ID_COLLECTOR
-from uv_index import get_uv_index
+from _uv_index import get_uv_index
 from fitzpatrick import analyze_fitzpatrick
 from recommendations import get_recommendations, format_analysis_html
 
@@ -277,6 +277,7 @@ def analyze():
     if not pp or not os.path.exists(pp):
         return jsonify(status="error", message="Foto não encontrada.", message_color="#FF0000")
     try:
+        '''
         #uv_index = get_uv_index(session["location"])
         uv_index = get_uv_index(lat=session.get("lat"), lng=session.get("lng"))
         st = analyze_fitzpatrick(pp)
@@ -289,6 +290,32 @@ def analyze():
                      fitzpatrick_type=st, 
                      recommendations=recs, 
                      status_message="Análise concluída!")
+        session["uv_index"] = uv_index
+        session["skin_type"] = st
+        return jsonify(status="success", result_html=html, message="Análise concluída!", message_color="#00B300")
+        '''
+        # FIX: Sempre use location como base; lat/lng só se disponível (evita None)
+        location = session.get("location")
+        if not location:
+            raise Exception("Localização não detectada na session.")
+        
+        lat = session.get("lat")
+        lng = session.get("lng")
+        if lat and lng and isinstance(lat, (int, float)) and isinstance(lng, (int, float)):
+            uv_index = get_uv_index(lat=lat, lng=lng)  # Rápido via cache, sem geocode
+        else:
+            uv_index = get_uv_index(location=location)  # Fallback: geocode + cache
+        
+        st = analyze_fitzpatrick(pp)
+        recs = get_recommendations(uv_index, st)
+        html = format_analysis_html(uv_index, st, recs)
+        log_analysis("analysis_completed", 
+                    "photo+location", 
+                    pp, 
+                    uv_index=uv_index, 
+                    fitzpatrick_type=st, 
+                    recommendations=recs, 
+                    status_message="Análise concluída!")
         session["uv_index"] = uv_index
         session["skin_type"] = st
         return jsonify(status="success", result_html=html, message="Análise concluída!", message_color="#00B300")
