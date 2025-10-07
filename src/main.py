@@ -17,7 +17,7 @@ from mysql.connector import Error as MySQLError
 from dotenv import load_dotenv
 
 #from dbconfig import ID_COLLECTOR
-from _uv_index import get_uv_index
+from uv_index import get_uv_index
 from fitzpatrick import analyze_fitzpatrick
 from recommendations import get_recommendations, format_analysis_html
 
