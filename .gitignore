@@ -1,5 +1,6 @@
 __pycache__/
 .venv/
+.buildozer/
 uploads/
 exports/
 dist/
@@ -8,6 +9,7 @@ output/
 docs/
 bin/
 db_bkp/
+dist/
 *.jpg
 *.pyc
 *.png
